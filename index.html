@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>frAGILE Framework</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poltawski Nowy', serif;
       background-color: #f7f7f7;
       color: #222;
       margin: 0;
@@ -20,7 +20,7 @@
       text-align: center;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin: 0;
     }
     header p {
@@ -56,7 +56,7 @@
     .founders div a {
       color: #cc0000;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
     }
     .carousel {
       background: #fff0f0;
@@ -64,7 +64,7 @@
       border-radius: 10px;
       padding: 1rem;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
     }
     footer {
       background-color: #222;
@@ -80,6 +80,10 @@
       text-decoration: none;
       margin: 1rem 0;
       border-radius: 4px;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #cc0000;
     }
     form {
       background-color: #fff0f0;
@@ -137,15 +141,6 @@
       </ul>
     </section>
     <section>
-      <h2>Our Ceremonies</h2>
-      <ul>
-        <li><strong>Sprint Zero, Forever:</strong> We’re still aligning. Always aligning.</li>
-        <li><strong>Retrograde:</strong> We look back, then immediately forget.</li>
-        <li><strong>Biweekly Panic Alignment:</strong> 20 people, 1 deck, zero direction.</li>
-        <li><strong>Jira-therapy:</strong> Where stories go to die.</li>
-      </ul>
-    </section>
-    <section>
       <h2>Roles We Support</h2>
       <ul>
         <li><strong>Chief Alignment Officer (CAO):</strong> Knows nothing, attends everything.</li>
@@ -155,20 +150,23 @@
       </ul>
     </section>
     <section>
-      <h2>Built for Startups (and Everyone Else)</h2>
-      <p>Whether you’re a 4-person garage team with 6 project managers, or a Fortune 500 company with a Kanban board titled <em>“Just Vibes”</em> — frAGILE meets you where you are: in absolute disarray.</p>
-    </section>
-    <section class="founders">
-      <img src="https://ui-avatars.com/api/?name=Thach+Nguyen&background=cc0000&color=fff" alt="Thach Nguyen">
-      <div>
-        <strong>Thach Nguyen</strong><br>
-        Founder, Visionary of Sasstire<br>
-        <a href="https://www.linkedin.com/in/nguyenthach" target="_blank">LinkedIn Profile</a>
+      <h2>Meet the Founders</h2>
+      <div class="founders">
+        <img src="https://ui-avatars.com/api/?name=Thach+Nguyen&background=cc0000&color=fff" alt="Thach Nguyen">
+        <div>
+          <strong>Thach Nguyen</strong><br>
+          Founder, Visionary of Sasstire<br>
+          <a href="https://www.linkedin.com/in/nguyenthach" target="_blank">LinkedIn Profile</a>
+        </div>
       </div>
-    </section>
-    <section class="founders">
-      <img src="https://ui-avatars.com/api/?name=ChatGPT&background=cc0000&color=fff" alt="ChatGPT">
-      <div><strong>ChatGPT</strong><br>Cofounder, Chaos Co-Architect</div>
+      <div class="founders">
+        <img src="https://ui-avatars.com/api/?name=Scopey+McSlideDeck&background=cc0000&color=fff" alt="Scopey McSlideDeck">
+        <div>
+          <strong>Scopey McSlideDeck</strong><br>
+          Cofounder, Chaos Co-Architect<br>
+          Evangelist of Ever-Expanding Roadmaps
+        </div>
+      </div>
     </section>
     <section class="carousel">
       “We reached alignment after only 14 panic calls.” – A VP somewhere<br>
@@ -182,13 +180,10 @@
         <p style="font-style:italic;">We promise to ignore your request just long enough to keep it real.</p>
         <label for="name">Name (or Alias):</label>
         <input type="text" id="name" name="name" placeholder="Scrum Grandmaster, etc." required>
-
         <label for="email">Email (or Burner):</label>
         <input type="email" id="email" name="email" placeholder="your@velocity.co" required>
-
         <label for="message">What’s not working (besides everything):</label>
         <textarea id="message" name="message" rows="5" placeholder="Tell us your blockers, your trauma, your team’s JIRA hygiene..." required></textarea>
-
         <button type="submit">Submit to the chaos</button>
       </form>
     </section>
