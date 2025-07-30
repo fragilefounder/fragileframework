@@ -161,7 +161,27 @@
           Evangelist of Ever-Expanding Roadmaps
         </div>
       </div>
-    </section>
+    </section> 
+
+    <section>
+  <a href="#" class="button" onclick="document.getElementById('alignmentForm').style.display='block'; return false;">Request an Alignment Call</a>
+  <form id="alignmentForm" name="alignmentForm" method="POST" data-netlify="true" netlify>
+    <h3 style="color:#cc0000;">Request an Alignment Call (or Just Vent)</h3>
+    <p style="font-style:italic;">We promise to ignore your request just long enough to keep it real.</p>
+
+    <label for="name">Name (or Alias):</label>
+    <input type="text" id="name" name="name" placeholder="Scrum Grandmaster, etc." required>
+
+    <label for="email">Email (or Burner):</label>
+    <input type="email" id="email" name="email" placeholder="your@velocity.co" required>
+
+    <label for="message">What’s not working (besides everything):</label>
+    <textarea id="message" name="message" rows="5" placeholder="Tell us your blockers, your trauma, your team’s JIRA hygiene..." required></textarea>
+
+    <button type="submit">Submit to the chaos</button>
+  </form>
+</section>
+  
   </main>
 </body>
 </html>
