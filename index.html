@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>frAGILE Framework</title>
+  <link rel="icon" href="images/favicon.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #111;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      background: #cc0000;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      color: #cc0000;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .footer-form {
+      background-color: #fff8f8;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .footer-form h2 {
+      margin-top: 0;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      background-color: #fff;
+      border: 1px dashed #cc0000;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      text-align: left;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button[type="submit"] {
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>frAGILE Framework</h1>
+    <p>Because if you can’t scale chaos, is it even Agile?</p>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="product.html">📦 View Product</a>
+      <a href="frAGILE_Playbook.pdf">📘 Download Playbook</a>
+      <a href="subscribe.html">🌀 Join the Cult</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="footer-form">
+      <h2>Join the Cult. Stay frAGILE.</h2>
+      <p>Get our WTF: Weekly Team Frustrations newsletter — written entirely in buzzwords, panic, and passive aggression.</p>
+      <form name="subscribeForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="subscribeForm" />
+        <p hidden>
+          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+        </p>
+        <label for="name">Name (or Codename):</label>
+        <input type="text" id="name" name="name" placeholder="e.g., Scrum Whisperer" required />
+
+        <label for="role">Role (real or made-up):</label>
+        <input type="text" id="role" name="role" placeholder="e.g., VP of Gantt Charts" required />
+
+        <label for="email">Email (or burner):</label>
+        <input type="email" id="email" name="email" placeholder="you@align.io" required />
+
+        <button type="submit">Join the Chaos</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
