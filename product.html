@@ -2,65 +2,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>frAGILE Framework | Product</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>frAGILE Product</title>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      font-family: 'Varela Round', sans-serif;
+      background-color: #fefefe;
+      color: #111;
       margin: 0;
-      padding: 2rem;
-      color: #222;
+      padding: 0;
     }
     header {
+      background-color: #111;
+      color: #fff;
+      padding: 2rem;
       text-align: center;
-      padding-bottom: 2rem;
+    }
+    nav {
+      text-align: center;
+      margin: 2rem;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 1rem;
+    }
+    nav a.home {
+      color: #111;
+    }
+    nav a.product {
+      background: #cc0000;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
     h1 {
       color: #cc0000;
-      font-size: 2.2rem;
+      font-size: 1.5rem;
     }
-    .section {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
-    .download-btn {
-      display: inline-block;
-      background-color: #cc0000;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #888;
+    ul {
+      padding-left: 1.2rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>frAGILE Framework</h1>
-    <p>The only product where less delivery is more process.</p>
+    <h1>frAGILE Product</h1>
+    <p>When satire becomes strategy.</p>
   </header>
+  
+  <nav>
+    <a href="index.html" class="home">🏠 Home</a>
+    <a href="product.html" class="product">📦 View Product</a>
+  </nav>
 
-  <div class="section">
-    <h2>🏗️ The Playbook</h2>
-    <p>Uncover the sacred texts of frAGILE — ceremonies, values, and just enough sarcasm to keep your team aligned and unproductive.</p>
-    <a class="download-btn" href="frAGILE_Playbook.pdf" download>📥 Download the Playbook</a>
-  </div>
+  <main>
+    <section>
+      <h1>Product Features</h1>
+      <ul>
+        <li>✨ Alignment Call Scheduler (auto-cancels 3 minutes before start)</li>
+        <li>📉 Burndown Visualizer (always goes up)</li>
+        <li>📦 AI-Generated Roadmap Templates for 2040</li>
+        <li>💬 Auto-Retro Generator (outputs "We need better communication")</li>
+      </ul>
+    </section>
 
-  <footer>
-    &copy; 2025 frAGILE Framework. Built with emotional blockers and very little QA.
-  </footer>
+    <section>
+      <h1>Pricing Tiers</h1>
+      <ul>
+        <li><strong>Free Tier:</strong> Access to the Manifesto and confusion</li>
+        <li><strong>Team Tier:</strong> Adds Jira, Slack noise, and meeting invites</li>
+        <li><strong>Enterprise:</strong> Comes with chaos, 14 decks, and 0 outcomes</li>
+      </ul>
+    </section>
+  </main>
 </body>
 </html>
