@@ -171,16 +171,27 @@
       </div>
     </section>
 
-    <section>
-      <h2 id="subscribe">Join the Cult. Stay frAGILE.</h2>
-      <p>Get our WTF: Weekly Team Frustrations newsletter — written entirely in buzzwords, panic, and passive aggression.</p>
-      <form name="subscribe" method="POST" data-netlify="true">
-        <input type="text" name="name" placeholder="Name (or Codename)" required>
-        <input type="text" name="role" placeholder="Role (real or made-up)" required>
-        <input type="email" name="email" placeholder="Email (or burner)" required>
-        <button type="submit">Join the Chaos</button>
-      </form>
-    </section>
+<section style="padding: 2rem; text-align: center;">
+  <h2>Join the Cult</h2>
+  <p>Enter your email below to be indoctrinated… kindly.</p>
+
+  <form name="join-the-cult" method="POST" data-netlify="true" style="max-width: 400px; margin: 1rem auto;">
+    <input type="hidden" name="form-name" value="join-the-cult" />
+    <div style="margin-bottom: 1rem;">
+      <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <button type="submit" style="padding: 0.5rem 1rem; background-color: #cc0000; color: white; border: none; cursor: pointer;">
+      Pledge Loyalty
+    </button>
+  </form>
+
+  <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
+    This form might work… unless it’s feeling frAGILE today.
+  </p>
+</section>
   </main>
 </body>
 </html>
