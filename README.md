@@ -20,7 +20,7 @@ This is a passion project created by **Thach Nguyen** to blend product leadershi
 ## 🧭 How to Use
 
 - Upload HTML files to Netlify or GitHub Pages
-- Link `start-here-with-home.html` in your site’s nav as the new “Start Here” page
+- Link `start-here.html` in your site’s nav as the new “Start Here” page
 - Share content with your network — especially anyone running Agile ceremonies with more vibes than value
 
 ## 📫 Contact
