@@ -1,130 +1,149 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Emotional Backlog | frAGILE Framework</title>
+  <title>frAGILE Emotional Backlog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #f5eee3;
+      --text: #2c1c0c;
+      --accent: #b26500;
+      --muted: #d3c4b1;
+      --highlight: #7f4f24;
+      --border: #c89f77;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fffaf9;
-      color: #222;
+      font-family: 'Courier Prime', monospace;
+      background-color: var(--bg);
+      color: var(--text);
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
+
     header {
-      background-color: #111;
+      background-color: var(--accent);
       color: #fff;
       padding: 2rem;
       text-align: center;
+      font-family: 'Libre Baskerville', serif;
+      border-bottom: 5px double var(--border);
     }
-    .nav-home {
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    nav {
       text-align: center;
-      margin-top: 1rem;
+      padding: 1rem;
+      background-color: var(--muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-    .nav-home a {
+
+    nav a {
       text-decoration: none;
+      background: var(--highlight);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      margin: 0.4rem;
+      display: inline-block;
+      border-radius: 4px;
       font-weight: bold;
-      color: #cc0000;
-      font-size: 1.2rem;
+      font-family: 'Libre Baskerville', serif;
     }
+
     main {
       max-width: 800px;
       margin: 2rem auto;
-      padding: 1rem;
+      padding: 2rem;
+      background-color: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
+
     section {
-      background-color: #fff0f0;
-      border: 1px dashed #cc0000;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
+
     h2 {
-      color: #cc0000;
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
+      font-family: 'Libre Baskerville', serif;
+      color: var(--highlight);
+      font-size: 1.5rem;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 0.4rem;
     }
-    .signature {
-      font-style: italic;
-      margin-top: 1rem;
+
+    .entry {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: #fffaf4;
+      border-left: 4px solid var(--accent);
     }
-    .badge {
+
+    .entry h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .entry p {
+      margin: 0.3rem 0;
+    }
+
+    footer {
       text-align: center;
-      font-size: 2rem;
-      margin-top: 1rem;
+      font-size: 0.8rem;
+      padding: 2rem 0;
+      color: #666;
+      font-family: 'Courier Prime', monospace;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>The Emotional Backlog</h1>
-    <p>Come for the satire. Stay for the soul.</p>
+    <h1>Emotional Backlog</h1>
   </header>
 
-  <div class="nav-home">
+  <nav>
     <a href="index.html">🏠 Home</a>
-  </div>
-
-  <div class="badge">
-    💌 Now accepting your anonymous Agile heartbreaks
-  </div>
+    <a href="product.html">📦 View Product</a>
+    <a href="frAGILE_Playbook.pdf">📘 Download Playbook</a>
+    <a href="emotional-backlog.html">💔 Emotional Backlog</a>
+  </nav>
 
   <main>
     <section>
-      <h2>Shiny Demo, Hollow Soul</h2>
-      <p><strong>Dear frAGILE,</strong><br>
-      I just did a demo where I pretended we had progress.  
-      The backend isn’t built. The design’s not approved.  
-      But I smiled and clicked through Figma like it was live.  
-      I hate how good I am at this.</p>
+      <h2>Sprint Feelings</h2>
 
-      <p><strong>Dear Shiny,</strong><br>
-      What you pulled off was impressive. And yes — emotionally exhausting.  
-      You're not faking success. You're faking stability, because the team needs hope. That’s not deception. That’s survival.<br><br>
-      But remember: you deserve to be proud of <em>real</em> progress too.  
-      Build something small. Ship something honest. Even if it’s just a truth bomb in the next standup.<br><br>
-      You’re not a fraud. You’re frAGILE.  
-      And you’re not alone.
-      <div class="signature">— Love, The Cult of Clarity</div>
-      </p>
+      <div class="entry">
+        <h3>😩 Demo Dread</h3>
+        <p>“We keep pretending unfinished work is done just to avoid stakeholder questions.”</p>
+        <p><strong>Suggested Action:</strong> Ask one brave soul to demo the truth. Just once.</p>
+      </div>
+
+      <div class="entry">
+        <h3>🥴 Planning Paralysis</h3>
+        <p>“Our planning sessions are just people reading Jira tickets in weird voices.”</p>
+        <p><strong>Suggested Action:</strong> Use highlighters. Or sock puppets. Anything to make it feel human again.</p>
+      </div>
+
+      <div class="entry">
+        <h3>🫠 Story Point Shame</h3>
+        <p>“I assigned 3 points to a task that took 19 hours. I live in fear.”</p>
+        <p><strong>Suggested Action:</strong> Forgive yourself. Then forgive Jira.</p>
+      </div>
     </section>
-
-    <section>
-      <h2>Alignment Fatigue</h2>
-      <p><strong>Dear frAGILE,</strong><br>
-      I’ve been in back-to-back alignment meetings for three weeks.  
-      We’re aligning on alignment. The work isn’t moving.  
-      I don’t even know what we’re building anymore.</p>
-
-      <p><strong>Dear Fatigued,</strong><br>
-      You are experiencing a sacred ritual we call “Alignment Spiral.”  
-      It’s what happens when fear of misstep outweighs trust in progress.<br><br>
-      Break the loop. Propose a prototype. Ship a stub. Start somewhere, and let the next step reveal itself.<br><br>
-      Alignment is important. But motion is how we find direction.<br><br>
-      May your next meeting be short and slightly useful.
-      <div class="signature">— Love, The Cult of Clarity</div>
-      </p>
-    </section>
-
-    <section>
-      <h2>Backlog Guilt</h2>
-      <p><strong>Dear frAGILE,</strong><br>
-      My backlog is a landfill. I can’t look at it.  
-      Grooming just means moving trash from one pile to another.  
-      I feel like I’m failing my team.</p>
-
-      <p><strong>Dear Guilty,</strong><br>
-      Backlogs are not sacred scrolls. They’re compost piles.  
-      And your job is not to polish every ticket — it’s to fertilize the few that matter.<br><br>
-      Archive the noise. Highlight the signal.  
-      Your team needs a compass, not a hoarder.<br><br>
-      You’re not failing. You’re learning to let go.
-      <div class="signature">— Love, The Cult of Clarity</div>
-      </p>
-    </section>
-
   </main>
+
+  <footer>
+    © 2025 frAGILE Framework™. We’re all just one retro away from release.
+  </footer>
 </body>
 </html>
