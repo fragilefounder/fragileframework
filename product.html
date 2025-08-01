@@ -1,86 +1,139 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>frAGILE PRODUCT™</title>
-  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <title>frAGILE Product</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #f5eee3;
+      --text: #2c1c0c;
+      --accent: #b26500;
+      --muted: #d3c4b1;
+      --highlight: #7f4f24;
+      --border: #c89f77;
+    }
+
     body {
-      font-family: 'Varela Round', sans-serif;
-      background-color: #fefefe;
-      color: #111;
+      font-family: 'Courier Prime', monospace;
+      background-color: var(--bg);
+      color: var(--text);
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
+
     header {
-      background-color: #111;
+      background-color: var(--accent);
       color: #fff;
       padding: 2rem;
       text-align: center;
+      font-family: 'Libre Baskerville', serif;
+      border-bottom: 5px double var(--border);
     }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
     nav {
       text-align: center;
-      margin: 2rem;
+      padding: 1rem;
+      background-color: var(--muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
+
     nav a {
       text-decoration: none;
-      font-weight: bold;
-      margin: 0 1rem;
-    }
-    nav a.home {
-      color: #111;
-    }
-    nav a.product {
-      background: #cc0000;
+      background: var(--highlight);
       color: #fff;
       padding: 0.5rem 1rem;
+      margin: 0.4rem;
+      display: inline-block;
       border-radius: 4px;
+      font-weight: bold;
+      font-family: 'Libre Baskerville', serif;
     }
+
     main {
       max-width: 800px;
-      margin: 0 auto;
-      padding: 0 1rem;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-    h1 {
-      color: #cc0000;
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-family: 'Libre Baskerville', serif;
+      color: var(--highlight);
       font-size: 1.5rem;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 0.4rem;
     }
+
     ul {
       padding-left: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 2rem 0;
+      color: #666;
+      font-family: 'Courier Prime', monospace;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>frAGILE PRODUCT™</h1>
-    <p>When satire becomes strategy.</p>
+    <h1>Our frAGILE™ Product</h1>
   </header>
-  
+
   <nav>
-    <a href="index.html" class="home">🏠 Home</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="product.html">📦 View Product</a>
+    <a href="frAGILE_Playbook.pdf">📘 Download Playbook</a>
+    <a href="emotional-backlog.html">💔 Emotional Backlog</a>
   </nav>
 
   <main>
     <section>
-      <h1>Product Features</h1>
+      <h2>Core Modules</h2>
       <ul>
-        <li>✨ Alignment Call Scheduler (auto-cancels 3 minutes before start)</li>
-        <li>📉 Burndown Visualizer (always goes up)</li>
-        <li>📦 AI-Generated Roadmap Templates for 2040</li>
-        <li>💬 Auto-Retro Generator (outputs "We need better communication")</li>
+        <li><strong>Alignment Optimizer:</strong> Maximizes calendar invites, minimizes outcomes</li>
+        <li><strong>Burndown Fogger:</strong> Converts data into abstract art</li>
+        <li><strong>Stakeholder Summoner:</strong> Randomly adds new voices every sprint</li>
+        <li><strong>Demo Theater:</strong> Where “almost working” becomes “good enough”</li>
       </ul>
     </section>
 
     <section>
-      <h1>Pricing Tiers</h1>
+      <h2>Add-On Plugins</h2>
       <ul>
-        <li><strong>Free Tier:</strong> Access to the Manifesto and confusion</li>
-        <li><strong>Team Tier:</strong> Adds Jira, Slack noise, and meeting invites</li>
-        <li><strong>Enterprise:</strong> Comes with chaos, 14 decks, and 0 outcomes</li>
+        <li>✨ Velocity Booster (burnout sold separately)</li>
+        <li>🌀 Retro Spinner (land on “we need better alignment” every time)</li>
+        <li>🔁 Scope Creeper (unlocks mid-sprint chaos)</li>
       </ul>
     </section>
+
+    <section>
+      <h2>Pricing</h2>
+      <p><em>Just your sanity. And maybe your weekends.</em></p>
+    </section>
   </main>
+
+  <footer>
+    © 2025 frAGILE Framework™. All features subject to emotional availability.
+  </footer>
 </body>
 </html>
