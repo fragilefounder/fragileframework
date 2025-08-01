@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>frAGILE FRAMEWORK™</title>
+  <link rel="icon" href="images/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5eee3;
+      --text: #2c1c0c;
+      --accent: #b26500;
+      --muted: #d3c4b1;
+      --highlight: #7f4f24;
+      --border: #c89f77;
+    }
+
+    body {
+      font-family: 'Courier Prime', monospace;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Libre Baskerville', serif;
+      border-bottom: 5px double var(--border);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    nav {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav a {
+      text-decoration: none;
+      background: var(--highlight);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      margin: 0.4rem;
+      display: inline-block;
+      border-radius: 4px;
+      font-weight: bold;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-family: 'Libre Baskerville', serif;
+      color: var(--highlight);
+      font-size: 1.5rem;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 0.4rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .founder {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .founder img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+    }
+
+    .founder div {
+      font-size: 0.9rem;
+      font-family: 'Courier Prime', monospace;
+    }
+
+    .founder a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .banner img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border: 2px solid var(--border);
+    }
+
+    form {
+      background-color: #fff7f0;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px dashed var(--accent);
+      font-family: 'Courier Prime', monospace;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background-color: var(--highlight);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 2rem 0;
+      color: #666;
+      font-family: 'Courier Prime', monospace;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>frAGILE FRAMEWORK™</h1>
+    <p>Because if you can’t scale chaos, is it even Agile?</p>
+  </header>
+
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="product.html">📦 View Product</a>
+    <a href="emotional-backlog.html">📝 Emotional Backlog</a>
+  </nav>
+
+  <main>
+    <div class="banner">
+      <img src="images/IMG_6806.png" alt="frAGILE Banner">
+    </div>
+
+    <section>
+      <h2>Why frAGILE?</h2>
+      <ul>
+        <li>🧠 Think like a Product Manager, but without the burden of outcomes.</li>
+        <li>📈 Measure everything, especially story points. Especially your team’s feelings.</li>
+        <li>🚀 Ship Fast. Break Faster. Velocity is everything. Quality is optional.</li>
+        <li>📆 Daily Standups, where status is vague and blockers are emotional.</li>
+        <li>🏗️ Build the MVP, and keep MVP-ing until the M becomes meaningless.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>The frAGILE Manifesto</h2>
+      <ul>
+        <li>Individuals and interactions over results and accountability</li>
+        <li>Comprehensive documentation over working software</li>
+        <li>Responding to change over delivering anything concrete</li>
+        <li>Following the roadmap, unless a stakeholder sneezes</li>
+      </ul>
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <a href="https://github.com/fragileframework/docs/raw/main/frAGILE_manifesto.docx" target="_blank" style="
+          background-color: var(--accent);
+          color: white;
+          padding: 0.8rem 1.5rem;
+          border-radius: 5px;
+          text-decoration: none;
+          font-weight: bold;
+          display: inline-block;">
+          📝 Download Manifesto (Word .docx)
+        </a>
+      </div>
+    </section>
+
+    <section style="text-align: center; margin-top: 3rem;">
+      <a href="https://github.com/fragileframework/docs/raw/main/frAGILE_playbook.docx" target="_blank" style="
+        background-color: var(--highlight);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;">
+        📝 Download Playbook (Word .docx)
+      </a>
+    </section>
+
+    <section>
+      <h2>Meet the Founders</h2>
+      <div class="founder">
+        <img src="images/thach-avatar.png" alt="Thach Nguyen" />
+        <div>
+          <strong>Thach Nguyen</strong><br>
+          Founder, Visionary of SaaStire<br>
+          <a href="https://www.linkedin.com/in/nguyenthach" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+      <div class="founder">
+        <img src="images/velocity-avatar.png" alt="Velocity McRetro" />
+        <div>
+          <strong>Velocity McRetro</strong><br>
+          Cofounder, Sentiment Velocity Strategist<br>
+          Keeper of Burndowns, Collector of Complaints
+        </div>
+      </div>
+    </section>
+
+    <section id="subscribe" style="padding: 2rem; text-align: center;">
+      <h2>Join the Cult</h2>
+      <p>Enter your email below to be indoctrinated… kindly.</p>
+
+      <form name="join-the-cult" method="POST" data-netlify="true" style="max-width: 400px; margin: 1rem auto;">
+        <input type="hidden" name="form-name" value="join-the-cult" />
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <button type="submit">Pledge Loyalty</button>
+      </form>
+
+      <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
+        This form might work… unless it’s feeling frAGILE today.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 frAGILE Framework™. Built with chaos, clarity, and corduroy.
+  </footer>
+</body>
+</html>
