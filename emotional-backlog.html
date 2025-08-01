@@ -115,31 +115,38 @@
     <a href="index.html">🏠 Home</a>
   </nav>
 
-  <section style="padding: 2rem; text-align: center;">
-  <h2>📬 Submit to The Emotional Backlog</h2>
-  <p>Share your most frAGILE moment. No names. No shame. Just honesty and healing.</p>
+      <section>
+      <h2>📬 Submit to The Emotional Backlog</h2>
+      <p>Share your most frAGILE moment. No names. No shame. Just honesty and healing.</p>
 
-  <form name="emotional-backlog" method="POST" data-netlify="true" style="max-width: 500px; margin: 2rem auto; text-align: left;">
-    <input type="hidden" name="form-name" value="emotional-backlog" />
+      <form name="emotional-backlog" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="max-width: 500px; margin: 2rem auto; text-align: left;">
+        <input type="hidden" name="form-name" value="emotional-backlog" />
+        <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
-    <label for="title" style="font-weight: bold;">Give it a headline (optional)</label>
-    <input type="text" name="title" id="title" placeholder="e.g., 'Shiny Demo, Hollow Soul'" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+        <label for="title" style="font-weight: bold;">Give it a headline (optional)</label>
+        <input type="text" name="title" id="title" placeholder="e.g., 'Shiny Demo, Hollow Soul'" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
 
-    <label for="message" style="font-weight: bold;">Your story *</label>
-    <textarea name="message" id="message" rows="6" required placeholder="What broke you this sprint?" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"></textarea>
+        <label for="message" style="font-weight: bold;">Your story *</label>
+        <textarea name="message" id="message" rows="6" required placeholder="What broke you this sprint?" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"></textarea>
 
-    <button type="submit" style="padding: 0.6rem 1.2rem; background-color: #cc0000; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      Submit Anonymously
-    </button> 
-    <form name="emotional-backlog" method="POST" data-netlify="true" action="/thanks.html">
-  </form>
+        <button type="submit" style="padding: 0.6rem 1.2rem; background-color: #cc0000; color: white; border: none; border-radius: 5px; cursor: pointer;">
+          Submit Anonymously
+        </button>
+      </form>
 
-  <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
-    We'll never ask who you are. But your truth will live forever (in backlog form).
-  </p>
-</section> 
-  <main>
-    <section>
+      <div id="thank-you" style="display: none; margin-top: 2rem; background-color: #fff0f0; border: 1px dashed #cc0000; padding: 1.5rem; border-radius: 10px;">
+        <h3 style="color: #cc0000;">💌 Your frAGILE moment has been received.</h3>
+        <p>We’ll read it with reverence and maybe a smirk. Thank you for sharing.</p>
+      </div>
+
+      <script>
+        if (window.location.hash === "#thankyou") {
+          document.querySelector("form").style.display = "none";
+          document.getElementById("thank-you").style.display = "block";
+        }
+      </script>
+    </section> 
+  
       <h2>Sprint Feelings</h2>
 
       <div class="entry">
