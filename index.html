@@ -100,14 +100,21 @@
   </div>
 </section>
    <section class="cta">
-    <h2>🧨 Join the Movement</h2>
-    <p>If you laughed or nodded too hard, you’re not alone. Get frAGILE updates — no spam. Just vibes.</p>
-    <form name="loyalty-pledge" method="POST" action="thanks-pledge.html" data-netlify="true">
-     <input name="form-name" type="hidden" value="join-fragile"/>
-     <input name="email" placeholder="Your Email" required type="email"/>
-     <button type="submit">Subscribe</button>
-    </form>
-   </section>
+  <h2>🧨 Join the Movement</h2>
+  <p>If you laughed or nodded too hard, you’re not alone. Get frAGILE updates — no spam. Just vibes.</p>
+
+  <form name="loyalty-pledge" method="POST" action="/thanks-pledge.html" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="loyalty-pledge" />
+    
+    <!-- Honeypot field for spam bots -->
+    <p hidden>
+      <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+    </p>
+
+    <input type="email" name="email" placeholder="Your Email" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
   </main>
   <footer>
    <p>© 2025 frAGILE Framework™. Laugh responsibly. Ship intentionally.</p>
