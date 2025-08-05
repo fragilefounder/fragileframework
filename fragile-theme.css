@@ -1,0 +1,166 @@
+
+/* Base Reset */
+body, h1, h2, p, ul, li, a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Styles */
+body {
+  font-family: 'Libre Baskerville', serif;
+  line-height: 1.6;
+  background-color: #fdf7f2;
+  color: #1f2937;
+  padding: 0;
+}
+
+a {
+  color: #1f2937;
+  text-decoration: none;
+}
+
+/* Header */
+.site-header {
+  text-align: center;
+  background-color: #fdf7f2;
+  padding: 2rem 1rem 1rem;
+}
+
+.site-header img.logo {
+  max-width: 200px;
+  margin-bottom: 0.5rem;
+}
+
+.site-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.site-header p {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+/* Navigation */
+.site-header nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.site-header nav a {
+  font-weight: bold;
+  color: #1f2937;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.site-header nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #cc0000;
+  transition: width 0.3s ease;
+  margin-top: 4px;
+}
+
+.site-header nav a:hover {
+  color: #cc0000;
+}
+
+.site-header nav a:hover::after {
+  width: 100%;
+}
+
+/* Main Content */
+main {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Sections */
+section {
+  margin-bottom: 2rem;
+}
+
+/* Paragraph spacing fix */
+p {
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+section p {
+  margin-bottom: 1.5rem;
+}
+
+/* Lists */
+ul {
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Download Buttons */
+.download-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.button.download {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  width: 250px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.button.download:hover {
+  background-color: #ea580c;
+}
+
+/* Form Elements */
+form input[type="email"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 0.6rem 1.2rem;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
