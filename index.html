@@ -1,17 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   frAGILE Framework
-  </title>
+  <title>frAGILE Framework</title>
   <link href="fragile-theme.css" rel="stylesheet"/>
   <link href="images/favicon.png" rel="icon">
    <style>
-    .site-header img {
-      max-width: 200px;
-      margin-bottom: 0.5rem;
+    .site-header img.logo {
+      max-width: 180px;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+    main {
+      padding: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
     .download-buttons {
       display: flex;
@@ -38,7 +43,7 @@
  </head>
  <body>
   <header class="site-header">
-    <img src="images/IMG_6806.png" alt="frAGILE Framework Logo" class="logo" loading="lazy" style="max-width: 200px; margin-bottom: 1rem;">
+    <img src="images/IMG_6806.png" alt="frAGILE Framework Logo" class="logo" loading="lazy">
     <h1>The Emotional Backlog</h1>
     <p>Come for the satire. Stay for the soul.</p>
     <nav>
@@ -49,6 +54,7 @@
       <a href="about.html">About Thach</a>
     </nav>
   </header>
+  <main>
    <section>
     <p>
      frAGILE is a parody framework for product teams who’ve seen the dark side of Agile. It’s satire with substance — jokes with real insights underneath. We laugh, reflect, and maybe even fix one thing.
@@ -58,76 +64,44 @@
     </p>
    </section>
    <section>
-    <h2>
-     💬 Why It Resonates
-    </h2>
+    <h2>💬 Why It Resonates</h2>
     <ul>
-     <li>
-      🤯 Think like a PM — without the burden of outcomes.
-     </li>
-     <li>
-      📆 Daily standups where blockers are emotional.
-     </li>
-     <li>
-      🚀 Velocity is everything. Quality is optional.
-     </li>
-     <li>
-      🧠 Feelings are data. Burndowns are theater.
-     </li>
+     <li>🤯 Think like a PM — without the burden of outcomes.</li>
+     <li>📆 Daily standups where blockers are emotional.</li>
+     <li>🚀 Velocity is everything. Quality is optional.</li>
+     <li>🧠 Feelings are data. Burndowns are theater.</li>
     </ul>
    </section>
    <section>
-    <h2>
-     📥 Downloads
-    </h2>
+    <h2>📥 Downloads</h2>
     <div class="download-buttons">
-     <a class="button download" href="docs/frAGILE_manifesto.docx">
-      📄 Download the Manifesto
-     </a>
-     <a class="button download" href="docs/frAGILE_playbook.docx">
-      📘 Download the Playbook
-     </a>
+     <a class="button download" href="docs/frAGILE_manifesto.docx">📄 Download the Manifesto</a>
+     <a class="button download" href="docs/frAGILE_playbook.docx">📘 Download the Playbook</a>
     </div>
    </section>
    <section class="founders">
-    <h2>
-     👤 About the Creator
-    </h2>
+    <h2>👤 About the Creator</h2>
     <div class="founder-card">
      <img alt="Thach Nguyen" src="images/thach-avatar.png"/>
      <div>
-      <strong>
-       Thach Nguyen
-      </strong>
-      <br/>
-      Creator of frAGILE™
-      <br/>
-      <a href="https://www.linkedin.com/in/nguyenthach" target="_blank">
-       Connect on LinkedIn
-      </a>
+      <strong>Thach Nguyen</strong><br/>
+      Creator of frAGILE™<br/>
+      <a href="https://www.linkedin.com/in/nguyenthach" target="_blank">Connect on LinkedIn</a>
      </div>
     </div>
    </section>
    <section class="cta">
-    <h2>
-     🧨 Join the Movement
-    </h2>
-    <p>
-     If you laughed or nodded too hard, you’re not alone. Get frAGILE updates — no spam. Just vibes.
-    </p>
+    <h2>🧨 Join the Movement</h2>
+    <p>If you laughed or nodded too hard, you’re not alone. Get frAGILE updates — no spam. Just vibes.</p>
     <form data-netlify="true" method="POST" name="join-fragile">
      <input name="form-name" type="hidden" value="join-fragile"/>
-     <input name="email" placeholder="Your Email" required="" type="email"/>
-     <button type="submit">
-      Subscribe
-     </button>
+     <input name="email" placeholder="Your Email" required type="email"/>
+     <button type="submit">Subscribe</button>
     </form>
    </section>
   </main>
   <footer>
-   <p>
-    © 2025 frAGILE Framework™. Laugh responsibly. Ship intentionally.
-   </p>
+   <p>© 2025 frAGILE Framework™. Laugh responsibly. Ship intentionally.</p>
   </footer>
  </body>
 </html>
