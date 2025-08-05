@@ -1,0 +1,32 @@
+
+frAGILE PDF Style Guidelines
+----------------------------
+
+Use this for all PDFs: Manifesto, Playbook, etc.
+
+COLORS:
+- Header/Title: Dark Blue (#1E3A8A)
+- Accent/CTA: Orange (#F97316)
+- Background: Off-White (#F5EEE3)
+- Body Text: Dark Brown (#2C1C0C)
+
+FONTS:
+- Header: Montserrat Bold (36pt, all caps or Title Case)
+- Subheaders: Montserrat SemiBold (24pt)
+- Body Text: Roboto Regular (14pt)
+
+LAYOUT:
+- Use wide margins and lots of whitespace.
+- Icons or illustrations should be minimalist, not clip-art.
+- Include footer with “© 2025 frAGILE Framework™ | fragileframework.com”
+
+CANVA TEMPLATE:
+- Create a 3-column layout template
+- Top bar: logo left, page title center, empty right
+- Middle: main content with large typography and quotes
+- Bottom: color block for CTAs (“Read more at fragileframework.com”)
+
+TONE:
+- Satirical but clean
+- Avoid low-res jokes or overly goofy fonts
+- Humor comes from content, not cartoon visuals
