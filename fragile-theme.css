@@ -1,127 +1,113 @@
 
 :root {
-  --primary: #1E3A8A;
-  --accent: #F97316;
-  --light-bg: #f5eee3;
-  --text: #2c1c0c;
+  --primary: #002366;
+  --accent: #cc0000;
   --white: #ffffff;
-  --gray: #666;
+  --gray: #666666;
+  --background: #fdf6f0;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--light-bg);
-  color: var(--text);
+  font-family: 'Libre Baskerville', serif;
+  background-color: var(--background);
+  color: #000;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Montserrat', sans-serif;
-}
-
-h1 {
-  font-size: 32pt;
-  color: var(--primary);
-}
-
-h2 {
-  font-size: 24pt;
-  color: var(--primary);
-}
-
-h3 {
-  font-size: 18pt;
-  color: var(--accent);
-  margin-top: 1.5rem;
-}
-
-h4 {
-  font-size: 14pt;
-  color: var(--text);
-  font-weight: bold;
-}
-
-nav {
+header {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem 0 0.5rem 0;
   text-align: center;
-  padding: 1rem;
-  background-color: var(--light-bg);
 }
 
-nav a {
-  text-decoration: none;
-  color: var(--white);
-  background: var(--primary);
-  padding: 0.8rem 1.5rem;
-  margin: 0.4rem;
-  display: inline-block;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+header h1 {
+  margin: 0.5rem 0 0.2rem;
+  font-size: 2rem;
 }
 
-nav a:hover {
-  background-color: var(--accent);
-  color: var(--white);
-}
-
-@media (max-width: 600px) {
-  nav a {
-    display: block;
-    margin: 0.5rem 0;
-  }
+header p {
+  margin: 0;
+  font-size: 1rem;
 }
 
 main {
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: var(--white);
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin: 1rem auto;
+  padding: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gray);
+  padding: 2rem 1rem;
+}
+
+nav,
+.nav-home,
+.nav-buttons {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+nav a,
+.nav-home a,
+.nav-buttons .button {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 0.75rem;
+  display: inline-block;
+  margin: 0.5rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+nav a:hover,
+.nav-home a:hover,
+.nav-buttons .button:hover {
+  background-color: var(--accent);
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
 }
 
 section {
   margin-bottom: 2rem;
 }
 
+section h2 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+}
+
 ul {
   padding-left: 1.2rem;
 }
 
-.button, button {
-  background-color: var(--accent);
-  color: var(--white);
-  padding: 0.7rem 1.2rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
+ul li {
+  margin-bottom: 0.5rem;
 }
 
-input[type="email"], input[type="text"], textarea {
-  width: 100%;
-  padding: 0.6rem;
-  margin: 1rem 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+form input,
+form textarea {
+  font-family: inherit;
+  font-size: 1rem;
 }
 
-.site-header {
-  background-color: var(--primary);
-  color: var(--white);
-  padding: 2rem;
-  text-align: center;
-}
-
-footer {
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 2rem 0;
-  color: var(--gray);
+button {
+  font-family: inherit;
 }
 
 .founder-card {
@@ -131,20 +117,33 @@ footer {
 }
 
 .founder-card img {
-  width: 90px;
-  height: 90px;
   border-radius: 50%;
+  width: 80px;
+  height: 80px;
 }
 
-img.icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
+.badge {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 1rem auto;
+  color: var(--accent);
 }
 
-section.principle {
-  border-left: 4px solid var(--accent);
-  padding-left: 1rem;
-  margin-bottom: 1.5rem;
-  background-color: #fffdfc;
+.entry {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.entry h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.signature {
+  margin-top: 1rem;
+  font-style: italic;
+  color: var(--gray);
 }
