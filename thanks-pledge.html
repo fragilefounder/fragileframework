@@ -4,107 +4,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pledge Received | frAGILE Framework</title>
-  <link rel="stylesheet" href="fragile-theme.css" />
+  <title>Loyalty Confirmed | frAGILE Framework™</title>
+  <meta name="description" content="Your loyalty to the frAGILE Framework™ has been logged. Welcome to the satire-powered resistance.">
+  <meta name="author" content="Thach Nguyen">
+  <link rel="stylesheet" href="fragile-theme.css"/>
+  <link rel="icon" href="images/favicon.png" type="image/png"/>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdf6ec;
-      color: #2f2f2f;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background-color: #f8e3d8;
-      padding: 2rem 1rem 1rem;
-    }
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.1rem;
-      color: #444;
-    }
-    nav {
-      background-color: #fff8f2;
-      padding: 0.75rem 1rem;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      color: #374151;
-    }
-    nav a:hover {
-      color: #b91c1c;
+    .site-header img.logo {
+      max-width: 180px;
+      margin: 0 auto 1rem;
+      display: block;
     }
     main {
-      padding: 2rem 1rem;
-      max-width: 700px;
-      margin: auto;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
     }
-    .emoji {
-      font-size: 2.5rem;
-      margin: 1rem 0;
+    .pledge-confirmed {
+      background-color: #fef3c7;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 10px;
+      margin: 2rem 0;
     }
-    .message {
+    .pledge-confirmed h2 {
+      font-size: 1.75rem;
+      color: #1f2937;
+      margin-bottom: 1rem;
+    }
+    .pledge-confirmed p {
+      color: #374151;
       font-size: 1.1rem;
       line-height: 1.6;
-      margin-bottom: 2rem;
     }
-    a.button {
+    .button.cta {
       display: inline-block;
-      padding: 0.75rem 1.5rem;
       background-color: #dc2626;
       color: white;
+      padding: 0.75rem 1.5rem;
       border-radius: 6px;
-      text-decoration: none;
-      margin: 0.5rem;
       font-weight: bold;
+      text-decoration: none;
+      margin-top: 1.5rem;
     }
-    a.button:hover {
-      background-color: #b91c1c;
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #1f2937;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+    nav a:hover {
+      color: #dc2626;
     }
     footer {
-      background-color: #f8e3d8;
-      padding: 1rem;
-      font-size: 0.9rem;
+      text-align: center;
       margin-top: 2rem;
+      color: #6b7280;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-   <nav>
+  <header class="site-header">
+    <img src="images/IMG_6806.png" alt="frAGILE Framework Logo" class="logo" loading="lazy">
+    <h1>frAGILE Framework<sup>™</sup></h1>
+    <p>Satire for the sprint-weary. Strategy for the bold.</p>
+    <nav>
       <a href="index.html">Home</a>
       <a href="manifesto.html">Manifesto</a>
       <a href="playbook.html">Playbook</a>
       <a href="emotional-backlog.html">Emotional Backlog</a>
       <a href="about.html">About Thach</a>
     </nav>
-  <header>
-    <h1>🙏 Loyalty Confirmed</h1>
-    <p>Your pledge has been logged in our ritual archive.</p>
   </header>
+
   <main>
-    <div class="emoji">📜❤️‍🔥</div>
-    <div class="message">
-      Your commitment to the frAGILE Framework™ is now official.<br><br>
-      You may or may not receive a Slack badge, a cult pin, or a passive-aggressive nod of approval.<br><br>
-      Either way, you belong now.<br><br>
-      Stay vigilant. Stay chaotic. Stay frAGILE.
-    </div>
-    <section>
-      <h2>What’s Next?</h2>
+    <div class="pledge-confirmed">
+      <h2>🙏 Loyalty Confirmed</h2>
+      <p>Your pledge has been logged in our ritual archive.</p>
+      <p style="font-size: 2rem;">📜❤️‍🔥</p>
+      <p>Your commitment to the frAGILE Framework™ is now official.</p>
+      <p>You may or may not receive a Slack badge, a cult pin, or a passive-aggressive nod of approval.</p>
+      <p>Either way, you belong now.</p>
+      <p><strong>Stay vigilant. Stay chaotic. Stay frAGILE.</strong></p>
+
+      <h3 style="margin-top: 2rem;">What’s Next?</h3>
       <p>While you’re here, keep the momentum going:</p>
-      <a href="manifesto.html" class="button">📜 Read the Manifesto</a>
-      <a href="emotional-backlog.html" class="button">💌 Share Your Story</a>
-    </section>
+      <a href="manifesto.html" class="button cta">📜 Read the Manifesto</a>
+    </div>
   </main>
+
   <footer>
-    © 2025 frAGILE Framework™. Laugh responsibly. Ship intentionally.
+    <p>© 2025 frAGILE Framework™. Laugh responsibly. Ship intentionally.</p>
   </footer>
 </body>
 </html>
