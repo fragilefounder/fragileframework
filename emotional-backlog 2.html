@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Emotional Backlog | frAGILE Framework</title>
+  <link rel="stylesheet" href="fragile-theme.css">
+</head>
+<body>
+  <header>
+    <h1>The Emotional Backlog</h1>
+    <p>Come for the satire. Stay for the soul.</p>
+  </header>
+
+  <div class="nav-home">
+    <a href="index.html">🏠 Home</a>
+  </div>
+
+  <div class="badge">
+    💌 Now accepting your anonymous Agile heartbreaks
+  </div>
+
+  <main>
+    <section class="submit">
+      <h2>📬 Submit to The Emotional Backlog</h2>
+      <p>Share your most frAGILE moment. No names. No shame. Just honesty and healing.</p>
+
+      <form name="emotional-backlog" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" style="max-width: 500px; margin: 2rem auto; text-align: left;">
+        <input type="hidden" name="form-name" value="emotional-backlog" />
+        <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+        <label for="title" style="font-weight: bold;">Give it a headline (optional)</label>
+        <input type="text" name="title" id="title" placeholder="e.g., 'Shiny Demo, Hollow Soul'" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+
+        <label for="message" aria-label="Share your Agile story anonymously" style="font-weight: bold;">Your story *</label>
+        <textarea name="message" id="message" rows="6" required placeholder="What broke you this sprint?" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"></textarea>
+
+        <button type="submit" style="padding: 0.6rem 1.2rem; background-color: #cc0000; color: white; border: none; border-radius: 5px; cursor: pointer;">
+          Submit Anonymously
+        </button>
+      <p style="font-size: 12pt; color: var(--gray);">Your story is anonymous and won’t be shared without consent.</p>
+</form>
+    </section>
+
+    <section class="entry">
+      <h2>Shiny Demo, Hollow Soul</h2>
+      <p><strong>Dear frAGILE,</strong><br>
+      I just did a demo where I pretended we had progress. The backend isn’t built. The design’s not approved. But I smiled and clicked through Figma like it was live. I hate how good I am at this.</p>
+      <p><strong>Dear Shiny,</strong><br>
+      What you pulled off was impressive. And yes — emotionally exhausting. You're not faking success. You're faking stability, because the team needs hope. That’s not deception. That’s survival.<br><br>
+      But remember: you deserve to be proud of <em>real</em> progress too. Build something small. Ship something honest. Even if it’s just a truth bomb in the next standup.<br><br>
+      You’re not a fraud. You’re frAGILE. And you’re not alone.
+      <div class="signature">— Love, The Cult of Clarity</div>
+      </p>
+    </section>
+
+    <section class="entry">
+      <h2>Alignment Fatigue</h2>
+      <p><strong>Dear frAGILE,</strong><br>
+      I’ve been in back-to-back alignment meetings for three weeks. We’re aligning on alignment. The work isn’t moving. I don’t even know what we’re building anymore.</p>
+      <p><strong>Dear Fatigued,</strong><br>
+      You are experiencing a sacred ritual we call “Alignment Spiral.” It’s what happens when fear of misstep outweighs trust in progress.<br><br>
+      Break the loop. Propose a prototype. Ship a stub. Start somewhere, and let the next step reveal itself.<br><br>
+      Alignment is important. But motion is how we find direction.<br><br>
+      May your next meeting be short and slightly useful.
+      <div class="signature">— Love, The Cult of Clarity</div>
+      </p>
+    </section>
+
+    <section class="entry">
+      <h2>Backlog Guilt</h2>
+      <p><strong>Dear frAGILE,</strong><br>
+      My backlog is a landfill. I can’t look at it. Grooming just means moving trash from one pile to another. I feel like I’m failing my team.</p>
+      <p><strong>Dear Guilty,</strong><br>
+      Backlogs are not sacred scrolls. They’re compost piles. And your job is not to polish every ticket — it’s to fertilize the few that matter.<br><br>
+      Archive the noise. Highlight the signal. Your team needs a compass, not a hoarder.<br><br>
+      You’re not failing. You’re learning to let go.
+      <div class="signature">— Love, The Cult of Clarity</div>
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>
