@@ -1,83 +1,482 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>The frAGILE Manifesto™ | Laugh, Then Learn</title>
-<meta name="description" content="The frAGILE Manifesto™ calls out Agile’s absurdities — and offers real strategies beneath the satire.">
-<meta name="keywords" content="Agile manifesto parody, frAGILE principles, product management satire, Agile fails, Thach Nguyen">
-<meta name="author" content="Thach Nguyen">
-<meta property="og:title" content="The frAGILE Manifesto™">
-<meta property="og:description" content="Satirical values. Strategic fixes. Agile never saw this coming.">
-<meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
-<meta property="og:url" content="https://fragileframework.com/manifesto.html">
-<meta property="og:type" content="article">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>frAGILE Manifesto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The frAGILE Manifesto | frAGILE Framework™</title>
+  <meta name="description" content="The frAGILE Manifesto: four satirical Agile values and six principles for product teams tired of ceremony cosplay.">
+  <meta name="author" content="frAGILE Framework">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The frAGILE Manifesto">
+  <meta property="og:description" content="A satirical manifesto for product teams who have watched Agile become theater and still want the work to matter.">
+  <meta property="og:url" content="https://fragileframework.com/manifesto.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The frAGILE Manifesto">
+  <meta name="twitter:description" content="Four broken defaults. Six principles. One unofficial document filed under Sprint ∞.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
-  <link rel="icon" href="images/favicon.png" />
+
+  <style>
+    /*
+      frAGILE Manifesto page layer
+      Uses the shared Phase 1 tokens from fragile-theme.css.
+      Keep this page-specific: structure, not a second design system.
+    */
+
+    .manifesto-hero .hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: min(760px, calc(100vh - var(--nav-height)));
+      padding-block: clamp(5.5rem, 11vw, 9rem) clamp(6.5rem, 12vw, 10rem);
+    }
+
+    .manifesto-hero .hero__title {
+      max-width: 11ch;
+      margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+      font-size: var(--step-hero);
+    }
+
+    .manifesto-hero .hero__lede {
+      max-width: 800px;
+      margin-bottom: 0;
+      font-size: clamp(1.25rem, 2.4vw, 2rem);
+    }
+
+    .manifesto-hero .hero__lede strong {
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-style: normal;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .manifesto-preamble {
+      text-align: center;
+    }
+
+    .manifesto-preamble__inner {
+      max-width: 860px;
+      margin-inline: auto;
+    }
+
+    .manifesto-preamble__mark {
+      display: inline-flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 2rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: var(--step--1);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .manifesto-preamble__mark::before,
+    .manifesto-preamble__mark::after {
+      width: 1.6rem;
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    .manifesto-preamble__copy {
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.65;
+    }
+
+    .manifesto-preamble__copy + .manifesto-preamble__copy {
+      margin-top: 1.25rem;
+    }
+
+    .manifesto-values {
+      border-top: var(--border);
+    }
+
+    .manifesto-value {
+      position: relative;
+      margin-bottom: clamp(4.5rem, 8vw, 6.5rem);
+    }
+
+    .manifesto-value:last-child {
+      margin-bottom: 0;
+    }
+
+    .manifesto-value__header {
+      display: grid;
+      grid-template-columns: minmax(82px, 130px) minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 2rem);
+      align-items: start;
+      padding-bottom: clamp(1.5rem, 4vw, 2rem);
+      margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+      border-bottom: var(--border);
+    }
+
+    .manifesto-value__number {
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(4.5rem, 10vw, 8.75rem);
+      line-height: 0.82;
+    }
+
+    .manifesto-value__statement {
+      margin: 0;
+      padding-top: 0.2em;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.8vw, 4rem);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: -0.005em;
+      text-transform: uppercase;
+    }
+
+    .manifesto-value__over {
+      position: relative;
+      top: -0.1em;
+      display: inline-block;
+      padding: 0.08em 0.24em 0.11em;
+      margin-inline: 0.08em;
+      transform: skewX(-8deg);
+      background: var(--red);
+      color: var(--paper-light);
+      box-shadow: var(--shadow-sm);
+      font-size: 0.84em;
+      line-height: 1;
+    }
+
+    .manifesto-value__body {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+
+    .manifesto-panel {
+      padding-top: 0.75rem;
+    }
+
+    .manifesto-panel__label {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      padding-bottom: 0.7rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .manifesto-panel__label::before {
+      content: "//";
+      font-weight: 700;
+    }
+
+    .manifesto-panel--satire .manifesto-panel__label {
+      color: var(--muted);
+      border-bottom: 1px solid var(--muted-light);
+    }
+
+    .manifesto-panel--truth .manifesto-panel__label {
+      color: var(--red);
+      border-bottom: 1px solid var(--red);
+    }
+
+    .manifesto-panel--satire .manifesto-panel__copy {
+      color: var(--ink-soft);
+      font-family: var(--font-mono);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.6;
+    }
+
+    .manifesto-panel--truth .manifesto-panel__copy {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.6;
+    }
+
+    .manifesto-principles .section-heading {
+      border-bottom-color: var(--red);
+    }
+
+    .manifesto-principles .principle-list__item {
+      grid-template-columns: 110px minmax(0, 1fr);
+      padding-block: clamp(1.7rem, 3vw, 2.25rem);
+    }
+
+    .manifesto-principles .principle-list__number {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+    }
+
+    .manifesto-principles .principle-list__text {
+      font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+    }
+
+    .manifesto-signature {
+      text-align: center;
+      border-top: 14px solid var(--red);
+    }
+
+    .manifesto-signature__inner {
+      max-width: 820px;
+      margin-inline: auto;
+    }
+
+    .manifesto-signature__title {
+      margin-bottom: clamp(2rem, 5vw, 3rem);
+      font-family: var(--font-display);
+      font-size: var(--step-3);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.005em;
+      text-transform: uppercase;
+    }
+
+    .manifesto-signature__line {
+      display: block;
+      max-width: 390px;
+      padding-top: 0.8rem;
+      margin: 0 auto 2.4rem;
+      color: var(--muted);
+      border-top: var(--border);
+      font-style: italic;
+    }
+
+    .manifesto-signature__note {
+      max-width: 620px;
+      margin: 1.5rem auto 0;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 760px) {
+      .manifesto-value__header,
+      .manifesto-value__body,
+      .manifesto-principles .principle-list__item {
+        grid-template-columns: 1fr;
+      }
+
+      .manifesto-value__number {
+        font-size: 4.5rem;
+      }
+
+      .manifesto-value__statement {
+        padding-top: 0;
+      }
+
+      .manifesto-principles .principle-list__item {
+        gap: 0.55rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <img src="images/IMG_6806.png" alt="frAGILE Framework Logo" class="logo" loading="lazy" style="max-width: 200px; margin-bottom: 1rem;">
-<h1>The frAGILE Manifesto</h1>
-<p>We believed Agile was implemented. We got this instead.</p>
-    <nav>
-    <a href="index.html">Home</a>
-    <a href="manifesto.html">Manifesto</a>
-    <a href="playbook.html">Playbook</a> 
-    <a href="readiness-check.html">Tools</a>
-    <a href="emotional-backlog.html">Emotional Backlog</a>
-    <a href="about.html">About Thach</a>
-    </nav>
+  <a class="skip-link" href="#main-content">Skip the ceremony. Get to the point.</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
+        fr<span class="accent">AGILE</span><span class="slash">/</span>Manifesto
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="site-nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="manifesto.html" aria-current="page">Manifesto</a></li>
+          <li><a href="playbook.html">Playbook</a></li>
+          <li><a href="readiness-check.html">Tools</a></li>
+          <li><a href="emotional-backlog.html">Backlog</a></li>
+          <li><a href="index.html#creator">Creator</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>📜 The Satirical Values (with a grain of truth)</h2>
+  <div class="document-bar" aria-label="Document classification">
+    <div class="container document-bar__inner">
+      <span>Document I. The frAGILE Manifesto</span>
+      <span class="stamp">Revised, unofficially</span>
+      <span>Filed: Sprint ∞ · Priority: P0</span>
+    </div>
+  </div>
 
-      <section class="principle">
-        <h3>▶️ Individuals and interactions OVER results and accountability</h3>
-        <p class="satire"><strong>Satire:</strong> We vibe well in meetings. No one delivers, but everyone feels heard.</p>
-        <p class="insight"><strong>Insight:</strong> Assign owners after meetings. Being kind and clear aren’t opposites.</p>
-      </section>
-
-      <section class="principle">
-        <h3>▶️ Working software OVER comprehensive documentation</h3>
-        <p class="satire"><strong>Satire:</strong> If it’s not in the 85-page Confluence doc no one reads, did it even happen?</p>
-        <p class="insight"><strong>Insight:</strong> Document what's reusable and painful to forget. Skip the fluff.</p>
-      </section>
-
-      <section class="principle">
-        <h3>▶️ Customer collaboration OVER loudest stakeholder wins</h3>
-        <p class="satire"><strong>Satire:</strong> Especially the one who just joined the project last week.</p>
-        <p class="insight"><strong>Insight:</strong> Build structured feedback loops from real customer input, not just hierarchy.</p>
-      </section>
-
-      <section class="principle">
-        <h3>▶️ Responding to change OVER delivering anything concrete</h3>
-        <p class="satire"><strong>Satire:</strong> We pivot so fast we end up right where we started — just in a different Epic.</p>
-        <p class="insight"><strong>Insight:</strong> Reflect on changes before re-scoping. Timebox pivots.</p>
-      </section>
+  <main id="main-content">
+    <section class="hero manifesto-hero" aria-labelledby="manifesto-title">
+      <div class="container hero__inner">
+        <div>
+          <div class="eyebrow">Section I. Preamble</div>
+          <h1 class="hero__title" id="manifesto-title">
+            <span class="small">The</span>
+            frAGILE<br>Manifesto
+          </h1>
+          <p class="hero__lede">
+            We believed Agile was implemented. <strong>We got this instead.</strong>
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>📌 The Principles of frAGILE</h2>
-      <ul>
-        <li>Working software is optional. A well-written status update is not.</li>
-        <li>Feedback must always be actionable. Even if it's emotional.</li>
-        <li>Burndowns are theater. Feelings are data.</li>
-        <li>Keep shipping. Keep spiraling. Just not at the same time.</li>
-        <li>Culture is a ceremony. Practice it, or it practices you.</li>
-        <li>Every blocker has a story. Listen before fixing.</li>
-      </ul>
+    <section class="section section--paper-light manifesto-preamble" aria-labelledby="read-before-title">
+      <div class="manifesto-preamble__inner">
+        <div class="manifesto-preamble__mark" id="read-before-title">Read before you sprint</div>
+        <p class="manifesto-preamble__copy">
+          This is not a rebuke of Agile. It is a rebuke of what people do <span class="accent">in Agile’s name</span>: the empty ceremonies, the vague ownership, the demos held together with Figma and hope.
+        </p>
+        <p class="manifesto-preamble__copy">
+          Below are four values, restated honestly, and six principles for the sprint-weary. Read carefully. Then sign your name. Or don’t. We’ll mark you as “aligned” either way.
+        </p>
+      </div>
+    </section>
+
+    <section class="section manifesto-values" aria-labelledby="values-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Section II.</div>
+            <h2 class="section-heading__title" id="values-title">The Satirical <span class="accent">Values.</span></h2>
+          </div>
+          <p class="section-heading__caption">Four broken defaults, and what is actually true beneath each one.</p>
+        </div>
+
+        <article class="manifesto-value">
+          <div class="manifesto-value__header">
+            <div class="manifesto-value__number">I.</div>
+            <h3 class="manifesto-value__statement">
+              Individuals &amp; interactions <span class="manifesto-value__over">over</span> results &amp; accountability
+            </h3>
+          </div>
+          <div class="manifesto-value__body">
+            <div class="manifesto-panel manifesto-panel--satire">
+              <div class="manifesto-panel__label">What we say</div>
+              <p class="manifesto-panel__copy">We vibe well in meetings. No one delivers, but everyone feels heard.</p>
+            </div>
+            <div class="manifesto-panel manifesto-panel--truth">
+              <div class="manifesto-panel__label">What’s true</div>
+              <p class="manifesto-panel__copy">Assign owners after meetings. Being kind and being clear are not opposites.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="manifesto-value">
+          <div class="manifesto-value__header">
+            <div class="manifesto-value__number">II.</div>
+            <h3 class="manifesto-value__statement">
+              Working software <span class="manifesto-value__over">over</span> comprehensive documentation
+            </h3>
+          </div>
+          <div class="manifesto-value__body">
+            <div class="manifesto-panel manifesto-panel--satire">
+              <div class="manifesto-panel__label">What we say</div>
+              <p class="manifesto-panel__copy">If it is not in the 85-page Confluence doc no one reads, did it even happen?</p>
+            </div>
+            <div class="manifesto-panel manifesto-panel--truth">
+              <div class="manifesto-panel__label">What’s true</div>
+              <p class="manifesto-panel__copy">Document what is reusable and painful to forget. Skip the theater. Future-you has enough enemies.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="manifesto-value">
+          <div class="manifesto-value__header">
+            <div class="manifesto-value__number">III.</div>
+            <h3 class="manifesto-value__statement">
+              Customer collaboration <span class="manifesto-value__over">over</span> loudest stakeholder wins
+            </h3>
+          </div>
+          <div class="manifesto-value__body">
+            <div class="manifesto-panel manifesto-panel--satire">
+              <div class="manifesto-panel__label">What we say</div>
+              <p class="manifesto-panel__copy">Especially the one who joined the project last week and already has a roadmap opinion.</p>
+            </div>
+            <div class="manifesto-panel manifesto-panel--truth">
+              <div class="manifesto-panel__label">What’s true</div>
+              <p class="manifesto-panel__copy">Build structured feedback loops from real customer input, not hierarchy with a better microphone.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="manifesto-value">
+          <div class="manifesto-value__header">
+            <div class="manifesto-value__number">IV.</div>
+            <h3 class="manifesto-value__statement">
+              Responding to change <span class="manifesto-value__over">over</span> delivering anything concrete
+            </h3>
+          </div>
+          <div class="manifesto-value__body">
+            <div class="manifesto-panel manifesto-panel--satire">
+              <div class="manifesto-panel__label">What we say</div>
+              <p class="manifesto-panel__copy">We pivot so fast we end up right where we started, just in a different Epic.</p>
+            </div>
+            <div class="manifesto-panel manifesto-panel--truth">
+              <div class="manifesto-panel__label">What’s true</div>
+              <p class="manifesto-panel__copy">Reflect on changes before re-scoping. Timebox pivots. Direction matters more than motion.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--dark manifesto-principles" aria-labelledby="principles-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Section III.</div>
+            <h2 class="section-heading__title" id="principles-title">The Principles of <span class="accent">frAGILE.</span></h2>
+          </div>
+          <p class="section-heading__caption">Six commandments for people who have seen how the sausage does not get made.</p>
+        </div>
+
+        <ol class="principle-list">
+          <li class="principle-list__item">
+            <span class="principle-list__number">01</span>
+            <p class="principle-list__text">Working software is optional. <em>A well-written status update is not.</em></p>
+          </li>
+          <li class="principle-list__item">
+            <span class="principle-list__number">02</span>
+            <p class="principle-list__text">Feedback must always be actionable. <em>Even if it is emotional.</em></p>
+          </li>
+          <li class="principle-list__item">
+            <span class="principle-list__number">03</span>
+            <p class="principle-list__text">Burndowns are theater. <em>Feelings are data.</em></p>
+          </li>
+          <li class="principle-list__item">
+            <span class="principle-list__number">04</span>
+            <p class="principle-list__text">Keep shipping. Keep spiraling. <em>Just not at the same time.</em></p>
+          </li>
+          <li class="principle-list__item">
+            <span class="principle-list__number">05</span>
+            <p class="principle-list__text">Culture is a ceremony. <em>Practice it, or it practices you.</em></p>
+          </li>
+          <li class="principle-list__item">
+            <span class="principle-list__number">06</span>
+            <p class="principle-list__text">Every blocker has a story. <em>Listen before fixing.</em></p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--paper-light manifesto-signature" aria-labelledby="signature-title">
+      <div class="manifesto-signature__inner">
+        <div class="manifesto-preamble__mark">Section IV. Sign the Manifesto</div>
+        <h2 class="manifesto-signature__title" id="signature-title">Come for the satire.<br><span class="accent">Stay for the soul.</span></h2>
+        <span class="manifesto-signature__line">Signed, ______________________</span>
+        <a class="button" href="mailto:hello@fragileframework.com?subject=I%20would%20like%20to%20sign%20the%20frAGILE%20Manifesto">Sign the Manifesto</a>
+        <p class="manifesto-signature__note">Legal status: emotionally binding, operationally ignored by at least three steering committees.</p>
+      </div>
     </section>
   </main>
 
-<footer>
-  <p>
-    © 2025 frAGILE Framework™. Built with sarcasm. Powered by sanity.
-  </p>
-</footer>
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2025 frAGILE Framework™ · Built with sarcasm. Powered by sanity.</span>
+      <span class="site-footer__tag">We laugh because it is true.</span>
+    </div>
+  </footer>
 </body>
 </html>
