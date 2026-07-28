@@ -5,27 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The frAGILE Playbook | frAGILE Framework™</title>
   <meta name="description" content="The frAGILE Playbook: twelve case files for Agile ceremonies, roles, tools, and templates that somehow survived every transformation office.">
-  <meta name="author" content="frAGILE Framework">
+  <meta name="author" content="Thach Nguyen">
+  <meta name="keywords" content="frAGILE Playbook, Agile satire, product management satire, Agile ceremonies, product leadership, backlog theater">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="The frAGILE Playbook">
   <meta property="og:description" content="A field manual for naming the Agile theater before it becomes culture.">
   <meta property="og:url" content="https://fragileframework.com/playbook.html">
+  <meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The frAGILE Playbook">
   <meta name="twitter:description" content="Twelve cases. Four verdicts. One standard filed under Sprint ∞.">
+  <meta name="twitter:image" content="https://fragileframework.com/images/fragile-logo.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
+  <link rel="icon" href="images/favicon.png">
 
   <style>
     /*
       frAGILE Playbook page layer
-      Uses the shared Phase 1 tokens from fragile-theme.css.
-      Keep this page-specific: case-file structure, not another design system.
+      Uses shared Phase 1 tokens from fragile-theme.css.
+      This layer owns case-file composition only.
     */
 
     .playbook-chapter-card {
@@ -374,7 +378,8 @@
       text-transform: uppercase;
     }
 
-    .playbook-verdict__title {
+    .playbook-verdict__title,
+    .playbook-signoff__title {
       margin-bottom: 1rem;
       font-family: var(--font-display);
       font-size: var(--step-4);
@@ -467,15 +472,6 @@
       background: currentColor;
     }
 
-    .playbook-signoff__title {
-      margin-bottom: 1.5rem;
-      font-family: var(--font-display);
-      font-size: var(--step-4);
-      font-weight: 400;
-      line-height: 0.9;
-      text-transform: uppercase;
-    }
-
     .playbook-signoff__copy {
       max-width: 720px;
       margin: 0 auto 2rem;
@@ -543,18 +539,20 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <a class="skip-link" href="#main-content">Skip the ritual. Open the case files.</a>
 
-  <header class="site-nav" role="banner">
+  <header class="site-nav">
     <div class="site-nav__inner">
-      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">fr<span class="accent">AGILE</span><span class="slash">/</span>Framework</a>
+      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
+        <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><span class="slash">/</span><span class="brand-page-label">Playbook</span>
+      </a>
       <nav aria-label="Primary navigation">
         <ul class="site-nav__links">
           <li><a href="index.html">Home</a></li>
           <li><a href="manifesto.html">Manifesto</a></li>
           <li><a href="playbook.html" aria-current="page">Playbook</a></li>
           <li><a href="readiness-check.html">Tools</a></li>
-          <li><a href="emotional-backlog.html">Backlog</a></li>
+          <li><a href="emotional-backlog.html">Emo Backlog</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </nav>
@@ -563,13 +561,13 @@
 
   <div class="document-bar" aria-label="Document metadata">
     <div class="container document-bar__inner">
-      <span>Document II. The frAGILE Playbook</span>
+      <span>Document II. The <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Playbook</span>
       <span class="stamp">For internal circulation</span>
       <span>Field Manual · 12 cases · 4 verdicts</span>
     </div>
   </div>
 
-  <main id="main">
+  <main id="main-content">
     <section class="playbook-chapter-card" aria-labelledby="playbook-title">
       <div class="container">
         <div class="playbook-volume">A Field Manual</div>
@@ -618,7 +616,7 @@
               </div>
               <div class="case-field">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Backlog filled with vague hopes and dreams and duplicate epics. Nobody names the outcome.</p>
+                <p class="case-field__value">Jira filled with vague hopes and duplicate epics. Nobody names the outcome.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -644,7 +642,7 @@
               </div>
               <div class="case-field">
                 <div class="case-field__label">Symptom</div>
-                <p class="case-field__value case-field__value--evidence">“Yesterday I... Today I... No blockers.” [crickets]</p>
+                <p class="case-field__value case-field__value--evidence">“Yesterday I... Today I... No blockers.”</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Diagnosis</div>
@@ -704,7 +702,7 @@
               </div>
               <div class="case-field">
                 <div class="case-field__label">Symptom</div>
-                <p class="case-field__value case-field__value--evidence">“Please imagine this is clickable.” [Zoom share fails]</p>
+                <p class="case-field__value case-field__value--evidence">“Please imagine this is clickable.”</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Diagnosis</div>
@@ -968,7 +966,7 @@
               </div>
               <div class="case-field">
                 <div class="case-field__label">Condition</div>
-                <p class="case-field__value case-field__value--evidence">78% of tickets in “In Progress” or “Blocked” Purgatory.</p>
+                <p class="case-field__value case-field__value--evidence">78% of tickets in “In Progress” or “Blocked” purgatory.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Diagnosis</div>
@@ -976,7 +974,7 @@
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Jira/ADO not the source of truth. People are. Talk to the humans before you touch the board.</p>
+                <p class="case-field__value case-field__value--recommendation">Jira is not the source of truth. People are. Talk to the humans before you touch the board.</p>
               </div>
             </div>
             <div class="case-file__foot">
@@ -1031,7 +1029,7 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <span>© 2025 frAGILE Framework™ · Filed with sarcasm. Cross-referenced by sanity.</span>
+      <span>© 2025–2026 <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ · Satire project by Thach Nguyen</span>
       <span class="site-footer__tag">We laugh because it is true.</span>
     </div>
   </footer>
