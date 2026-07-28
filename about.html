@@ -1,83 +1,786 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-  <!-- Open Graph / Social Preview -->
-<meta property="og:title" content="About Thach Nguyen" />
-<meta property="og:description" content="From product leader to parody preacher — meet the mind behind frAGILE Framework." />
-<meta property="og:image" content="https://www.fragileframework.com/images/IMG_7091.jpeg" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.fragileframework.com/about.html" />
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="About Thach Nguyen" />
-<meta name="twitter:description" content="From product leader to parody preacher — meet the mind behind frAGILE Framework." />
-<meta name="twitter:image" content="https://www.fragileframework.com/images/IMG_7091.jpeg" />
-  <title>About Thach Nguyen | Creator of frAGILE Framework™</title>
-<meta name="description" content="Thach Nguyen is a product leader who turned burnout into a bold satire of Agile chaos. Meet the mind behind the frAGILE Framework™.">
-<meta name="keywords" content="Thach Nguyen, frAGILE creator, product leader, Agile satire, About frAGILE">
-<meta name="author" content="Thach Nguyen">
-<meta property="og:title" content="About Thach Nguyen">
-<meta property="og:description" content="From product leader to parody preacher — meet the mind behind frAGILE.">
-<meta property="og:image" content="https://fragileframework.com/images/IMG_7091.jpeg">
-<meta property="og:url" content="https://fragileframework.com/about.html">
-<meta property="og:type" content="profile">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Thach | frAGILE Framework</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personnel File: Thach Nguyen | frAGILE Framework™</title>
+  <meta name="description" content="The unofficial personnel file for Thach Nguyen, creator of frAGILE Framework: product leader, framework skeptic, and builder of useful things disguised as sarcasm.">
+  <meta name="author" content="Thach Nguyen">
+  <meta name="keywords" content="Thach Nguyen, frAGILE Framework creator, Agile satire, product management, product leader, personnel file">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Personnel File: Thach Nguyen">
+  <meta property="og:description" content="Product leader. Framework skeptic. Builder of useful things disguised as sarcasm.">
+  <meta property="og:url" content="https://fragileframework.com/about.html">
+  <meta property="og:image" content="https://fragileframework.com/images/IMG_7091.jpeg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Personnel File: Thach Nguyen">
+  <meta name="twitter:description" content="The unofficial case file for the creator of frAGILE Framework™.">
+  <meta name="twitter:image" content="https://fragileframework.com/images/IMG_7091.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
-  <link rel="icon" href="images/favicon.png" />
+  <link rel="icon" href="images/favicon.png">
+
+  <style>
+    /*
+      frAGILE About page layer
+      Uses the shared Phase 1 tokens from fragile-theme.css.
+      Keep this page-specific: case-file composition, not another design system.
+    */
+
+    .about-hero .hero__inner {
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      min-height: min(760px, calc(100vh - var(--nav-height)));
+      align-items: stretch;
+    }
+
+    .about-hero .hero__title {
+      max-width: 10ch;
+    }
+
+    .about-hero .hero__lede {
+      max-width: 760px;
+    }
+
+    .personnel-card {
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      background: var(--paper-light);
+      color: var(--ink);
+      border: 3px solid var(--paper-light);
+      box-shadow: 10px 10px 0 var(--red);
+    }
+
+    .personnel-card__topline {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .personnel-card__stamp {
+      display: inline-block;
+      padding: 0.32rem 0.55rem;
+      color: var(--red);
+      border: 2px solid currentColor;
+      transform: rotate(2deg);
+      white-space: nowrap;
+    }
+
+    .personnel-card__number {
+      margin-bottom: 1.25rem;
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(5.5rem, 12vw, 10rem);
+      line-height: 0.78;
+    }
+
+    .personnel-card__name {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.8vw, 5rem);
+      font-weight: 400;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .personnel-card__meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      padding: 0;
+      margin: 2rem 0 0;
+      list-style: none;
+    }
+
+    .personnel-card__meta li {
+      padding: 0.85rem;
+      background: var(--paper-deep);
+      border: 1px solid var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      line-height: 1.45;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .personnel-card__meta strong {
+      display: block;
+      color: var(--red-dark);
+      font-size: 0.62rem;
+    }
+
+    .file-summary {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .file-summary__label {
+      position: sticky;
+      top: calc(var(--nav-height) + 1.5rem);
+      padding: 1.25rem;
+      background: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .file-summary__label .stamp {
+      margin-bottom: 1.5rem;
+    }
+
+    .file-summary__title {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-2);
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .file-summary__meta {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.7;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .file-summary__copy {
+      font-size: var(--step-1);
+      line-height: 1.62;
+    }
+
+    .file-summary__copy p {
+      margin-bottom: 1.4rem;
+    }
+
+    .file-summary__callout {
+      position: relative;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      margin-top: 2rem;
+      background: var(--ink);
+      color: var(--paper-light);
+      border-left: 10px solid var(--red);
+      box-shadow: var(--shadow-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    .evidence-card {
+      min-height: 220px;
+      padding: 1.25rem;
+      background: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .evidence-card__number {
+      margin-bottom: 2rem;
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 4.75rem);
+      line-height: 0.78;
+    }
+
+    .evidence-card__title {
+      margin-bottom: 0.75rem;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .evidence-card__copy {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.55;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .case-dossier {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: stretch;
+    }
+
+    .case-note {
+      position: relative;
+      min-height: 100%;
+      padding: clamp(1.5rem, 3vw, 2rem);
+      background: var(--paper-light);
+      color: var(--ink);
+      border: 2px solid var(--paper-light);
+      box-shadow: 8px 8px 0 var(--red);
+    }
+
+    .case-note::before {
+      position: absolute;
+      top: -0.75rem;
+      right: 1.1rem;
+      content: attr(data-status);
+      padding: 0.32rem 0.55rem;
+      background: var(--red);
+      color: var(--paper-light);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transform: rotate(2deg);
+    }
+
+    .case-note__label {
+      margin-bottom: 1rem;
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .case-note__title {
+      margin-bottom: 1.15rem;
+      font-family: var(--font-display);
+      font-size: var(--step-2);
+      font-weight: 400;
+      line-height: 0.98;
+      text-transform: uppercase;
+    }
+
+    .case-note__copy {
+      color: var(--ink-brown);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .operating-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .operating-list__item {
+      display: grid;
+      grid-template-columns: minmax(70px, 110px) minmax(0, 1fr);
+      gap: clamp(1rem, 3vw, 2rem);
+      align-items: baseline;
+      padding-block: clamp(1.3rem, 3vw, 2rem);
+      border-bottom: 1px solid rgba(251, 246, 236, 0.2);
+    }
+
+    .operating-list__item:last-child {
+      border-bottom: 0;
+    }
+
+    .operating-list__code {
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      line-height: 0.8;
+    }
+
+    .operating-list__text {
+      margin: 0;
+      font-size: var(--step-1);
+      line-height: 1.48;
+    }
+
+    .operating-list__text strong {
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .timeline__header {
+      padding: clamp(1.4rem, 3vw, 2rem);
+      background: var(--red);
+      color: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .timeline__header h2 {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-3);
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .timeline__header p {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.7;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .timeline__items {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      border-top: var(--border);
+    }
+
+    .timeline__item {
+      display: grid;
+      grid-template-columns: minmax(90px, 130px) minmax(0, 1fr);
+      gap: 1.5rem;
+      padding-block: 1.6rem;
+      border-bottom: var(--border);
+    }
+
+    .timeline__era {
+      color: var(--red-dark);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .timeline__copy h3 {
+      margin-bottom: 0.55rem;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .timeline__copy p {
+      margin: 0;
+      color: var(--ink-brown);
+    }
+
+    .statement-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      background: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .statement-panel__quote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 5.6rem);
+      font-weight: 400;
+      line-height: 0.93;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .statement-panel__aside {
+      padding-left: 1.25rem;
+      border-left: 6px solid var(--red);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.7;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .connect-strip {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+    }
+
+    .connect-strip__title {
+      margin-bottom: 0.75rem;
+      font-family: var(--font-display);
+      font-size: var(--step-3);
+      font-weight: 400;
+      line-height: 0.96;
+      text-transform: uppercase;
+    }
+
+    .connect-strip__copy {
+      max-width: 720px;
+      font-size: var(--step-1);
+      font-style: italic;
+    }
+
+    @media (max-width: 980px) {
+      .about-hero .hero__inner,
+      .file-summary,
+      .case-dossier,
+      .timeline,
+      .statement-panel,
+      .connect-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .file-summary__label {
+        position: relative;
+        top: auto;
+      }
+
+      .evidence-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .personnel-card__topline,
+      .personnel-card__meta,
+      .evidence-grid,
+      .timeline__item {
+        grid-template-columns: 1fr;
+      }
+
+      .personnel-card__topline {
+        display: grid;
+      }
+
+      .personnel-card__stamp {
+        justify-self: start;
+      }
+
+      .operating-list__item {
+        grid-template-columns: 56px minmax(0, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <img src="images/IMG_6806.png" alt="frAGILE Framework Logo" class="logo" loading="lazy" style="max-width: 200px; margin-bottom: 1rem;">
-    <h1>About Thach</h1>
-    <p>Product leader. Framework saboteur. Builder.</p>
-    <nav>
-    <a href="index.html">Home</a>
-    <a href="manifesto.html">Manifesto</a>
-    <a href="playbook.html">Playbook</a> 
-    <a href="readiness-check.html">Tools</a>
-    <a href="emotional-backlog.html">Emotional Backlog</a>
-    <a href="about.html">About Thach</a>
-    </nav>
+  <a class="skip-link" href="#main-content">Skip the personnel review. Read the file.</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
+        fr<span class="accent">AGILE</span><span class="slash">/</span>Framework
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="site-nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="manifesto.html">Manifesto</a></li>
+          <li><a href="playbook.html">Playbook</a></li>
+          <li><a href="readiness-check.html">Tools</a></li>
+          <li><a href="emotional-backlog.html">Emotional Backlog</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>👋 Who I Am</h2>
-      <p>I’m <strong>Thach Nguyen</strong> — Director of Product Management by day, and creator of <em>frAGILE Framework™</em> by late-night, slightly sarcastic, caffeine-fueled sessions.</p>
-      <p>I’ve led product teams across startups and Fortune 500s in the title, lending, and real estate tech industries. Today, I support an amazing team of wickedly smart product minds. We are building a modern title production platform. We are also building strong, clear systems that will thrive with or without me.</p>
+  <div class="document-bar" aria-label="Document classification">
+    <div class="container document-bar__inner">
+      <span>Case File: FF-PERSONNEL-001</span>
+      <span>Classification: Unofficial but unfortunately accurate</span>
+      <span>Filed under: Creator / Product / Mildly Accusatory</span>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="hero about-hero" aria-labelledby="about-title">
+      <div class="container hero__inner">
+        <div>
+          <div class="eyebrow">Personnel file / About the creator</div>
+          <h1 class="hero__title" id="about-title"><span class="small">Subject:</span> Thach Nguyen</h1>
+          <p class="hero__lede">Product leader by trade. Framework skeptic by accumulated scar tissue. Builder of frAGILE Framework because apparently just muttering “this is theater” in meetings was not a scalable platform.</p>
+          <div class="hero__actions">
+            <a class="button" href="https://www.linkedin.com/in/nguyenthach" rel="me external">Connect on LinkedIn</a>
+            <a class="button button--outline" href="manifesto.html">Read the Manifesto</a>
+          </div>
+        </div>
+
+        <aside class="personnel-card" aria-label="Personnel file summary">
+          <div>
+            <div class="personnel-card__topline">
+              <span>Internal record / external coping mechanism</span>
+              <span class="personnel-card__stamp">Still active</span>
+            </div>
+            <div class="personnel-card__number">001</div>
+            <h2 class="personnel-card__name">Creator of frAGILE</h2>
+            <p>Observed repeatedly asking what problem a ceremony is solving. Subject shows low tolerance for jargon laundering, executive cosplay, and retrospectives that end with “we should communicate better.”</p>
+          </div>
+          <ul class="personnel-card__meta" aria-label="Creator metadata">
+            <li><strong>Name</strong> Thach Nguyen</li>
+            <li><strong>Role</strong> Product leader</li>
+            <li><strong>Location</strong> Southern California</li>
+            <li><strong>Status</strong> Asking the awkward question</li>
+          </ul>
+        </aside>
+      </div>
     </section>
 
-    <section>
-      <h2>🎯 Why frAGILE?</h2>
-      <p>frAGILE started as a joke. Like most good jokes, it came from truth. I’ve sat through retros that resolved nothing, roadmaps that solved everything (on paper), and daily standups that stood for absolutely no progress.</p>
-      
-      <p>I built frAGILE to expose the chaos, celebrate the survivors, and offer a little clarity in the form of satire. Because sometimes the best way to move forward... is to laugh, reset, and keep going.</p>
+    <section class="section section--paper-light" aria-labelledby="file-summary-title">
+      <div class="container file-summary">
+        <aside class="file-summary__label" aria-label="Investigator note">
+          <span class="stamp">Reviewed</span>
+          <h2 class="file-summary__title" id="file-summary-title">Unofficial finding</h2>
+          <p class="file-summary__meta">The subject appears to believe product work should be understandable, testable, and occasionally useful. Concerning, but not yet illegal.</p>
+        </aside>
+
+        <div class="file-summary__copy">
+          <p>Thach Nguyen has spent years around product teams, roadmaps, backlogs, transformations, delivery rituals, and the strange corporate impulse to rename confusion as alignment.</p>
+          <p>frAGILE Framework started as a joke because most honest things do. Then it became a sharper way to talk about broken Agile behavior without turning every conversation into a grim process therapy session.</p>
+          <p>The point is not to dunk on teams. Teams are usually doing their best inside systems that reward noise, certainty, and dashboard theater. The point is to name the dysfunction clearly enough that people can stop pretending it is normal.</p>
+          <div class="file-summary__callout">This is a satire project with a serious backbone: better requirements, clearer decisions, less performative alignment, and fewer meetings where hope goes to die.</div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>🛠️ Tools I Actually Use</h2>
-      <ul>
-        <li>GitHub, Netlify, HTML/CSS — for building this site from scratch</li>
-        <li>Azure DevOps, Jira — for managing real backlogs (with real blockers)</li>
-        <li>Coaching frameworks — for mentoring PMs with empathy and edge</li>
-        <li>Humor — because it's how teams stay human while shipping hard things</li>
-      </ul>
+    <section class="section" aria-labelledby="evidence-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Observed evidence</div>
+            <h2 class="section-heading__title" id="evidence-title">Reasons this site exists.</h2>
+          </div>
+          <p class="section-heading__caption">Not peer reviewed. Spiritually admissible.</p>
+        </div>
+
+        <div class="evidence-grid">
+          <article class="evidence-card">
+            <div class="evidence-card__number">01</div>
+            <h3 class="evidence-card__title">Roadmap fog</h3>
+            <p class="evidence-card__copy">Everything is committed until someone asks what “done” means.</p>
+          </article>
+
+          <article class="evidence-card">
+            <div class="evidence-card__number">02</div>
+            <h3 class="evidence-card__title">Backlog theater</h3>
+            <p class="evidence-card__copy">A hundred tickets, three decisions, and one heroic spreadsheet begging for mercy.</p>
+          </article>
+
+          <article class="evidence-card">
+            <div class="evidence-card__number">03</div>
+            <h3 class="evidence-card__title">Retro déjà vu</h3>
+            <p class="evidence-card__copy">Same problem. New sticky note. Organizational archaeology with snacks.</p>
+          </article>
+
+          <article class="evidence-card">
+            <div class="evidence-card__number">04</div>
+            <h3 class="evidence-card__title">AI theater</h3>
+            <p class="evidence-card__copy">The model cannot save requirements nobody had the courage to write.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>📬 Connect With Me</h2>
-      <p>Want to talk product, parody, or the glorious dysfunction of Agile? You can find me here:</p>
-      <p><a href="https://www.linkedin.com/in/nguyenthach" target="_blank">🔗 LinkedIn Profile</a></p>
+    <section class="section section--dark" aria-labelledby="case-notes-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Case notes</div>
+            <h2 class="section-heading__title" id="case-notes-title">What he is actually trying to do.</h2>
+          </div>
+          <p class="section-heading__caption">Satire is the packaging. The operating model is the point.</p>
+        </div>
+
+        <div class="case-dossier">
+          <article class="case-note" data-status="Filed">
+            <div class="case-note__label">Note 01 / Satire</div>
+            <h3 class="case-note__title">Make the absurdity visible.</h3>
+            <p class="case-note__copy">frAGILE uses parody because corporate dysfunction often hides behind serious language. A ridiculous label can sometimes tell the truth faster than a seventy-slide transformation deck with a mountain-climbing metaphor.</p>
+          </article>
+
+          <article class="case-note" data-status="Active">
+            <div class="case-note__label">Note 02 / Substance</div>
+            <h3 class="case-note__title">Then fix the work.</h3>
+            <p class="case-note__copy">The joke only works if there is a better behavior underneath it: clearer scope, cleaner readiness standards, sharper decision-making, and product teams that spend less time performing progress and more time creating it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper-deep" aria-labelledby="operating-behaviors-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Known operating behaviors</div>
+            <h2 class="section-heading__title" id="operating-behaviors-title">Patterns detected in the subject.</h2>
+          </div>
+          <p class="section-heading__caption">May cause discomfort in rooms optimized for polite ambiguity.</p>
+        </div>
+
+        <ol class="operating-list">
+          <li class="operating-list__item">
+            <span class="operating-list__code">A1</span>
+            <p class="operating-list__text"><strong>Asks what decision is needed.</strong> Especially when the meeting invite says “alignment,” which is usually where decisions go to wear business casual and disappear.</p>
+          </li>
+          <li class="operating-list__item">
+            <span class="operating-list__code">B2</span>
+            <p class="operating-list__text"><strong>Prefers useful artifacts.</strong> Not sacred documents. Not process trophies. Just the boring little objects that help teams make better calls before expensive chaos begins.</p>
+          </li>
+          <li class="operating-list__item">
+            <span class="operating-list__code">C3</span>
+            <p class="operating-list__text"><strong>Believes humor is load-bearing.</strong> Teams do hard things better when they can tell the truth without turning every problem into a personality indictment.</p>
+          </li>
+          <li class="operating-list__item">
+            <span class="operating-list__code">D4</span>
+            <p class="operating-list__text"><strong>Does not worship frameworks.</strong> Frameworks are tools. When they become theater, someone should quietly unplug the fog machine.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--paper-light section-rule" aria-labelledby="origin-title">
+      <div class="container timeline">
+        <div class="timeline__header">
+          <div class="eyebrow">Origin record</div>
+          <h2 id="origin-title">From product work to field notes.</h2>
+          <p>The creator file is not a hero story. Hero stories are how organizations sell burnout with better lighting. This is closer to an evidence log.</p>
+        </div>
+
+        <ol class="timeline__items">
+          <li class="timeline__item">
+            <div class="timeline__era">Fieldwork</div>
+            <div class="timeline__copy">
+              <h3>Years inside product systems</h3>
+              <p>Thach worked around complex product, technology, and operational environments long enough to see the same failure modes appear with different logos and better fonts.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__era">Pattern</div>
+            <div class="timeline__copy">
+              <h3>The ceremony drift became obvious</h3>
+              <p>Teams were not failing because they lacked rituals. They were failing because the rituals stopped forcing clarity. The calendar was full. The decisions were not.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__era">Build</div>
+            <div class="timeline__copy">
+              <h3>frAGILE became the container</h3>
+              <p>The site became a place to turn sarcastic observations into practical artifacts: a manifesto, a playbook, and tools like the Backlog Readiness Check.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__era">Current</div>
+            <div class="timeline__copy">
+              <h3>Still independent. Still mildly accusatory.</h3>
+              <p>Built after hours, without a steering committee, change board, or quarterly dependency map. Somehow, civilization continues.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="tools-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Artifacts recovered</div>
+            <h2 class="section-heading__title" id="tools-title">What he built instead of another deck.</h2>
+          </div>
+          <p class="section-heading__caption">Zero certification credits. Several uncomfortable truths.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card__number">01</div>
+            <div class="card__label">Document</div>
+            <h3 class="card__title">Manifesto</h3>
+            <p class="card__copy">Four values for teams tired of Agile being reduced to calendar management and emotionally expensive vocabulary.</p>
+            <div class="card__footer">
+              <a class="text-link" href="manifesto.html">Read the values</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__number">02</div>
+            <div class="card__label">Case files</div>
+            <h3 class="card__title">Playbook</h3>
+            <p class="card__copy">A field guide to the ceremonies, roles, and rituals that slowly turned into workplace improv.</p>
+            <div class="card__footer">
+              <a class="text-link" href="playbook.html">Open the cases</a>
+            </div>
+          </article>
+
+          <article class="card card--dark">
+            <div class="card__number">03</div>
+            <div class="card__label">Diagnostic</div>
+            <h3 class="card__title">Readiness Check</h3>
+            <p class="card__copy">A fixed-gate backlog check for when “pretty close” is about to become a delivery incident with snacks.</p>
+            <div class="card__footer">
+              <a class="text-link" href="readiness-check.html">Run the check</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper-deep section-rule" aria-labelledby="statement-title">
+      <div class="container statement-panel">
+        <blockquote class="statement-panel__quote" id="statement-title">The work should survive contact with reality.</blockquote>
+        <div class="statement-panel__aside">
+          <p>That is the bar. Not better ceremony. Not more vocabulary. Not a dashboard with a tasteful green triangle. The work should be clear enough to build, test, explain, challenge, and improve.</p>
+          <p>Wildly disruptive idea. Please update the transformation newsletter.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" aria-labelledby="connect-title">
+      <div class="container connect-strip">
+        <div>
+          <div class="eyebrow">Contact protocol</div>
+          <h2 class="connect-strip__title" id="connect-title">Want to compare notes?</h2>
+          <p class="connect-strip__copy">Reach out for product talk, Agile satire, backlog triage, or a respectful moment of silence for the sprint goal that never had a chance.</p>
+        </div>
+        <div class="button-row">
+          <a class="button button--light" href="https://www.linkedin.com/in/nguyenthach" rel="me external">LinkedIn</a>
+          <a class="button button--outline" href="index.html#creator">Back to homepage file</a>
+        </div>
+      </div>
     </section>
   </main>
 
-<footer>
-  <p>
-    © 2025 frAGILE Framework™. Built by Thach. Inspired by chaos.
-  </p>
-</footer>
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2025–2026 frAGILE Framework™ · Satire project by Thach Nguyen</span>
+      <span class="site-footer__tag">Laugh responsibly. Ship intentionally.</span>
+    </div>
+  </footer>
 </body>
 </html>
