@@ -9,13 +9,13 @@
   <meta name="keywords" content="Thach Nguyen, frAGILE Framework creator, Agile satire, product management, product leader, personnel file">
 
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Personnel File: Thach Nguyen">
+  <meta property="og:title" content="Personnel File: Thach Nguyen | frAGILE Framework™">
   <meta property="og:description" content="Product leader. Framework skeptic. Builder of useful things disguised as sarcasm.">
   <meta property="og:url" content="https://fragileframework.com/about.html">
   <meta property="og:image" content="https://fragileframework.com/images/IMG_7091.jpeg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Personnel File: Thach Nguyen">
+  <meta name="twitter:title" content="Personnel File: Thach Nguyen | frAGILE Framework™">
   <meta name="twitter:description" content="The unofficial case file for the creator of frAGILE Framework™.">
   <meta name="twitter:image" content="https://fragileframework.com/images/IMG_7091.jpeg">
 
@@ -28,8 +28,8 @@
   <style>
     /*
       frAGILE About page layer
-      Uses the shared Phase 1 tokens from fragile-theme.css.
-      Keep this page-specific: case-file composition, not another design system.
+      Uses shared Phase 1 tokens from fragile-theme.css.
+      This layer owns the personnel-file composition only.
     */
 
     .about-hero .hero__inner {
@@ -43,10 +43,11 @@
     }
 
     .about-hero .hero__lede {
-      max-width: 760px;
+      max-width: 800px;
     }
 
     .personnel-card {
+      position: relative;
       display: flex;
       min-height: 100%;
       flex-direction: column;
@@ -56,6 +57,23 @@
       color: var(--ink);
       border: 3px solid var(--paper-light);
       box-shadow: 10px 10px 0 var(--red);
+    }
+
+    .personnel-card::after {
+      position: absolute;
+      right: clamp(1rem, 2vw, 1.6rem);
+      bottom: clamp(1rem, 2vw, 1.6rem);
+      content: "NO COMMITTEE";
+      padding: 0.45rem 0.7rem;
+      color: var(--red);
+      border: 3px solid currentColor;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transform: rotate(-4deg);
+      opacity: 0.92;
     }
 
     .personnel-card__topline {
@@ -97,6 +115,13 @@
       font-weight: 400;
       line-height: 0.9;
       text-transform: uppercase;
+    }
+
+    .personnel-card__copy {
+      max-width: 560px;
+      color: var(--ink-brown);
+      font-size: 1rem;
+      line-height: 1.65;
     }
 
     .personnel-card__meta {
@@ -194,11 +219,28 @@
     }
 
     .evidence-card {
-      min-height: 220px;
+      position: relative;
+      min-height: 235px;
       padding: 1.25rem;
       background: var(--paper-light);
       border: var(--border);
       box-shadow: var(--shadow-sm);
+    }
+
+    .evidence-card::before {
+      position: absolute;
+      top: -0.75rem;
+      right: 1rem;
+      content: attr(data-status);
+      padding: 0.32rem 0.55rem;
+      background: var(--red);
+      color: var(--paper-light);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transform: rotate(2deg);
     }
 
     .evidence-card__number {
@@ -446,6 +488,7 @@
 
     .connect-strip__copy {
       max-width: 720px;
+      color: rgba(251, 246, 236, 0.78);
       font-size: var(--step-1);
       font-style: italic;
     }
@@ -498,7 +541,7 @@
   <header class="site-nav">
     <div class="site-nav__inner">
       <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
-        fr<span class="accent">AGILE</span><span class="slash">/</span>Framework
+        <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><span class="slash">/</span><span class="brand-page-label">About</span>
       </a>
       <nav aria-label="Primary navigation">
         <ul class="site-nav__links">
@@ -506,7 +549,7 @@
           <li><a href="manifesto.html">Manifesto</a></li>
           <li><a href="playbook.html">Playbook</a></li>
           <li><a href="readiness-check.html">Tools</a></li>
-          <li><a href="emotional-backlog.html">Emotional Backlog</a></li>
+          <li><a href="emotional-backlog.html">Emo Backlog</a></li>
           <li><a href="about.html" aria-current="page">About</a></li>
         </ul>
       </nav>
@@ -516,7 +559,7 @@
   <div class="document-bar" aria-label="Document classification">
     <div class="container document-bar__inner">
       <span>Case File: FF-PERSONNEL-001</span>
-      <span>Classification: Unofficial but unfortunately accurate</span>
+      <span>Classification: Unofficial but inconveniently accurate</span>
       <span>Filed under: Creator / Product / Mildly Accusatory</span>
     </div>
   </div>
@@ -525,12 +568,12 @@
     <section class="hero about-hero" aria-labelledby="about-title">
       <div class="container hero__inner">
         <div>
-          <div class="eyebrow">Personnel file / About the creator</div>
+          <div class="eyebrow">Personnel file / about the creator</div>
           <h1 class="hero__title" id="about-title"><span class="small">Subject:</span> Thach Nguyen</h1>
-          <p class="hero__lede">Product leader by trade. Framework skeptic by accumulated scar tissue. Builder of frAGILE Framework because apparently just muttering “this is theater” in meetings was not a scalable platform.</p>
+          <p class="hero__lede">Product leader by trade. Framework skeptic by accumulated scar tissue. Builder of <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> because apparently muttering “this is theater” into coffee was not a scalable platform.</p>
           <div class="hero__actions">
             <a class="button" href="https://www.linkedin.com/in/nguyenthach" rel="me external">Connect on LinkedIn</a>
-            <a class="button button--outline" href="manifesto.html">Read the Manifesto</a>
+            <a class="button button--outline" href="readiness-check.html">Try the Tool</a>
           </div>
         </div>
 
@@ -541,8 +584,8 @@
               <span class="personnel-card__stamp">Still active</span>
             </div>
             <div class="personnel-card__number">001</div>
-            <h2 class="personnel-card__name">Creator of frAGILE</h2>
-            <p>Observed repeatedly asking what problem a ceremony is solving. Subject shows low tolerance for jargon laundering, executive cosplay, and retrospectives that end with “we should communicate better.”</p>
+            <h2 class="personnel-card__name">Creator of <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span></h2>
+            <p class="personnel-card__copy">Observed repeatedly asking what problem a ceremony is solving. Subject shows low tolerance for jargon laundering, executive cosplay, and retrospectives that end with “we should communicate better.”</p>
           </div>
           <ul class="personnel-card__meta" aria-label="Creator metadata">
             <li><strong>Name</strong> Thach Nguyen</li>
@@ -564,7 +607,7 @@
 
         <div class="file-summary__copy">
           <p>Thach Nguyen has spent years around product teams, roadmaps, backlogs, transformations, delivery rituals, and the strange corporate impulse to rename confusion as alignment.</p>
-          <p>frAGILE Framework started as a joke because most honest things do. Then it became a sharper way to talk about broken Agile behavior without turning every conversation into a grim process therapy session.</p>
+          <p><span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> started as a joke because most honest things do. Then it became a sharper way to talk about broken Agile behavior without turning every conversation into a grim process therapy session.</p>
           <p>The point is not to dunk on teams. Teams are usually doing their best inside systems that reward noise, certainty, and dashboard theater. The point is to name the dysfunction clearly enough that people can stop pretending it is normal.</p>
           <div class="file-summary__callout">This is a satire project with a serious backbone: better requirements, clearer decisions, less performative alignment, and fewer meetings where hope goes to die.</div>
         </div>
@@ -582,25 +625,25 @@
         </div>
 
         <div class="evidence-grid">
-          <article class="evidence-card">
+          <article class="evidence-card" data-status="Exhibit A">
             <div class="evidence-card__number">01</div>
             <h3 class="evidence-card__title">Roadmap fog</h3>
             <p class="evidence-card__copy">Everything is committed until someone asks what “done” means.</p>
           </article>
 
-          <article class="evidence-card">
+          <article class="evidence-card" data-status="Exhibit B">
             <div class="evidence-card__number">02</div>
             <h3 class="evidence-card__title">Backlog theater</h3>
             <p class="evidence-card__copy">A hundred tickets, three decisions, and one heroic spreadsheet begging for mercy.</p>
           </article>
 
-          <article class="evidence-card">
+          <article class="evidence-card" data-status="Exhibit C">
             <div class="evidence-card__number">03</div>
             <h3 class="evidence-card__title">Retro déjà vu</h3>
             <p class="evidence-card__copy">Same problem. New sticky note. Organizational archaeology with snacks.</p>
           </article>
 
-          <article class="evidence-card">
+          <article class="evidence-card" data-status="Exhibit D">
             <div class="evidence-card__number">04</div>
             <h3 class="evidence-card__title">AI theater</h3>
             <p class="evidence-card__copy">The model cannot save requirements nobody had the courage to write.</p>
@@ -623,7 +666,7 @@
           <article class="case-note" data-status="Filed">
             <div class="case-note__label">Note 01 / Satire</div>
             <h3 class="case-note__title">Make the absurdity visible.</h3>
-            <p class="case-note__copy">frAGILE uses parody because corporate dysfunction often hides behind serious language. A ridiculous label can sometimes tell the truth faster than a seventy-slide transformation deck with a mountain-climbing metaphor.</p>
+            <p class="case-note__copy"><span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> uses parody because corporate dysfunction often hides behind serious language. A ridiculous label can sometimes tell the truth faster than a seventy-slide transformation deck with a mountain-climbing metaphor.</p>
           </article>
 
           <article class="case-note" data-status="Active">
@@ -692,15 +735,15 @@
           <li class="timeline__item">
             <div class="timeline__era">Build</div>
             <div class="timeline__copy">
-              <h3>frAGILE became the container</h3>
-              <p>The site became a place to turn sarcastic observations into practical artifacts: a manifesto, a playbook, and tools like the Backlog Readiness Check.</p>
+              <h3><span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> became the container</h3>
+              <p>The site became a place to turn sarcastic observations into practical artifacts: a manifesto, a playbook, the Emo Backlog, and the Backlog Readiness Check.</p>
             </div>
           </li>
           <li class="timeline__item">
             <div class="timeline__era">Current</div>
             <div class="timeline__copy">
               <h3>Still independent. Still mildly accusatory.</h3>
-              <p>Built after hours, without a steering committee, change board, or quarterly dependency map. Somehow, civilization continues.</p>
+              <p>Built after hours, with GitHub, Netlify, stubbornness, and no steering committee. Somehow, civilization continues.</p>
             </div>
           </li>
         </ol>
@@ -770,7 +813,7 @@
         </div>
         <div class="button-row">
           <a class="button button--light" href="https://www.linkedin.com/in/nguyenthach" rel="me external">LinkedIn</a>
-          <a class="button button--outline" href="index.html#creator">Back to homepage file</a>
+          <a class="button button--outline" href="index.html">Back home</a>
         </div>
       </div>
     </section>
@@ -778,7 +821,7 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <span>© 2025–2026 frAGILE Framework™ · Satire project by Thach Nguyen</span>
+      <span>© 2025–2026 <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ · Satire project by Thach Nguyen</span>
       <span class="site-footer__tag">Laugh responsibly. Ship intentionally.</span>
     </div>
   </footer>
