@@ -456,6 +456,27 @@
       opacity: 1;
     }
 
+    .story-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0;
+      margin: 0 0 0.65rem;
+      list-style: none;
+    }
+
+    .story-prompts li {
+      padding: 0.35rem 0.6rem;
+      background: var(--paper-deep);
+      border: 1px solid var(--ink);
+      color: var(--ink-brown);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      line-height: 1.4;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
     .consent-check {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
@@ -685,7 +706,7 @@
 
   <div class="document-bar" aria-label="Document classification">
     <div class="container document-bar__inner">
-      <span>Archive: FF-EMO-BACKLOG</span>
+      <span>Document IV. Archive: FF-EMO-BACKLOG</span>
       <span>Classification: Anonymous / Cathartic / Slightly Too Real</span>
       <span>Status: Open for intake</span>
     </div>
@@ -759,7 +780,7 @@
             <div class="ticket-card__label">Category / Demo séance</div>
             <h3 class="ticket-card__title" id="ticket-demo-title">Shiny Demo, Hollow Soul</h3>
             <p class="ticket-card__copy"><strong>Dear <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span>,</strong> I just did a demo where I pretended we had progress. The backend is not built. The design is not approved. But I smiled and clicked through Figma like it was live. I hate how good I am at this.</p>
-            <div class="ticket-card__reply"><strong>Reply:</strong> You are not faking success. You are faking stability because the room demanded hope in business casual. Build something small. Ship something honest. Even if it is just one truth bomb in the next standup.</div>
+            <div class="ticket-card__reply"><strong>Reply:</strong> You are not faking success. You are faking certainty because the room rewarded the illusion. Next time, label the demo correctly: prototype, concept, or theater with clickable buttons. The truth is cheaper before the applause.</div>
             <ul class="ticket-card__meta" aria-label="Ticket metadata for Shiny Demo Hollow Soul">
               <li><strong>Root cause</strong> Roadmap cosplay</li>
               <li><strong>Suggested fix</strong> Prototype truth</li>
@@ -910,11 +931,14 @@
               <label for="category">Grievance type</label>
               <select name="category" id="category">
                 <option value="">Select one, sadly</option>
-                <option value="fake-progress">Fake progress</option>
+                <option value="demo-theater">Demo theater</option>
                 <option value="alignment-fatigue">Alignment fatigue</option>
                 <option value="backlog-guilt">Backlog guilt</option>
                 <option value="priority-theater">Priority theater</option>
+                <option value="dependency-haunting">Dependency haunting</option>
                 <option value="retro-deja-vu">Retro déjà vu</option>
+                <option value="stakeholder-weather-event">Stakeholder weather event</option>
+                <option value="roadmap-theater">Roadmap theater</option>
                 <option value="other-organizational-haunting">Other organizational haunting</option>
               </select>
             </div>
@@ -943,7 +967,14 @@
 
             <div class="form-field form-field--full">
               <label for="message">Your anonymous story</label>
-              <textarea name="message" id="message" required placeholder="What broke you this sprint? Remove names, company details, customer details, proprietary specifics, and anything that would make compliance suddenly appear in the doorway."></textarea>
+              <ul class="story-prompts" aria-label="Prompts to help you write your entry">
+                <li>What happened?</li>
+                <li>What was supposed to happen?</li>
+                <li>What made it absurd?</li>
+                <li>What did everyone privately know?</li>
+                <li>What detail should be redacted?</li>
+              </ul>
+              <textarea name="message" id="message" required placeholder="Start anywhere. Remove names, company details, customer details, and anything that would make compliance suddenly appear in the doorway."></textarea>
             </div>
           </div>
 
