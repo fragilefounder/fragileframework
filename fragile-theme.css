@@ -1,6 +1,3 @@
-
-
-
 /*
   frAGILE Framework — Unified Web Theme
   Phase 1: Homepage + shared component system
@@ -314,6 +311,57 @@ input:focus-visible {
   transform: translateY(0);
 }
 
+
+
+/* =========================
+   3a. Brand Casing Utilities
+   =========================
+   Use this whenever the brand appears inside uppercase-styled headings,
+   nav labels, stamps, cards, or body copy. The brand is always frAGILE.
+   Example:
+   <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span>
+*/
+.brand-word {
+  display: inline-block;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.brand-word *,
+.brand-prefix,
+.brand-accent {
+  text-transform: none;
+}
+
+.brand-prefix {
+  color: inherit;
+  text-transform: lowercase;
+}
+
+.brand-accent,
+.brand-word .accent {
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.brand-page-label {
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-nav__brand {
+  text-transform: none;
+}
+
+.site-nav__brand .brand-word {
+  letter-spacing: 0.08em;
+}
+
+.site-nav__brand .brand-page-label {
+  color: var(--paper-light);
+  letter-spacing: 0.08em;
+}
+
 /* =========================
    4. Sticky Navigation
    ========================= */
@@ -347,7 +395,7 @@ input:focus-visible {
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .site-nav__brand .accent {
