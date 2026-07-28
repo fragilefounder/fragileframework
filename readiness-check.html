@@ -539,6 +539,7 @@
 
     .submission-panel {
       padding: clamp(1.2rem, 3vw, 2rem);
+      margin-top: clamp(1.5rem, 3vw, 2rem);
     }
 
     .privacy-warning {
@@ -581,6 +582,7 @@
       font-family: var(--font-mono);
       font-size: 0.95rem;
       line-height: 1.6;
+      margin-bottom: 1rem;
     }
 
     .own-note {
@@ -709,7 +711,7 @@
   <header class="site-nav">
     <div class="site-nav__inner">
       <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
-        fr<span class="accent">AGILE</span><span class="slash">/</span>Framework
+        <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><span class="slash">/</span><span class="brand-page-label">Tools</span>
       </a>
       <nav aria-label="Primary navigation">
         <ul class="site-nav__links">
@@ -717,7 +719,7 @@
           <li><a href="manifesto.html">Manifesto</a></li>
           <li><a href="playbook.html">Playbook</a></li>
           <li><a href="readiness-check.html" aria-current="page">Tools</a></li>
-          <li><a href="emotional-backlog.html">Emotional Backlog</a></li>
+          <li><a href="emotional-backlog.html">Emo Backlog</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </nav>
@@ -841,7 +843,7 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <span>© 2025–2026 frAGILE Framework™ · Satire project by Thach Nguyen</span>
+      <span>© 2025–2026 <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ · Satire project by Thach Nguyen</span>
       <span class="site-footer__tag">No vibes laundering.</span>
     </div>
   </footer>
