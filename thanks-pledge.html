@@ -1,760 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pledge Receipt | frAGILE Framework™</title>
-  <meta name="description" content="Official confirmation record for taking the frAGILE Pledge. Your loyalty has been archived. No refunds, obviously.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pledge Confirmed | frAGILE Framework™</title>
+  <meta name="description" content="Your frAGILE Framework pledge has been logged. No certification credits will be awarded.">
+  <meta name="robots" content="noindex, follow">
   <meta name="author" content="Thach Nguyen">
-  <meta name="keywords" content="frAGILE Pledge, Agile satire, pledge confirmation, product management satire, frAGILE Framework">
+  <meta name="theme-color" content="#0A0A0A">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Pledge Receipt | frAGILE Framework™">
-  <meta property="og:description" content="Your frAGILE Pledge has been officially signed, stamped, and filed somewhere deeply unnecessary.">
-  <meta property="og:url" content="https://fragileframework.com/thanks-pledge.html">
-  <meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pledge Receipt | frAGILE Framework™">
-  <meta name="twitter:description" content="Official confirmation record. No refunds. Minimal dignity remaining.">
-  <meta name="twitter:image" content="https://fragileframework.com/images/fragile-logo.png">
-
+  <link rel="icon" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
-  <link rel="icon" href="images/favicon.png">
-
-  <style>
-    /*
-      frAGILE Pledge Receipt page layer
-      Uses shared Phase 1 tokens from fragile-theme.css.
-      This layer owns receipt/certificate composition only.
-    */
-
-    .receipt-hero .hero__inner {
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
-      min-height: min(760px, calc(100vh - var(--nav-height)));
-      align-items: stretch;
-    }
-
-    .receipt-hero .hero__title {
-      max-width: 8ch;
-    }
-
-    .receipt-hero .hero__lede {
-      max-width: 760px;
-    }
-
-    .receipt-card {
-      position: relative;
-      display: flex;
-      min-height: 100%;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: clamp(1.4rem, 3vw, 2rem);
-      background: var(--paper-light);
-      color: var(--ink);
-      border: 3px solid var(--paper-light);
-      box-shadow: 10px 10px 0 var(--red);
-    }
-
-    .receipt-card::after {
-      position: absolute;
-      right: clamp(1rem, 2vw, 1.6rem);
-      bottom: clamp(1rem, 2vw, 1.6rem);
-      content: "NO REFUNDS";
-      padding: 0.45rem 0.7rem;
-      color: var(--red);
-      border: 3px solid currentColor;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      transform: rotate(-4deg);
-      opacity: 0.92;
-    }
-
-    .receipt-card__topline {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: var(--border);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .receipt-card__stamp {
-      display: inline-block;
-      padding: 0.32rem 0.55rem;
-      color: var(--red);
-      border: 2px solid currentColor;
-      transform: rotate(2deg);
-      white-space: nowrap;
-    }
-
-    .receipt-card__number {
-      margin-bottom: 1.25rem;
-      color: var(--red);
-      font-family: var(--font-display);
-      font-size: clamp(5.5rem, 12vw, 10rem);
-      line-height: 0.78;
-    }
-
-    .receipt-card__title {
-      margin-bottom: 1rem;
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.8vw, 5.2rem);
-      font-weight: 400;
-      line-height: 0.9;
-      text-transform: uppercase;
-    }
-
-    .receipt-card__copy {
-      max-width: 560px;
-      color: var(--ink-brown);
-      font-size: 1rem;
-      line-height: 1.65;
-    }
-
-    .receipt-card__meta {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-      padding: 0;
-      margin: 2rem 0 0;
-      list-style: none;
-    }
-
-    .receipt-card__meta li {
-      padding: 0.85rem;
-      background: var(--paper-deep);
-      border: 1px solid var(--ink);
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      line-height: 1.45;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .receipt-card__meta strong {
-      display: block;
-      color: var(--red-dark);
-      font-size: 0.62rem;
-    }
-
-    .confirmation-ledger {
-      display: grid;
-      grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: start;
-    }
-
-    .confirmation-ledger__label {
-      position: sticky;
-      top: calc(var(--nav-height) + 1.5rem);
-      padding: 1.25rem;
-      background: var(--paper-light);
-      border: var(--border);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .confirmation-ledger__label .stamp {
-      margin-bottom: 1.5rem;
-    }
-
-    .confirmation-ledger__title {
-      margin-bottom: 1rem;
-      font-family: var(--font-display);
-      font-size: var(--step-2);
-      font-weight: 400;
-      line-height: 0.95;
-      text-transform: uppercase;
-    }
-
-    .confirmation-ledger__meta {
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      line-height: 1.7;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    .confirmation-copy {
-      font-size: var(--step-1);
-      line-height: 1.6;
-    }
-
-    .confirmation-copy p {
-      margin-bottom: 1.35rem;
-    }
-
-    .receipt-warning {
-      padding: clamp(1.25rem, 3vw, 2rem);
-      margin-top: 2rem;
-      background: var(--ink);
-      color: var(--paper-light);
-      border-left: 10px solid var(--red);
-      box-shadow: var(--shadow-md);
-      font-family: var(--font-mono);
-      font-size: 0.86rem;
-      line-height: 1.65;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: clamp(1rem, 2.5vw, 1.5rem);
-    }
-
-    .summary-card {
-      position: relative;
-      min-height: 235px;
-      padding: 1.25rem;
-      background: var(--paper-light);
-      color: var(--ink);
-      border: var(--border);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .summary-card::before {
-      position: absolute;
-      top: -0.75rem;
-      right: 1rem;
-      content: attr(data-status);
-      padding: 0.32rem 0.55rem;
-      background: var(--red);
-      color: var(--paper-light);
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transform: rotate(2deg);
-    }
-
-    .summary-card__number {
-      margin-bottom: 2rem;
-      color: var(--red);
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 4.75rem);
-      line-height: 0.78;
-    }
-
-    .summary-card__title {
-      margin-bottom: 0.75rem;
-      font-family: var(--font-display);
-      font-size: 1.45rem;
-      font-weight: 400;
-      line-height: 0.95;
-      text-transform: uppercase;
-    }
-
-    .summary-card__copy {
-      margin: 0;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      line-height: 1.55;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .certificate-panel {
-      position: relative;
-      padding: clamp(1.5rem, 4vw, 3rem);
-      background: var(--paper-light);
-      color: var(--ink);
-      border: var(--border);
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-    }
-
-    .certificate-panel::before {
-      position: absolute;
-      inset: 1rem;
-      pointer-events: none;
-      content: "";
-      border: 1px solid rgba(10, 10, 10, 0.28);
-    }
-
-    .certificate-panel::after {
-      position: absolute;
-      right: clamp(-1rem, -1vw, -0.2rem);
-      bottom: clamp(1rem, 3vw, 2.2rem);
-      content: "OFFICIALLY SIGNED";
-      color: var(--red);
-      border: 5px solid currentColor;
-      padding: 0.7rem 1rem;
-      font-family: var(--font-mono);
-      font-size: clamp(0.92rem, 2vw, 1.5rem);
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      transform: rotate(-7deg);
-      opacity: 0.9;
-    }
-
-    .certificate-panel__inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: start;
-    }
-
-    .certificate-panel__label {
-      margin-bottom: 1.25rem;
-      color: var(--red);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .certificate-panel__title {
-      margin-bottom: 1.5rem;
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 8.5rem);
-      font-weight: 400;
-      line-height: 0.88;
-      text-transform: uppercase;
-    }
-
-    .certificate-panel__text {
-      max-width: 760px;
-      font-size: var(--step-1);
-      line-height: 1.55;
-    }
-
-    .certificate-panel__aside {
-      padding: 1.25rem;
-      background: var(--paper-deep);
-      border: var(--border);
-      box-shadow: 5px 5px 0 var(--red);
-    }
-
-    .metadata-list {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    .metadata-list li {
-      display: grid;
-      grid-template-columns: minmax(90px, 0.7fr) minmax(0, 1.3fr);
-      gap: 1rem;
-      padding-block: 0.9rem;
-      border-bottom: 1px solid var(--ink);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      line-height: 1.45;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .metadata-list li:last-child {
-      border-bottom: 0;
-    }
-
-    .metadata-list strong {
-      color: var(--red-dark);
-    }
-
-    .pledge-actions {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: clamp(1.5rem, 4vw, 3rem);
-      align-items: center;
-    }
-
-    .pledge-actions__title {
-      margin-bottom: 0.75rem;
-      font-family: var(--font-display);
-      font-size: var(--step-3);
-      font-weight: 400;
-      line-height: 0.96;
-      text-transform: uppercase;
-    }
-
-    .pledge-actions__copy {
-      max-width: 740px;
-      color: rgba(251, 246, 236, 0.78);
-      font-size: var(--step-1);
-      font-style: italic;
-      line-height: 1.55;
-    }
-
-    .pledge-protocol {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    .pledge-protocol__item {
-      display: grid;
-      grid-template-columns: minmax(70px, 110px) minmax(0, 1fr) auto;
-      gap: clamp(1rem, 3vw, 2rem);
-      align-items: center;
-      padding-block: clamp(1.3rem, 3vw, 2rem);
-      border-bottom: 1px solid rgba(251, 246, 236, 0.22);
-    }
-
-    .pledge-protocol__item:last-child {
-      border-bottom: 0;
-    }
-
-    .pledge-protocol__code {
-      color: var(--red);
-      font-family: var(--font-display);
-      font-size: clamp(2.7rem, 6vw, 4.8rem);
-      line-height: 0.8;
-    }
-
-    .pledge-protocol__title {
-      margin-bottom: 0.3rem;
-      font-family: var(--font-display);
-      font-size: clamp(1.7rem, 3vw, 2.5rem);
-      font-weight: 400;
-      line-height: 0.95;
-      text-transform: uppercase;
-    }
-
-    .pledge-protocol__copy {
-      margin: 0;
-      color: rgba(251, 246, 236, 0.72);
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      line-height: 1.55;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .pledge-protocol__badge {
-      padding: 0.4rem 0.65rem;
-      color: var(--red);
-      border: 2px solid var(--red);
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      transform: rotate(-2deg);
-    }
-
-    .closing-receipt {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: center;
-      padding: clamp(1.5rem, 4vw, 3rem);
-      background: var(--paper-light);
-      border: var(--border);
-      box-shadow: var(--shadow-md);
-    }
-
-    .closing-receipt__title {
-      margin-bottom: 1rem;
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5vw, 5.8rem);
-      font-weight: 400;
-      line-height: 0.92;
-      text-transform: uppercase;
-    }
-
-    .closing-receipt__copy {
-      max-width: 780px;
-      font-size: var(--step-1);
-      line-height: 1.55;
-    }
-
-    .closing-receipt__stamp {
-      justify-self: end;
-      padding: 0.8rem 1rem;
-      color: var(--red);
-      border: 4px solid currentColor;
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-align: center;
-      text-transform: uppercase;
-      transform: rotate(3deg);
-    }
-
-    @media (max-width: 1040px) {
-      .receipt-hero .hero__inner,
-      .confirmation-ledger,
-      .certificate-panel__inner,
-      .pledge-actions,
-      .closing-receipt {
-        grid-template-columns: 1fr;
-      }
-
-      .confirmation-ledger__label {
-        position: relative;
-        top: auto;
-      }
-
-      .summary-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .closing-receipt__stamp {
-        justify-self: start;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .receipt-card__topline,
-      .receipt-card__meta,
-      .summary-grid,
-      .metadata-list li {
-        grid-template-columns: 1fr;
-      }
-
-      .receipt-card__topline {
-        display: grid;
-      }
-
-      .receipt-card__stamp {
-        justify-self: start;
-      }
-
-      .certificate-panel::after {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        display: inline-block;
-        margin-top: 1.5rem;
-      }
-
-      .pledge-protocol__item {
-        grid-template-columns: 64px minmax(0, 1fr);
-      }
-
-      .pledge-protocol__badge {
-        grid-column: 1 / -1;
-        justify-self: start;
-      }
-    }
-  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip the ceremonial paperwork. Read the receipt.</a>
+  <a class="skip-link" href="#main-content">Skip the receipt. Get to the point.</a>
 
   <header class="site-nav">
     <div class="site-nav__inner">
       <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
-        fr<span class="accent">AGILE</span><span class="slash">/</span>Framework
+        <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><span class="slash">/</span><span class="brand-page-label">Receipt</span>
       </a>
+
       <nav aria-label="Primary navigation">
         <ul class="site-nav__links">
           <li><a href="index.html">Home</a></li>
           <li><a href="manifesto.html">Manifesto</a></li>
           <li><a href="playbook.html">Playbook</a></li>
           <li><a href="readiness-check.html">Tools</a></li>
-          <li><a href="emotional-backlog.html">Emotional Backlog</a></li>
+          <li><a href="emotional-backlog.html">Emo Backlog</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <div class="document-bar" aria-label="Document classification">
+  <div class="document-bar" aria-label="Receipt classification">
     <div class="container document-bar__inner">
-      <span>Receipt: FF-PLEDGE-CONFIRMATION</span>
-      <span>Classification: Official-ish / Binding only in spirit</span>
-      <span>Status: Filed with unnecessary confidence</span>
+      <span>Document 06. Confirmation Receipt</span>
+      <span class="stamp">Pledge logged</span>
+      <span>Status: Emotionally binding · Legally ridiculous</span>
     </div>
   </div>
 
   <main id="main-content">
-    <section class="hero receipt-hero" aria-labelledby="receipt-title">
+    <section class="hero" aria-labelledby="receipt-title">
       <div class="container hero__inner">
         <div>
-          <div class="eyebrow">Official receipt / frAGILE Pledge confirmation</div>
-          <h1 class="hero__title" id="receipt-title"><span class="small">Pledge:</span> confirmed</h1>
-          <p class="hero__lede">Your commitment to the frAGILE Framework™ has been logged in the ritual archive. The paperwork is ceremonial. The accountability is unfortunately real.</p>
+          <div class="eyebrow">Official unofficial record</div>
+          <h1 class="hero__title" id="receipt-title">
+            <span class="small">Your loyalty has been logged.</span>
+            Pledge<br>Confirmed.
+          </h1>
+          <p class="hero__lede">
+            Your commitment to the <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ has been received. No refunds. No certification credits. No Scrum Master will be notified.
+          </p>
           <div class="hero__actions">
-            <a class="button" href="manifesto.html">Read the Manifesto</a>
-            <a class="button button--outline" href="playbook.html">Open the Playbook</a>
+            <a class="button" href="readiness-check.html">Try the Readiness Check</a>
+            <a class="button button--outline" href="index.html">Return Home</a>
           </div>
         </div>
 
-        <aside class="receipt-card" aria-label="Pledge receipt summary">
-          <div>
-            <div class="receipt-card__topline">
-              <span>Confirmation record</span>
-              <span class="receipt-card__stamp">Officially signed</span>
-            </div>
-            <div class="receipt-card__number">✓</div>
-            <h2 class="receipt-card__title">Loyalty logged</h2>
-            <p class="receipt-card__copy">You may or may not receive a badge, a pin, a Slack emoji, or a passive-aggressive nod of approval. Either way, the archive knows what you did.</p>
-          </div>
-          <ul class="receipt-card__meta" aria-label="Receipt metadata">
-            <li><strong>Record type</strong> Pledge receipt</li>
-            <li><strong>Refund status</strong> Emotionally denied</li>
-            <li><strong>Membership</strong> Mildly official</li>
-            <li><strong>Next review</strong> Every retro</li>
-          </ul>
+        <aside class="hero__aside" aria-label="Pledge receipt note">
+          <div class="hero__aside-label">Receipt details</div>
+          <blockquote>“You are now officially allowed to question the meeting before accepting the invite.”</blockquote>
+          <p class="hero__aside-meta">Badge: imaginary.<br>Authority: none.<br>Side effects: clearer thinking.</p>
         </aside>
       </div>
     </section>
 
-    <section class="section section--paper-light" aria-labelledby="ledger-title">
-      <div class="container confirmation-ledger">
-        <aside class="confirmation-ledger__label" aria-label="Receipt handling note">
-          <span class="stamp">Stamped</span>
-          <h2 class="confirmation-ledger__title" id="ledger-title">Archive entry created.</h2>
-          <p class="confirmation-ledger__meta">Filed by an imaginary compliance department with excellent typography and questionable jurisdiction.</p>
-        </aside>
-
-        <div class="confirmation-copy">
-          <p>Your pledge has been accepted into the frAGILE record system, where it will live beside the fake roadmap confidence, the zombie action items, and the sprint goals everyone loved until Tuesday.</p>
-          <p>This confirmation does not grant certification, authority, maturity, transformation funding, or the right to say “servant leadership” without making eye contact with the floor.</p>
-          <p>It does, however, mark you as someone willing to laugh at the theater while still caring enough to improve the work. That is the whole game.</p>
-          <div class="receipt-warning">Receipt note: this pledge is non-transferable, non-refundable, and legally meaningless. Its moral inconvenience may persist indefinitely.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="summary-title">
-      <div class="container">
+    <section class="section section--paper-light" aria-labelledby="next-title">
+      <div class="container container--narrow">
         <div class="section-heading">
           <div>
-            <div class="eyebrow">Case-file summary</div>
-            <h2 class="section-heading__title" id="summary-title">What has been confirmed.</h2>
+            <div class="eyebrow">What happens next</div>
+            <h2 class="section-heading__title" id="next-title">Keep the bit useful.</h2>
           </div>
-          <p class="section-heading__caption">Congratulations. You are now administratively implicated.</p>
+          <p class="section-heading__caption">The receipt is complete. The dysfunction, regrettably, remains available.</p>
         </div>
 
-        <div class="summary-grid">
-          <article class="summary-card" data-status="Signed">
-            <div class="summary-card__number">01</div>
-            <h3 class="summary-card__title">You saw the theater</h3>
-            <p class="summary-card__copy">And somehow did not mistake the calendar for progress. Rare. Concerning. Useful.</p>
-          </article>
-
-          <article class="summary-card" data-status="Filed">
-            <div class="summary-card__number">02</div>
-            <h3 class="summary-card__title">You accepted the burden</h3>
-            <p class="summary-card__copy">Clearer decisions. Better artifacts. Fewer meetings pretending to be strategy.</p>
-          </article>
-
-          <article class="summary-card" data-status="Binding-ish">
-            <div class="summary-card__number">03</div>
-            <h3 class="summary-card__title">You joined the resistance</h3>
-            <p class="summary-card__copy">Not the dramatic kind. The boring useful kind where people ask what problem we are solving.</p>
-          </article>
-
-          <article class="summary-card" data-status="No refunds">
-            <div class="summary-card__number">04</div>
-            <h3 class="summary-card__title">You kept your dignity</h3>
-            <p class="summary-card__copy">Mostly. The archive reserves the right to revise this finding after the next planning meeting.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--paper-deep section-rule" aria-labelledby="certificate-title">
-      <div class="container certificate-panel">
-        <div class="certificate-panel__inner">
-          <div>
-            <div class="certificate-panel__label">Certificate of ceremonial compliance</div>
-            <h2 class="certificate-panel__title" id="certificate-title">Pledge entered into record.</h2>
-            <p class="certificate-panel__text">This certifies that the pledge-taker has acknowledged the absurdity of performative Agile, committed to calling out counterfeit clarity, and agreed to stop treating a backlog as a landfill with story points.</p>
-            <p class="certificate-panel__text">Witnessed by nobody in particular. Approved by no steering committee. Somehow still more useful than several operating models currently in circulation.</p>
-          </div>
-
-          <aside class="certificate-panel__aside" aria-label="Pledge receipt metadata">
-            <ul class="metadata-list">
-              <li><strong>Receipt ID</strong> FF-PLEDGE-ACK</li>
-              <li><strong>Filed under</strong> Satire / Product / Recovery</li>
-              <li><strong>Witness</strong> The backlog, unfortunately</li>
-              <li><strong>Stamp</strong> Officially signed</li>
-              <li><strong>Refunds</strong> No refunds, only retros</li>
-              <li><strong>Known side effects</strong> Clearer questions, fewer vibes</li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--dark" aria-labelledby="protocol-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">Next operating protocol</div>
-            <h2 class="section-heading__title" id="protocol-title">What to do with your new burden.</h2>
-          </div>
-          <p class="section-heading__caption">The pledge is complete. The dysfunction, rudely, remains.</p>
-        </div>
-
-        <ol class="pledge-protocol">
-          <li class="pledge-protocol__item">
-            <span class="pledge-protocol__code">A1</span>
-            <div>
-              <h3 class="pledge-protocol__title">Read the values</h3>
-              <p class="pledge-protocol__copy">Start with the Manifesto. It has fewer words than a transformation deck and somehow says more.</p>
+        <div class="card-grid">
+          <article class="card">
+            <div class="card__number">01</div>
+            <div class="card__label">Read</div>
+            <h3 class="card__title">Manifesto</h3>
+            <p class="card__copy">Start with the values. They are shorter than most status meetings and more likely to admit the problem exists.</p>
+            <div class="card__footer">
+              <a class="text-link" href="manifesto.html">Read the Manifesto</a>
             </div>
-            <span class="pledge-protocol__badge">Recommended</span>
-          </li>
+          </article>
 
-          <li class="pledge-protocol__item">
-            <span class="pledge-protocol__code">B2</span>
-            <div>
-              <h3 class="pledge-protocol__title">Open the case files</h3>
-              <p class="pledge-protocol__copy">The Playbook names the rituals that went feral. Read it before your next “quick alignment.”</p>
+          <article class="card card--dark">
+            <div class="card__number">02</div>
+            <div class="card__label">Use</div>
+            <h3 class="card__title">Readiness Check</h3>
+            <p class="card__copy">Paste a harmless backlog item and see whether it is ready for delivery or just dressed for planning.</p>
+            <div class="card__footer">
+              <a class="text-link" href="readiness-check.html">Run the check</a>
             </div>
-            <span class="pledge-protocol__badge">Field guide</span>
-          </li>
-
-          <li class="pledge-protocol__item">
-            <span class="pledge-protocol__code">C3</span>
-            <div>
-              <h3 class="pledge-protocol__title">Interrogate the backlog</h3>
-              <p class="pledge-protocol__copy">Use the Readiness Check when a story looks ready only because everyone is tired.</p>
-            </div>
-            <span class="pledge-protocol__badge">Diagnostic</span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="closing-title">
-      <div class="container closing-receipt">
-        <div>
-          <div class="eyebrow">Receipt closeout</div>
-          <h2 class="closing-receipt__title" id="closing-title">You belong now. Sorry.</h2>
-          <p class="closing-receipt__copy">Stay vigilant. Stay useful. Stay suspicious of any process that requires six meetings to explain why the work is still unclear.</p>
-          <div class="button-row">
-            <a class="button" href="manifesto.html">Read the Manifesto</a>
-            <a class="button button--outline" href="index.html">Return home</a>
-          </div>
+          </article>
         </div>
-        <div class="closing-receipt__stamp">Logged<br>No refunds</div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <span>© 2025–2026 frAGILE Framework™ · Satire project by Thach Nguyen</span>
-      <span class="site-footer__tag">Receipt retained. Dignity under review.</span>
+      <span>© 2025–2026 <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ · Satire project by Thach Nguyen</span>
+      <span class="site-footer__tag">Laugh responsibly. Ship intentionally.</span>
     </div>
   </footer>
 </body>
