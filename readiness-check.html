@@ -387,6 +387,7 @@
       color: var(--ink-brown);
       font-size: 1rem;
       line-height: 1.65;
+      white-space: pre-line;
     }
 
     .verdict-card {
@@ -535,6 +536,7 @@
       color: var(--ink-brown);
       font-size: 1rem;
       line-height: 1.7;
+      white-space: pre-line;
     }
 
     .submission-panel {
@@ -728,7 +730,7 @@
 
   <div class="document-bar" aria-label="Document classification">
     <div class="container document-bar__inner">
-      <span>Tool File: FF-GATE-005</span>
+      <span>Document III. Tool File: FF-GATE-005</span>
       <span>Classification: Public demo / sanitized chaos only</span>
       <span>Standard: Five fixed readiness gates</span>
     </div>
@@ -890,7 +892,7 @@
           id: "vague",
           label: "Vague ask",
           stamp: "Not ready",
-          input: "We need to add AI to the intake process so things are faster and users are happier. Product and engineering should figure out the best approach. Let's get it into the next release.",
+          input: "We need to add AI to the intake process so things are faster and users are happier.\n\nProduct and engineering should figure out the best approach. Let's get it into the next release.",
           result: {
             dimensions: [
               { key: "problem", score: 0, gap: "Names a solution, not the problem. 'Add AI' is not a pain point. It is a sticker someone put on the pain point." },
@@ -904,35 +906,35 @@
               "Which user experiences the pain today?",
               "What first-cut workflow is explicitly in scope?"
             ],
-            sharper: "Intake currently causes [specific user] to experience [specific delay, error, rework, or cost]. First cut: improve only [specific intake step] for [standard case], excluding [edge cases]. Done means [measurable outcome] improves from [baseline] to [target], verified against [sample size or scenario set]. Product owns acceptance, engineering owns implementation, operations owns fallback, and [dependency] must be available before build starts. Fill the brackets before anyone starts pretending this is ready."
+            sharper: "Intake currently causes [specific user] to experience [specific delay, error, rework, or cost].\n\nFirst cut: improve only [specific intake step] for [standard case], excluding [edge cases]. Done means [measurable outcome] improves from [baseline] to [target], verified against [sample size or scenario set].\n\nProduct owns acceptance, engineering owns implementation, operations owns fallback, and [dependency] must be available before build starts. Fill the brackets before anyone starts pretending this is ready."
           }
         },
         {
           id: "middle",
           label: "Needs work",
           stamp: "Needs work",
-          input: "Support reps manually review refund requests, and it creates delays for customers. Scope is to automate standard refunds first. Done means reps can approve eligible refunds without leaving the case screen. Product owns requirements, engineering owns the build, and support owns process validation. Edge cases may still need manual review.",
+          input: "Engineers currently request temporary elevated access through a Slack thread and a manual approval, which is slow and inconsistent.\n\nScope is to build a self-service request flow for standard access tiers. Done means an engineer can request and receive standard access without waiting on a person in the loop. Platform team owns the workflow, security owns the approval policy. Non-standard access still needs manual review.",
           result: {
             dimensions: [
-              { key: "problem", score: 2, gap: "Clear enough. Manual refund review creates customer delays and adds support workload." },
-              { key: "userValue", score: 1, gap: "Users and value are implied, but the customer benefit and support benefit need a measurable outcome." },
-              { key: "scope", score: 1, gap: "Good direction, but 'standard refunds' needs concrete eligibility rules and exclusions." },
-              { key: "acceptance", score: 1, gap: "Approving from the case screen is useful, but not enough. Needs success criteria, sample cases, and failure handling." },
-              { key: "risk", score: 1, gap: "Names edge cases, but does not identify which ones, who handles them, or what dependency could block the build." }
+              { key: "problem", score: 2, gap: "Clear enough. Manual Slack-thread approval creates delay and inconsistent handling for access requests." },
+              { key: "userValue", score: 1, gap: "The engineer benefit is implied, but the measurable outcome (how much faster, how much more consistent) is missing." },
+              { key: "scope", score: 1, gap: "Good direction, but 'standard access tiers' needs a concrete list of which tiers qualify and which don't." },
+              { key: "acceptance", score: 1, gap: "Self-service without a human is useful, but not enough. Needs a target time, an audit trail, and failure handling." },
+              { key: "risk", score: 1, gap: "Names non-standard access as an exception, but does not say who reviews it or what happens if the policy engine is unavailable." }
             ],
             questions: [
-              "What exactly counts as a standard refund?",
-              "What measurable delay reduction proves value?",
-              "Which edge cases stay manual on day one?"
+              "Which access tiers count as standard?",
+              "What measurable turnaround time proves this worked?",
+              "Who reviews non-standard requests, and how fast?"
             ],
-            sharper: "Support reps manually review refund requests, delaying customers and adding case-handling work. First cut: automate only standard refunds defined as [criteria], excluding [edge cases]. Done means an eligible refund can be approved from the case screen within [target time], verified across [N] recent requests and [negative scenarios]. Product owns rules and acceptance, engineering owns the workflow, support owns process validation and fallback. Known risk: [edge cases] stay manual until the next cut."
+            sharper: "Engineers wait on a manual Slack-thread approval for temporary elevated access, which is slow and inconsistent across requesters.\n\nFirst cut: self-service requests for standard tiers only, defined as [tier list], excluding [non-standard cases]. Done means an engineer receives standard access within [target time] with a logged audit trail, verified against [N] recent requests.\n\nPlatform owns the workflow and acceptance, security owns the approval policy and non-standard review, and [dependency] must be in place before build starts. Known risk: non-standard access stays manual until the policy engine covers it."
           }
         },
         {
           id: "sharp",
           label: "Sharp ask",
           stamp: "Ready",
-          input: "New clients wait 3+ days for a manual eligibility check, and 20% drop off before it finishes. Goal: cut the check to same-day for standard cases. Scope: automate the four standard rules only; complex cases still route to a human. Out of scope: non-standard products. Done: a standard applicant gets an eligibility answer within one hour, end to end, verified against 50 historical cases. Product owns the rules and acceptance, engineering owns the service, QA owns the 50-case regression set, and operations confirms the human fallback. Risk accepted: the four rules cover about 70% of volume; the other 30% stays manual for now. Dependency: read access to the eligibility data source by next sprint.",
+          input: "New clients wait 3+ days for a manual eligibility check, and 20% drop off before it finishes. Goal: cut the check to same-day for standard cases.\n\nScope: automate the four standard rules only; complex cases still route to a human. Out of scope: non-standard products. Done: a standard applicant gets an eligibility answer within one hour, end to end, verified against 50 historical cases.\n\nProduct owns the rules and acceptance, engineering owns the service, QA owns the 50-case regression set, and operations confirms the human fallback. Risk accepted: the four rules cover about 70% of volume; the other 30% stays manual for now. Dependency: read access to the eligibility data source by next sprint.",
           result: {
             dimensions: [
               { key: "problem", score: 2, gap: "Clear. Names the 3+ day wait, the 20% drop-off, and the current business pain." },
@@ -946,7 +948,7 @@
               "Who maintains the regression set as rules change?",
               "Is the one-hour target an SLA or internal target?"
             ],
-            sharper: "New clients wait 3+ days for a manual eligibility check and 20% drop off before it finishes. First cut: automate the four standard rules only, route complex cases to a human, and return an eligibility answer within one hour for standard applicants, verified end to end against 50 historical cases. Product owns rules and acceptance, engineering owns the service, QA owns the regression set, and operations owns the fallback. Accepted risk: the four rules cover about 70% of volume; the rest stays manual. Build depends on eligibility data-source read access by next sprint. Annoyingly clear. Proceed."
+            sharper: "New clients wait 3+ days for a manual eligibility check and 20% drop off before it finishes.\n\nFirst cut: automate the four standard rules only, route complex cases to a human, and return an eligibility answer within one hour for standard applicants, verified end to end against 50 historical cases.\n\nProduct owns rules and acceptance, engineering owns the service, QA owns the regression set, and operations owns the fallback. Accepted risk: the four rules cover about 70% of volume; the rest stays manual. Build depends on eligibility data-source read access by next sprint. Annoyingly clear. Proceed."
           }
         }
       ];
