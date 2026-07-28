@@ -1,75 +1,1039 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>The frAGILE Playbook™ | Your Field Guide to Agile Chaos</title>
-<meta name="description" content="A one-page playbook for navigating Agile dysfunction with humor, clarity, and courage.">
-<meta name="keywords" content="Agile playbook satire, product team humor, frAGILE playbook, Agile ceremonies parody">
-<meta name="author" content="Thach Nguyen">
-<meta property="og:title" content="The frAGILE Playbook™">
-<meta property="og:description" content="Modern Agile rituals decoded — with jokes.">
-<meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
-<meta property="og:url" content="https://fragileframework.com/playbook.html">
-<meta property="og:type" content="article">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>frAGILE Playbook</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The frAGILE Playbook | frAGILE Framework™</title>
+  <meta name="description" content="The frAGILE Playbook: twelve case files for Agile ceremonies, roles, tools, and templates that somehow survived every transformation office.">
+  <meta name="author" content="frAGILE Framework">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The frAGILE Playbook">
+  <meta property="og:description" content="A field manual for naming the Agile theater before it becomes culture.">
+  <meta property="og:url" content="https://fragileframework.com/playbook.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The frAGILE Playbook">
+  <meta name="twitter:description" content="Twelve cases. Four verdicts. One standard filed under Sprint ∞.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
-  <link rel="icon" href="images/favicon.png" />
+
+  <style>
+    /*
+      frAGILE Playbook page layer
+      Uses the shared Phase 1 tokens from fragile-theme.css.
+      Keep this page-specific: case-file structure, not another design system.
+    */
+
+    .playbook-chapter-card {
+      padding-block: clamp(6.5rem, 13vw, 10rem) clamp(5.75rem, 11vw, 8.5rem);
+      text-align: center;
+      background: var(--paper);
+      border-bottom: var(--border);
+    }
+
+    .playbook-volume {
+      display: inline-flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: clamp(2rem, 5vw, 3rem);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: var(--step--1);
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    .playbook-volume::before,
+    .playbook-volume::after {
+      width: clamp(2.5rem, 7vw, 4rem);
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    .playbook-ornament {
+      margin-block: 1.55rem;
+      color: var(--red);
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.55em;
+      user-select: none;
+    }
+
+    .playbook-title {
+      max-width: 9ch;
+      margin: 0 auto;
+      font-family: var(--font-display);
+      font-size: clamp(5.25rem, 13vw, 12rem);
+      font-weight: 400;
+      line-height: 0.83;
+      letter-spacing: -0.015em;
+      text-transform: uppercase;
+    }
+
+    .playbook-title__small {
+      display: block;
+      margin-bottom: 0.18em;
+      font-family: var(--font-serif);
+      font-size: 0.18em;
+      font-style: italic;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .playbook-subtitle {
+      max-width: 760px;
+      margin: clamp(2rem, 5vw, 3rem) auto 0;
+      color: var(--ink-brown);
+      font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .playbook-index {
+      background: var(--ink);
+      color: var(--paper-light);
+      border-bottom: 3px solid var(--red);
+    }
+
+    .playbook-index__inner {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.35fr) minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+      padding-block: clamp(1.4rem, 3vw, 2rem);
+    }
+
+    .playbook-index__label {
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .playbook-index__list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .playbook-index__list a {
+      display: block;
+      padding: 0.85rem 0.9rem;
+      color: var(--paper-light);
+      border: 1px solid rgba(251, 246, 236, 0.22);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color var(--ease-fast), border-color var(--ease-fast), background var(--ease-fast);
+    }
+
+    .playbook-index__list a:hover {
+      color: var(--paper-light);
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .playbook-index__list span {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .playbook-index__list a:hover span {
+      color: var(--paper-light);
+    }
+
+    .playbook-chapter {
+      padding-block: var(--section-space);
+      background: var(--paper);
+      border-bottom: var(--border);
+    }
+
+    .playbook-chapter:nth-of-type(even) {
+      background: var(--paper-light);
+    }
+
+    .playbook-chapter__head {
+      display: grid;
+      grid-template-columns: minmax(160px, 0.3fr) minmax(0, 1fr) minmax(220px, 0.36fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: end;
+      padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+      border-bottom: var(--border);
+    }
+
+    .playbook-chapter__number {
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .playbook-chapter__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: var(--step-4);
+      font-weight: 400;
+      line-height: 0.86;
+      text-transform: uppercase;
+    }
+
+    .playbook-chapter__caption {
+      max-width: 360px;
+      margin: 0 0 0 auto;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      letter-spacing: 0.1em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .case-file {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: clamp(1.35rem, 3vw, 2rem);
+      background: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .case-file:nth-child(4n + 2),
+    .case-file:nth-child(4n + 3) {
+      background: var(--paper-deep);
+    }
+
+    .case-file::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0.55rem;
+      content: "";
+      background: repeating-linear-gradient(90deg, var(--red) 0 1.2rem, var(--ink) 1.2rem 1.45rem, transparent 1.45rem 1.75rem);
+    }
+
+    .case-file__head {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-top: 1.1rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .case-file__number {
+      color: var(--red-dark);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .status-stamp {
+      display: inline-block;
+      padding: 0.28rem 0.52rem;
+      color: var(--red);
+      border: 2px solid currentColor;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      transform: rotate(2deg);
+      white-space: nowrap;
+    }
+
+    .case-file:nth-child(even) .status-stamp {
+      transform: rotate(-2deg);
+    }
+
+    .case-file__title {
+      margin-bottom: 1.35rem;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.005em;
+      text-transform: uppercase;
+    }
+
+    .case-file__body {
+      display: grid;
+      gap: 0;
+      margin-bottom: 1.5rem;
+      border-top: 1px solid rgba(10, 10, 10, 0.3);
+    }
+
+    .case-field {
+      display: grid;
+      grid-template-columns: minmax(88px, 0.28fr) minmax(0, 1fr);
+      gap: 1rem;
+      padding-block: 0.85rem;
+      border-bottom: 1px solid rgba(10, 10, 10, 0.3);
+    }
+
+    .case-field__label {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .case-field__value {
+      margin: 0;
+      color: var(--ink-brown);
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    .case-field__value--evidence {
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .case-field__value--recommendation {
+      color: var(--red-dark);
+      font-weight: 700;
+    }
+
+    .case-file__foot {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.9rem;
+      margin-top: auto;
+      color: var(--muted);
+      border-top: 2px solid var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .playbook-verdict {
+      padding-block: var(--section-space);
+      background: var(--ink);
+      color: var(--paper-light);
+      border-bottom: 14px solid var(--red);
+    }
+
+    .playbook-verdict__head {
+      max-width: 980px;
+      margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .playbook-verdict__kicker {
+      margin-bottom: 1rem;
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .playbook-verdict__title {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-4);
+      font-weight: 400;
+      line-height: 0.86;
+      text-transform: uppercase;
+    }
+
+    .playbook-verdict__title .accent,
+    .playbook-signoff__title .accent {
+      color: var(--red);
+    }
+
+    .playbook-verdict__caption {
+      max-width: 680px;
+      color: rgba(251, 246, 236, 0.7);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .verdict-list {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid rgba(251, 246, 236, 0.2);
+    }
+
+    .verdict-item {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: clamp(1rem, 4vw, 3rem);
+      align-items: baseline;
+      padding-block: clamp(1.4rem, 3vw, 2.2rem);
+      border-bottom: 1px solid rgba(251, 246, 236, 0.2);
+    }
+
+    .verdict-item__number {
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1;
+    }
+
+    .verdict-item__text {
+      margin: 0;
+      color: var(--paper-light);
+      font-size: clamp(1.25rem, 2.4vw, 2rem);
+      line-height: 1.35;
+    }
+
+    .verdict-item__text strong {
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.78em;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .playbook-signoff {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      text-align: center;
+      background: var(--paper-light);
+    }
+
+    .playbook-signoff__inner {
+      max-width: 880px;
+      margin-inline: auto;
+    }
+
+    .playbook-signoff__mark {
+      display: inline-flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.75rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .playbook-signoff__mark::before,
+    .playbook-signoff__mark::after {
+      width: 1.8rem;
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    .playbook-signoff__title {
+      margin-bottom: 1.5rem;
+      font-family: var(--font-display);
+      font-size: var(--step-4);
+      font-weight: 400;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .playbook-signoff__copy {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      color: var(--ink-brown);
+      font-size: var(--step-1);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .playbook-signoff__note {
+      margin-top: 1.25rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 980px) {
+      .playbook-index__inner,
+      .playbook-chapter__head {
+        grid-template-columns: 1fr;
+      }
+
+      .playbook-chapter__caption {
+        max-width: 620px;
+        margin: 0;
+        text-align: left;
+      }
+
+      .playbook-index__list,
+      .case-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .playbook-title {
+        font-size: clamp(4.25rem, 22vw, 7rem);
+      }
+
+      .playbook-index__list,
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .case-field,
+      .verdict-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+
+      .case-file__foot {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .playbook-volume::before,
+      .playbook-volume::after,
+      .playbook-signoff__mark::before,
+      .playbook-signoff__mark::after {
+        width: 1.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <img src="images/IMG_6806.png" alt="frAGILE Framework Logo" class="logo" loading="lazy" style="max-width: 200px; margin-bottom: 1rem;">
-    <h1>The frAGILE Playbook</h1>
-    <p>A field guide for embracing modern Agile chaos.</p>
-    <nav>
-    <a href="index.html">Home</a>
-    <a href="manifesto.html">Manifesto</a>
-    <a href="playbook.html">Playbook</a> 
-    <a href="readiness-check.html">Tools</a>
-    <a href="emotional-backlog.html">Emotional Backlog</a>
-    <a href="about.html">About Thach</a>
-    </nav>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-nav" role="banner">
+    <div class="site-nav__inner">
+      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">fr<span class="accent">AGILE</span><span class="slash">/</span>Framework</a>
+      <nav aria-label="Primary navigation">
+        <ul class="site-nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="manifesto.html">Manifesto</a></li>
+          <li><a href="playbook.html" aria-current="page">Playbook</a></li>
+          <li><a href="readiness-check.html">Tools</a></li>
+          <li><a href="emotional-backlog.html">Backlog</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>📅 Ceremonial Rituals</h2>
-      <p><strong>Sprint Planning:</strong> Fill Jira with vague hopes and duplicate epics → Start with outcomes, not tickets.</p>
-      <p><strong>Daily Standup:</strong> “Yesterday I… Today I… No blockers…” *[crickets]* → Ask: “What would unblock the team today?”</p>
-      <p><strong>Retro:</strong> Air complaints, take no action → Turn one vent into one action item every sprint.</p>
-      <p><strong>Demo:</strong> Demo half-done work, panic when Zoom screen won’t share → Let teams show real value, not PowerPoint pixels.</p>
+  <div class="document-bar" aria-label="Document metadata">
+    <div class="container document-bar__inner">
+      <span>Document II. The frAGILE Playbook</span>
+      <span class="stamp">For internal circulation</span>
+      <span>Field Manual · 12 cases · 4 verdicts</span>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="playbook-chapter-card" aria-labelledby="playbook-title">
+      <div class="container">
+        <div class="playbook-volume">A Field Manual</div>
+        <div class="playbook-ornament" aria-hidden="true">✳ &nbsp; ✳ &nbsp; ✳</div>
+        <h1 class="playbook-title" id="playbook-title"><span class="playbook-title__small">The</span>Playbook</h1>
+        <div class="playbook-ornament" aria-hidden="true">✳ &nbsp; ✳ &nbsp; ✳</div>
+        <p class="playbook-subtitle">Field notes from ceremonies that solved nothing, filed under names that should not have been printed.</p>
+      </div>
     </section>
 
-    <section>
-      <h2>🧑‍🤝‍🧑 Roles & Personas</h2>
-      <p><strong>Product Owner:</strong> “Voice of the customer” → Forgets to talk to customers.</p>
-      <p><strong>Scrum Grandmaster:</strong> Keeps rituals alive → Can’t explain <em>why</em> we do them.</p>
-      <p><strong>Delivery Lead:</strong> Gets things shipped → Measures success only by shipping.</p>
-      <p><strong>Stakeholder X:</strong> Holds the purse strings → Joins sprint 6, changes sprint 1.</p>
+    <section class="playbook-index" aria-label="Index of known incidents">
+      <div class="container playbook-index__inner">
+        <div class="playbook-index__label">Index of Known Incidents</div>
+        <nav class="playbook-index__list" aria-label="Playbook chapters">
+          <a href="#ceremonies"><span>01</span> Ceremonies</a>
+          <a href="#roles"><span>02</span> Roles &amp; Personas</a>
+          <a href="#tools"><span>03</span> Tools &amp; Templates</a>
+          <a href="#findings"><span>04</span> Findings</a>
+        </nav>
+      </div>
     </section>
 
-    <section>
-      <h2>🛠️ Tools & Templates We Pretend to Love</h2>
-      <p><strong>The “Definition of Done” Poster:</strong> Hasn’t been updated since pre-pandemic. Still laminated.</p>
-      <p><strong>Burndown Chart:</strong> Exists. Ignored. Only reviewed when things go wrong.</p>
-      <p><strong>Velocity Metrics:</strong> Used to compare team happiness. Incorrectly.</p>
-      <p><strong>The “Agile Board”:</strong> 78% of tickets live in “In Progress” or “Blocked” Purgatory.</p>
+    <section class="playbook-chapter" id="ceremonies" aria-labelledby="ceremonies-title">
+      <div class="container">
+        <div class="playbook-chapter__head">
+          <div class="playbook-chapter__number">Chapter I.</div>
+          <h2 class="playbook-chapter__title" id="ceremonies-title">Ceremonies</h2>
+          <p class="playbook-chapter__caption">Four rituals investigated. No blockers reported. Everything blocked.</p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 001</div>
+              <div class="status-stamp">Recurring</div>
+            </div>
+            <h3 class="case-file__title">The Sprint That Planned Itself</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Sprint Planning</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Symptom</div>
+                <p class="case-field__value case-field__value--evidence">“We’ll figure out scope during the sprint.”</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Jira filled with vague hopes and duplicate epics. Nobody names the outcome.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Start with outcomes, not tickets. If nobody can state the goal, do not start the sprint.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Sprint ∞</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 002</div>
+              <div class="status-stamp">Unresolved</div>
+            </div>
+            <h3 class="case-file__title">The Standup That Would Not End</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Daily Standup</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Symptom</div>
+                <p class="case-field__value case-field__value--evidence">“Yesterday I... Today I... No blockers.” [crickets]</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Rote status ritual with no real signal. Team performs updates for the room, not the work.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Ask: “What would unblock the team today?” Then let people leave.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Daily @ 9:00</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 003</div>
+              <div class="status-stamp">Standing</div>
+            </div>
+            <h3 class="case-file__title">The Retro That Solved Nothing</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Sprint Retrospective</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Symptom</div>
+                <p class="case-field__value case-field__value--evidence">Complaints aired. Post-its written. Nothing changes by next sprint.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Venting mistaken for progress. No owner assigned to any action.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Turn one vent into one action item every sprint. Name the owner before the meeting ends.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>End of Sprint</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 004</div>
+              <div class="status-stamp">In Regression</div>
+            </div>
+            <h3 class="case-file__title">The Demo That Demoed a Prototype of a Demo</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Sprint Demo</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Symptom</div>
+                <p class="case-field__value case-field__value--evidence">“Please imagine this is clickable.” [Zoom share fails]</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">PowerPoint pixels shown in place of shipped work. Team performs delivery.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Show real value or say the truth. “We did not ship this sprint” is a valid demo.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Fortnightly</span>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>💡 Real Advice Hidden in the Chaos</h2>
-      <p><strong>Jira isn’t the source of truth. People are.</strong> If the board doesn’t reflect reality, talk to the humans.</p>
-      <p><strong>Velocity is not a performance metric.</strong> It’s a planning signal — not a scoreboard.</p>
-      <p><strong>You don’t need more process. You need more courage.</strong> Courage to speak clearly, say no, and show up human.</p>
-      <p><strong>If you’re never laughing, you’re not doing it right.</strong> Satire is a signal — it means we care enough to notice.</p>
+    <section class="playbook-chapter" id="roles" aria-labelledby="roles-title">
+      <div class="container">
+        <div class="playbook-chapter__head">
+          <div class="playbook-chapter__number">Chapter II.</div>
+          <h2 class="playbook-chapter__title" id="roles-title">Roles &amp; Personas</h2>
+          <p class="playbook-chapter__caption">Four archetypes at large. Suspected of Agile theater in varying degrees.</p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 005</div>
+              <div class="status-stamp">Confidential</div>
+            </div>
+            <h3 class="case-file__title">The Voice That Forgot to Listen</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Product Owner</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Alias</div>
+                <p class="case-field__value case-field__value--evidence">“Voice of the customer.”</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Speaks for customers. Has not spoken to customers in six sprints.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Schedule the customer call. Bring transcripts. Stop paraphrasing.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Ongoing</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 006</div>
+              <div class="status-stamp">Suspected</div>
+            </div>
+            <h3 class="case-file__title">The Master Who Forgot the Purpose</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Scrum Grandmaster</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Alias</div>
+                <p class="case-field__value case-field__value--evidence">“Keeper of the ceremony.”</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Enforces every ritual. Cannot explain why any of them exist.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Ask what each ceremony is for. If the answer is “the framework,” cancel it.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Recurring</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 007</div>
+              <div class="status-stamp">Open</div>
+            </div>
+            <h3 class="case-file__title">The Lead Who Only Measured Delivery</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Delivery Lead</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Alias</div>
+                <p class="case-field__value case-field__value--evidence">“Gets things shipped.”</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Measures success only by shipping. Value shipped is not measured at all.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Add one outcome metric per initiative. Ship becomes shipped-and-used.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Q4</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 008</div>
+              <div class="status-stamp">Witnessed</div>
+            </div>
+            <h3 class="case-file__title">The Stakeholder Who Joined Sprint Six</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Stakeholder X</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Alias</div>
+                <p class="case-field__value case-field__value--evidence">“I have a small change.”</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Absent through discovery. Present through re-scoping. Loud through delivery.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Publish the decision log. Late input is welcome; late overrides are not.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Sprint 6</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="playbook-chapter" id="tools" aria-labelledby="tools-title">
+      <div class="container">
+        <div class="playbook-chapter__head">
+          <div class="playbook-chapter__number">Chapter III.</div>
+          <h2 class="playbook-chapter__title" id="tools-title">Tools &amp; Templates</h2>
+          <p class="playbook-chapter__caption">Four artifacts recovered from the scene. All still in circulation.</p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 009</div>
+              <div class="status-stamp">Preserved</div>
+            </div>
+            <h3 class="case-file__title">The Poster That Time Forgot</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Definition of Done</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Condition</div>
+                <p class="case-field__value case-field__value--evidence">Laminated. Last revised: pre-pandemic.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Written when the team was different. Referenced by no one. Enforced by silence.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Rewrite it in the next retro. Anything you do not defend, you should not display.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Wall, third floor</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 010</div>
+              <div class="status-stamp">Neglected</div>
+            </div>
+            <h3 class="case-file__title">The Chart Nobody Read</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Burndown Chart</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Condition</div>
+                <p class="case-field__value case-field__value--evidence">Exists. Only reviewed when things go wrong.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Compliance artifact. Signal after the fact.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Delete it or use it. If you would stop reading it tomorrow and nothing would change, that is your answer.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Auto-generated</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 011</div>
+              <div class="status-stamp">Misapplied</div>
+            </div>
+            <h3 class="case-file__title">The Score That Was Not a Score</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Velocity Metrics</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Condition</div>
+                <p class="case-field__value case-field__value--evidence">Used to compare team happiness. Incorrectly.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Planning signal treated as performance metric. Teams inflate points to keep the number steady.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Use velocity for planning only. Never in a performance review. Ever.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>Dashboard, TV lobby</span>
+            </div>
+          </article>
+
+          <article class="case-file">
+            <div class="case-file__head">
+              <div class="case-file__number">Case No. 012</div>
+              <div class="status-stamp">In Progress</div>
+            </div>
+            <h3 class="case-file__title">The Board That Never Moved</h3>
+            <div class="case-file__body">
+              <div class="case-field">
+                <div class="case-field__label">Subject</div>
+                <p class="case-field__value">Agile Board</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Condition</div>
+                <p class="case-field__value case-field__value--evidence">78% of tickets in “In Progress” or “Blocked” Purgatory.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Diagnosis</div>
+                <p class="case-field__value">Board does not reflect the actual work. Standups happen anyway.</p>
+              </div>
+              <div class="case-field">
+                <div class="case-field__label">Recommendation</div>
+                <p class="case-field__value case-field__value--recommendation">Jira is not the source of truth. People are. Talk to the humans before you touch the board.</p>
+              </div>
+            </div>
+            <div class="case-file__foot">
+              <span>Filed by The Cult of Clarity</span>
+              <span>All quarters</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="playbook-verdict" id="findings" aria-labelledby="findings-title">
+      <div class="container">
+        <div class="playbook-verdict__head">
+          <div class="playbook-verdict__kicker">Chapter IV. Findings</div>
+          <h2 class="playbook-verdict__title" id="findings-title">The <span class="accent">Verdict.</span></h2>
+          <p class="playbook-verdict__caption">Twelve cases reviewed. Four truths recovered. Filed under the only category that matters.</p>
+        </div>
+
+        <div class="verdict-list">
+          <article class="verdict-item">
+            <div class="verdict-item__number">01</div>
+            <p class="verdict-item__text">Jira is not the source of truth. <strong>People are.</strong> If the board does not reflect reality, talk to the humans.</p>
+          </article>
+          <article class="verdict-item">
+            <div class="verdict-item__number">02</div>
+            <p class="verdict-item__text">Velocity is not a performance metric. <strong>It is a planning signal, not a scoreboard.</strong></p>
+          </article>
+          <article class="verdict-item">
+            <div class="verdict-item__number">03</div>
+            <p class="verdict-item__text">You do not need more process. <strong>You need more courage.</strong> Courage to speak clearly, say no, and show up human.</p>
+          </article>
+          <article class="verdict-item">
+            <div class="verdict-item__number">04</div>
+            <p class="verdict-item__text">If you are never laughing, you are not doing it right. <strong>Satire is a signal.</strong> It means we care enough to notice.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="playbook-signoff" aria-labelledby="signoff-title">
+      <div class="container playbook-signoff__inner">
+        <div class="playbook-signoff__mark">Chapter V. Close of File</div>
+        <div class="playbook-ornament" aria-hidden="true">✳ &nbsp; ✳ &nbsp; ✳</div>
+        <h2 class="playbook-signoff__title" id="signoff-title">Twelve cases.<br>One <span class="accent">standard.</span></h2>
+        <p class="playbook-signoff__copy">The Playbook does not exist to make Agile prettier. It exists to help teams name the pattern before the pattern becomes culture.</p>
+        <a class="button" href="mailto:hello@fragileframework.com?subject=I%20acknowledge%20receipt%20of%20the%20frAGILE%20Playbook">Acknowledge Receipt</a>
+        <p class="playbook-signoff__note">Legal status: ceremonial. Emotional accuracy: unfortunately high.</p>
+      </div>
     </section>
   </main>
 
-<footer>
-  <p>
-    © 2025 frAGILE Framework™. Your guide through the Agile absurd.
-  </p>
-</footer>
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2025 frAGILE Framework™ · Filed with sarcasm. Cross-referenced by sanity.</span>
+      <span class="site-footer__tag">We laugh because it is true.</span>
+    </div>
+  </footer>
 </body>
 </html>
