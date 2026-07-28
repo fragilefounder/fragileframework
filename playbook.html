@@ -114,6 +114,11 @@
       padding-block: clamp(1.4rem, 3vw, 2rem);
     }
 
+    .playbook-index__meta {
+      display: grid;
+      gap: 0.6rem;
+    }
+
     .playbook-index__label {
       color: var(--red);
       font-family: var(--font-mono);
@@ -121,6 +126,17 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+    }
+
+    .playbook-index__legend {
+      max-width: 30ch;
+      margin: 0;
+      color: rgba(251, 246, 236, 0.68);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.55;
+      letter-spacing: 0.01em;
+      text-transform: none;
     }
 
     .playbook-index__list {
@@ -326,6 +342,12 @@
       line-height: 1.55;
     }
 
+    .case-field__aside {
+      color: var(--muted);
+      font-size: 0.86em;
+      font-style: italic;
+    }
+
     .case-field__value--evidence {
       color: var(--ink);
       font-family: var(--font-mono);
@@ -337,6 +359,97 @@
     .case-field__value--recommendation {
       color: var(--red-dark);
       font-weight: 700;
+    }
+
+    /* Diagnosis gets its own quiet register: not the joke-mono of the evidence
+       quote, not the red imperative of the recommendation. This is the beat
+       where the reader should feel the shift from "that's funny" to "that's
+       true" — so it reads as plain, level, unadorned observation. */
+    .case-field--diagnosis .case-field__label {
+      color: var(--ink-brown);
+    }
+
+    .case-field__value--diagnosis {
+      position: relative;
+      padding-left: 0.9rem;
+      color: var(--ink);
+      border-left: 2px solid var(--muted-light);
+    }
+
+
+
+    .case-art {
+      margin: 1rem 0 1.1rem;
+      padding: 0.85rem;
+      background: rgba(10, 10, 10, 0.04);
+      border: 1px dashed rgba(10, 10, 10, 0.38);
+    }
+
+    .case-art--burndown {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-art--burndown::after {
+      position: absolute;
+      right: 0.75rem;
+      bottom: 0.55rem;
+      color: var(--red);
+      content: "NO MOVEMENT DETECTED";
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .burndown-flatline {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .burndown-flatline__grid {
+      stroke: rgba(10, 10, 10, 0.18);
+      stroke-width: 1;
+    }
+
+    .burndown-flatline__axis {
+      stroke: var(--ink);
+      stroke-width: 2;
+    }
+
+    .burndown-flatline__ideal {
+      stroke: rgba(10, 10, 10, 0.32);
+      stroke-dasharray: 5 5;
+      stroke-width: 2;
+    }
+
+    .burndown-flatline__actual {
+      fill: none;
+      stroke: var(--red);
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+      stroke-width: 4;
+    }
+
+    .burndown-flatline__label {
+      fill: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .burndown-flatline__stamp {
+      fill: var(--red);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .case-file__foot {
@@ -524,7 +637,83 @@
         gap: 0.4rem;
       }
 
-      .case-file__foot {
+  
+
+    .case-art {
+      margin: 1rem 0 1.1rem;
+      padding: 0.85rem;
+      background: rgba(10, 10, 10, 0.04);
+      border: 1px dashed rgba(10, 10, 10, 0.38);
+    }
+
+    .case-art--burndown {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-art--burndown::after {
+      position: absolute;
+      right: 0.75rem;
+      bottom: 0.55rem;
+      color: var(--red);
+      content: "NO MOVEMENT DETECTED";
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .burndown-flatline {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .burndown-flatline__grid {
+      stroke: rgba(10, 10, 10, 0.18);
+      stroke-width: 1;
+    }
+
+    .burndown-flatline__axis {
+      stroke: var(--ink);
+      stroke-width: 2;
+    }
+
+    .burndown-flatline__ideal {
+      stroke: rgba(10, 10, 10, 0.32);
+      stroke-dasharray: 5 5;
+      stroke-width: 2;
+    }
+
+    .burndown-flatline__actual {
+      fill: none;
+      stroke: var(--red);
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+      stroke-width: 4;
+    }
+
+    .burndown-flatline__label {
+      fill: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .burndown-flatline__stamp {
+      fill: var(--red);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .case-file__foot {
         align-items: flex-start;
         flex-direction: column;
       }
@@ -580,7 +769,10 @@
 
     <section class="playbook-index" aria-label="Index of known incidents">
       <div class="container playbook-index__inner">
-        <div class="playbook-index__label">Index of Known Incidents</div>
+        <div class="playbook-index__meta">
+          <div class="playbook-index__label">Index of Known Incidents</div>
+          <p class="playbook-index__legend">Each case file: the line you&rsquo;ve heard in the room &rarr; what&rsquo;s actually happening &rarr; what to do instead.</p>
+        </div>
         <nav class="playbook-index__list" aria-label="Playbook chapters">
           <a href="#ceremonies"><span>01</span> Ceremonies</a>
           <a href="#roles"><span>02</span> Roles &amp; Personas</a>
@@ -614,9 +806,9 @@
                 <div class="case-field__label">Symptom</div>
                 <p class="case-field__value case-field__value--evidence">“We’ll figure out scope during the sprint.”</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Jira filled with vague hopes and duplicate epics. Nobody names the outcome.</p>
+                <p class="case-field__value case-field__value--diagnosis">Jira filled with vague hopes and duplicate epics. Nobody names the outcome.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -634,7 +826,7 @@
               <div class="case-file__number">Case No. 002</div>
               <div class="status-stamp">Unresolved</div>
             </div>
-            <h3 class="case-file__title">The Standup That Would Not End</h3>
+            <h3 class="case-file__title">The Standup That Said Nothing</h3>
             <div class="case-file__body">
               <div class="case-field">
                 <div class="case-field__label">Subject</div>
@@ -644,9 +836,9 @@
                 <div class="case-field__label">Symptom</div>
                 <p class="case-field__value case-field__value--evidence">“Yesterday I... Today I... No blockers.”</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Rote status ritual with no real signal. Team performs updates for the room, not the work.</p>
+                <p class="case-field__value case-field__value--diagnosis">Rote status ritual with no real signal. Team performs updates for the room, not the work.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -674,9 +866,9 @@
                 <div class="case-field__label">Symptom</div>
                 <p class="case-field__value case-field__value--evidence">Complaints aired. Post-its written. Nothing changes by next sprint.</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Venting mistaken for progress. No owner assigned to any action.</p>
+                <p class="case-field__value case-field__value--diagnosis">Venting mistaken for progress. No owner assigned to any action.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -694,7 +886,7 @@
               <div class="case-file__number">Case No. 004</div>
               <div class="status-stamp">In Regression</div>
             </div>
-            <h3 class="case-file__title">The Demo That Demoed a Prototype of a Demo</h3>
+            <h3 class="case-file__title">The Demo of a Thing That Doesn&rsquo;t Exist Yet</h3>
             <div class="case-file__body">
               <div class="case-field">
                 <div class="case-field__label">Subject</div>
@@ -704,9 +896,9 @@
                 <div class="case-field__label">Symptom</div>
                 <p class="case-field__value case-field__value--evidence">“Please imagine this is clickable.”</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">PowerPoint pixels shown in place of shipped work. Team performs delivery.</p>
+                <p class="case-field__value case-field__value--diagnosis">PowerPoint pixels shown in place of shipped work. Team performs delivery.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -746,9 +938,9 @@
                 <div class="case-field__label">Alias</div>
                 <p class="case-field__value case-field__value--evidence">“Voice of the customer.”</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Speaks for customers. Has not spoken to customers in six sprints.</p>
+                <p class="case-field__value case-field__value--diagnosis">Speaks for customers. Has not spoken to customers in six sprints.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -770,15 +962,15 @@
             <div class="case-file__body">
               <div class="case-field">
                 <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Scrum Grandmaster</p>
+                <p class="case-field__value">Scrum Grandmaster <span class="case-field__aside">(the Scrum Master who&rsquo;s been doing this so long, the ritual outranks the role)</span></p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Alias</div>
                 <p class="case-field__value case-field__value--evidence">“Keeper of the ceremony.”</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Enforces every ritual. Cannot explain why any of them exist.</p>
+                <p class="case-field__value case-field__value--diagnosis">Enforces every ritual. Cannot explain why any of them exist.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -803,12 +995,12 @@
                 <p class="case-field__value">Delivery Lead</p>
               </div>
               <div class="case-field">
-                <div class="case-field__label">Alias</div>
-                <p class="case-field__value case-field__value--evidence">“Gets things shipped.”</p>
+                <div class="case-field__label">Reputation</div>
+                <p class="case-field__value case-field__value--evidence">“The one who gets things shipped.”</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Measures success only by shipping. Value shipped is not measured at all.</p>
+                <p class="case-field__value case-field__value--diagnosis">Measures success only by shipping. Value shipped is not measured at all.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -836,9 +1028,9 @@
                 <div class="case-field__label">Alias</div>
                 <p class="case-field__value case-field__value--evidence">“I have a small change.”</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Absent through discovery. Present through re-scoping. Loud through delivery.</p>
+                <p class="case-field__value case-field__value--diagnosis">Missed every discovery session. Reappears in sprint six. The "small change" touches four epics.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -878,9 +1070,9 @@
                 <div class="case-field__label">Condition</div>
                 <p class="case-field__value case-field__value--evidence">Laminated. Last revised: pre-pandemic.</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Written when the team was different. Referenced by no one. Enforced by silence.</p>
+                <p class="case-field__value case-field__value--diagnosis">Written when the team was different. Referenced by no one. Enforced by silence.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -908,9 +1100,25 @@
                 <div class="case-field__label">Condition</div>
                 <p class="case-field__value case-field__value--evidence">Exists. Only reviewed when things go wrong.</p>
               </div>
-              <div class="case-field">
+              <div class="case-art case-art--burndown" aria-label="Tiny flatlined burndown chart showing no meaningful movement.">
+                <svg class="burndown-flatline" viewBox="0 0 360 120" role="img" aria-labelledby="burndown-title burndown-desc" focusable="false">
+                  <title id="burndown-title">Flatlined burndown chart</title>
+                  <desc id="burndown-desc">An ideal burndown line falls toward zero while the actual burndown line stays almost flat.</desc>
+                  <line class="burndown-flatline__grid" x1="44" y1="22" x2="330" y2="22"></line>
+                  <line class="burndown-flatline__grid" x1="44" y1="52" x2="330" y2="52"></line>
+                  <line class="burndown-flatline__grid" x1="44" y1="82" x2="330" y2="82"></line>
+                  <line class="burndown-flatline__axis" x1="44" y1="18" x2="44" y2="94"></line>
+                  <line class="burndown-flatline__axis" x1="44" y1="94" x2="330" y2="94"></line>
+                  <path class="burndown-flatline__ideal" d="M 54 24 L 320 92"></path>
+                  <path class="burndown-flatline__actual" d="M 54 38 L 116 39 L 176 38 L 238 40 L 320 39"></path>
+                  <text class="burndown-flatline__label" x="48" y="112">DAY 1</text>
+                  <text class="burndown-flatline__label" x="275" y="112">DAY 10</text>
+                  <text class="burndown-flatline__stamp" x="176" y="70">STILL FINE</text>
+                </svg>
+              </div>
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Compliance artifact. Signal after the fact.</p>
+                <p class="case-field__value case-field__value--diagnosis">Compliance artifact. Signal after the fact.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -938,9 +1146,9 @@
                 <div class="case-field__label">Condition</div>
                 <p class="case-field__value case-field__value--evidence">Used to compare team happiness. Incorrectly.</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Planning signal treated as performance metric. Teams inflate points to keep the number steady.</p>
+                <p class="case-field__value case-field__value--diagnosis">Planning signal treated as performance metric. Teams inflate points to keep the number steady.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -968,9 +1176,9 @@
                 <div class="case-field__label">Condition</div>
                 <p class="case-field__value case-field__value--evidence">78% of tickets in “In Progress” or “Blocked” purgatory.</p>
               </div>
-              <div class="case-field">
+              <div class="case-field case-field--diagnosis">
                 <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value">Board does not reflect the actual work. Standups happen anyway.</p>
+                <p class="case-field__value case-field__value--diagnosis">Board does not reflect the actual work. Standups happen anyway.</p>
               </div>
               <div class="case-field">
                 <div class="case-field__label">Recommendation</div>
@@ -997,11 +1205,11 @@
         <div class="verdict-list">
           <article class="verdict-item">
             <div class="verdict-item__number">01</div>
-            <p class="verdict-item__text">Jira is not the source of truth. <strong>People are.</strong> If the board does not reflect reality, talk to the humans.</p>
+            <p class="verdict-item__text">The ceremony is never the cure. <strong>It is only a container.</strong> If nobody brings truth into the room, the ritual will politely preserve the lie.</p>
           </article>
           <article class="verdict-item">
             <div class="verdict-item__number">02</div>
-            <p class="verdict-item__text">Velocity is not a performance metric. <strong>It is a planning signal, not a scoreboard.</strong></p>
+            <p class="verdict-item__text">A metric becomes theater the moment it is used to avoid judgment. <strong>Measure to learn.</strong> Not to decorate the dashboard.</p>
           </article>
           <article class="verdict-item">
             <div class="verdict-item__number">03</div>
