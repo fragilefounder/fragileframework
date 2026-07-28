@@ -921,24 +921,69 @@ input:focus-visible {
 }
 
 .creator__file {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 360px;
-  padding: 1.75rem;
-  background: var(--red);
-  color: var(--paper-light);
-  border: var(--border);
-  box-shadow: var(--shadow-md);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: var(--paper-light);
+  color: var(--ink);
+  border: 3px solid var(--paper-light);
+  box-shadow: 10px 10px 0 var(--red);
+}
+
+.creator__file::after {
+  position: absolute;
+  right: clamp(1rem, 2vw, 1.6rem);
+  bottom: clamp(1rem, 2vw, 1.6rem);
+  content: "SOLO PROJECT";
+  padding: 0.45rem 0.7rem;
+  color: var(--red);
+  border: 3px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+  opacity: 0.92;
+}
+
+.creator__file-topline {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.creator__file-stamp {
+  display: inline-block;
+  padding: 0.32rem 0.55rem;
+  color: var(--red);
+  border: 2px solid currentColor;
+  transform: rotate(2deg);
+  white-space: nowrap;
 }
 
 .creator__file-number {
+  margin-bottom: 1.25rem;
+  color: var(--red);
   font-family: var(--font-display);
   font-size: clamp(5rem, 12vw, 9rem);
   line-height: 0.8;
 }
 
 .creator__file-meta {
+  color: var(--ink-brown);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   line-height: 1.8;
