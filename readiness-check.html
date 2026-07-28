@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Backlog Readiness Check | frAGILE Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #000000;
+    --paper: #f5eee3;
+    --card: #fffaf2;
+    --rule: #d8cbb8;
+    --red: #cc0000;
+    --amber: #b26a00;
+    --green: #2f6b4f;
+    --muted: #5c554d;
+    --faint: #958b7e;
+    --white: #ffffff;
+    --mono: 'Courier Prime', ui-monospace, 'Menlo', 'Consolas', monospace;
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --display: 'Futura Heavy Oblique', 'Futura', 'Arial Black', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html,
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--mono);
+  }
+
+
+  .site-top {
+    border-bottom: 3px solid var(--ink);
+    background: var(--ink);
+  }
+
+  .site-nav {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .site-nav a {
+    color: var(--paper);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid rgba(245, 238, 227, 0.36);
+    padding: 7px 10px;
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current="page"] {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.11;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(0,0,0,0.16) 0 1px, transparent 1px),
+      radial-gradient(circle at 80% 70%, rgba(204,0,0,0.14) 0 1px, transparent 1px);
+    background-size: 22px 22px, 29px 29px;
+  }
+
+  .wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 42px 24px 64px;
+    position: relative;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--white);
+    background: var(--red);
+    text-transform: uppercase;
+    padding: 5px 8px 4px;
+    margin-bottom: 16px;
+    transform: rotate(-1deg);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(34px, 6vw, 58px);
+    font-weight: 900;
+    line-height: 0.95;
+    margin: 0 0 14px;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+
+  .demo-pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 4px 8px;
+    margin-left: 8px;
+    vertical-align: 9px;
+    border: 1px solid var(--ink);
+  }
+
+  .lede {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 8px;
+    max-width: 660px;
+  }
+
+  .sub {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 24px;
+    color: var(--muted);
+    max-width: 680px;
+  }
+
+  .truth-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 20px 0 26px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 12px 0;
+  }
+
+  .truth-strip strong {
+    color: var(--red);
+  }
+
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .legend div {
+    border: 1px solid var(--ink);
+    background: var(--card);
+    padding: 9px 8px;
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--muted);
+  }
+
+  .legend b {
+    display: block;
+    color: var(--ink);
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .picker-label,
+  .kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .ex {
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    padding: 10px 14px;
+    text-transform: uppercase;
+    transition: background .12s ease, color .12s ease;
+  }
+
+  .ex:hover { background: #eadfcf; }
+  .ex[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .ex:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+  .item {
+    background: var(--card);
+    border: 1px solid var(--ink);
+    border-left: 5px solid var(--red);
+    padding: 15px 16px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #2f2921;
+    margin-bottom: 30px;
+  }
+
+  .item .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  .verdict-block {
+    padding: 16px 0 0;
+    margin-bottom: 26px;
+    border-top: 4px solid var(--ink);
+  }
+
+  .verdict {
+    font-family: var(--display);
+    font-size: clamp(32px, 7vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .verdict-note {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .gates {
+    border-top: 1px solid var(--ink);
+    margin-bottom: 28px;
+  }
+
+  .gate {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .mark {
+    flex: 0 0 38px;
+    height: 38px;
+    color: #fff;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ink);
+  }
+
+  .gate .name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+
+  .gate .num {
+    color: var(--faint);
+    margin-right: 8px;
+    font-weight: 700;
+  }
+
+  .gate .gap {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #2f2921;
+  }
+
+  .q {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .q .qn {
+    color: var(--red);
+    font-weight: 700;
+    min-width: 24px;
+  }
+
+  .sharper {
+    background: var(--card);
+    border: 1px solid var(--ink);
+    border-left: 5px solid var(--ink);
+    padding: 16px 18px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .own {
+    margin-top: 44px;
+    padding-top: 24px;
+    border-top: 3px solid var(--ink);
+  }
+
+  .privacy {
+    border: 1px dashed var(--red);
+    background: rgba(204, 0, 0, 0.06);
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 10px 0 12px;
+  }
+
+  .own textarea {
+    width: 100%;
+    resize: vertical;
+    background: var(--card);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 14px;
+    margin-top: 10px;
+  }
+
+  .own textarea:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+  .btn {
+    cursor: pointer;
+    border: 1px solid var(--ink);
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 22px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    transition: opacity .12s ease;
+  }
+
+  .btn:hover { opacity: .88; }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+  .own-note {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2f2921;
+    border-left: 5px solid var(--red);
+    padding: 12px 14px;
+    background: var(--card);
+    display: none;
+  }
+
+  .own-note.show { display: block; }
+  .own-note strong { color: var(--red); }
+
+  .foot {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--faint);
+    line-height: 1.7;
+  }
+
+  .fade { animation: fade .25s ease both; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .fade { animation: none; } .btn, .ex { transition: none; } }
+
+  @media (max-width: 680px) {
+    .legend { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 30px 16px 48px; }
+    .legend { grid-template-columns: 1fr; }
+    .demo-pill { margin-left: 0; margin-top: 8px; vertical-align: 0; }
+  }
+</style>
+</head>
+<body>
+  <header class="site-top">
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="/">Home</a>
+      <a href="/manifesto">Manifesto</a>
+      <a href="/playbook">Playbook</a>
+      <a href="/readiness-check" aria-current="page">Tools</a>
+      <a href="/emotional-backlog">Emotional Backlog</a>
+      <a href="/about">About Thach</a>
+    </nav>
+  </header>
+
+  <div class="wrap">
+    <div class="eyebrow">Go / No-Go Gate</div>
+    <h1>Backlog Readiness Check<span class="demo-pill">Demo</span></h1>
+    <p class="lede">Your backlog does not need grooming. It needs interrogation.</p>
+    <p class="sub">A work item gets graded on the five things that must be true before a team should start building. The point is not whether the idea is good. The point is whether it is clear enough to hand off.</p>
+
+    <div class="truth-strip" aria-label="Scoring rule">
+      <div><strong>0</strong> means the gate is missing. <strong>1</strong> means it needs work. <strong>2</strong> means it is clear enough to use.</div>
+      <div>Any gate at 0 means <strong>not ready</strong>. All five at 2 means <strong>ready</strong>. No vibes laundering.</div>
+    </div>
+
+    <div class="legend" id="legend"></div>
+
+    <div class="picker-label">Pick an example</div>
+    <div class="picker" id="picker"></div>
+
+    <div id="result"></div>
+
+    <div class="own">
+      <div class="picker-label">Want to run your own?</div>
+      <div class="privacy"><strong>Privacy check:</strong> do not paste confidential customer, employee, legal, or proprietary data into a public demo. Sanitized backlog chaos only.</div>
+      <textarea id="own-input" rows="5" placeholder="Paste a sanitized epic, story, or business ask... the live version scores it against the same five gates."></textarea>
+      <button class="btn" id="own-btn">See live scoring path</button>
+      <div class="own-note" id="own-note" aria-live="polite">
+        <strong>This public demo does not grade pasted text yet.</strong> The live version scores your item against the same five gates, returns the verdict, exposes the gaps, and rewrites the ask into something a team could actually build. Tiny miracle. Mildly accusatory.
+      </div>
+    </div>
+
+    <div class="foot">
+      Five gates. Fixed standard. Computed verdict. A strong write-up cannot talk its way into a pass.
+    </div>
+  </div>
+
+<script>
+  // ---- The five gates, in order ----
+  var GATES = [
+    { key: "problem",   label: "Real problem" },
+    { key: "simplest",  label: "Simplest version" },
+    { key: "done",      label: "Definition of done" },
+    { key: "ownership", label: "Ownership" },
+    { key: "risk",      label: "Risk & dependencies" }
+  ];
+
+  // ---- Graded examples ----
+  // To add your own real backlog items: run them through the live tool,
+  // then drop the input + result here in this same shape. That's the workflow.
+  var EXAMPLES = [
+    {
+      id: "vague",
+      label: "Vague ask",
+      input: "We need to add AI to the intake process so things are faster and users are happier. Product and eng should figure out the best approach. Let's get it into the next release.",
+      result: {
+        dimensions: [
+          { key: "problem",   score: 0, gap: "Names a solution (add AI) and vague outcomes. No stated problem, and no one who has it." },
+          { key: "simplest",  score: 0, gap: "No scope. 'The intake process' could be one step or all of it, and nothing is marked out." },
+          { key: "done",      score: 0, gap: "'Faster' and 'happier' are not testable. No measure and no end-to-end outcome." },
+          { key: "ownership", score: 0, gap: "'Product and eng should figure it out' assigns no owner. No QA, no business." },
+          { key: "risk",      score: 0, gap: "No risk named, no dependencies, nothing about what must be true." }
+        ],
+        questions: [
+          "What specific problem in intake are we solving, and who feels it today?",
+          "What is the standard case, and what is explicitly out of scope for the first cut?",
+          "What single measurable outcome proves this worked, checked against real cases?"
+        ],
+        sharper: "Intake takes too long for [which user], which causes [what cost, e.g. drop-off or rework]. First cut: automate only [the standard case] and leave [the edge cases] manual, aiming for [target] measured on [N] real cases. Product owns the rules and acceptance, engineering the build, QA the regression set, and the business the fallback. Fill the brackets before anyone starts."
+      }
+    },
+    {
+      id: "middle",
+      label: "Needs work",
+      input: "Problem: Support reps manually review refund requests, and it creates delays for customers. Scope: automate standard refunds first. Done: reps can approve eligible refunds without leaving the case screen. Owner: Product owns requirements, Eng owns the build, Support owns process validation. Risk: edge cases may still need manual review.",
+      result: {
+        dimensions: [
+          { key: "problem",   score: 2, gap: "Clear enough. Manual refund review causes customer delay, and support reps are the affected users." },
+          { key: "simplest",  score: 1, gap: "Directionally right, but 'standard refunds' needs a concrete definition and exclusions." },
+          { key: "done",      score: 1, gap: "Useful outcome, but not testable yet. No target time, error rate, volume, or sample size." },
+          { key: "ownership", score: 2, gap: "Owners are named across product, engineering, and support validation." },
+          { key: "risk",      score: 1, gap: "Names edge cases, but does not say which ones, who handles them, or what dependency could block the work." }
+        ],
+        questions: [
+          "What exactly counts as a standard refund?",
+          "What measurable outcome proves the delay improved?",
+          "Which edge cases stay manual, and who owns them?"
+        ],
+        sharper: "Support reps manually review refund requests, delaying customers and adding case-handling work. First cut: automate only standard refunds defined as [criteria], excluding [edge cases]. Done means an eligible refund can be approved from the case screen within [target time], verified across [N] recent requests. Product owns rules and acceptance, engineering the workflow, support the fallback. Known risk: [edge cases] stay manual until the next cut."
+      }
+    },
+    {
+      id: "sharp",
+      label: "Sharp ask",
+      input: "Problem: New clients wait 3+ days for a manual eligibility check, and 20% drop off before it finishes. Goal: cut the check to same-day for standard cases. Scope: automate the 4 standard rules only; complex cases still route to a human. Out of scope: non-standard products. Done: a standard applicant gets an eligibility answer within 1 hour, end to end, verified against 50 historical cases. Owner: Product owns the rules and acceptance, Eng owns the service, QA owns the 50-case regression set, Ops confirms the human fallback. Risk we're accepting: the 4 rules cover ~70% of volume; the other 30% stays manual for now. Depends on: read access to the eligibility data source by next sprint.",
+      result: {
+        dimensions: [
+          { key: "problem",   score: 2, gap: "Clear. Names the 3+ day wait, the 20% drop-off, and who it hits." },
+          { key: "simplest",  score: 2, gap: "Clear. Four standard rules only, complex stays manual, non-standard products are out." },
+          { key: "done",      score: 2, gap: "Testable. An answer within an hour end to end, checked on 50 real cases." },
+          { key: "ownership", score: 2, gap: "Clear across product, engineering, QA, and ops." },
+          { key: "risk",      score: 2, gap: "Named. 70% coverage accepted, 30% stays manual, depends on data access next sprint." }
+        ],
+        questions: [
+          "Does ops have day-one capacity for the 30% that still routes to a human?",
+          "Who maintains the 50-case regression set as the rules change later?",
+          "Is 'within 1 hour' a hard SLA or a target, and who owns it if it slips?"
+        ],
+        sharper: "New clients wait 3+ days for a manual eligibility check and 20% drop off before it finishes. First cut: automate the four standard rules only, route complex cases to a human, and return a same-day answer, verified end to end against 50 historical cases. Product owns the rules and acceptance, engineering the service, QA the regression set, ops the fallback. Accepted risk: the four rules cover about 70% of volume; the rest stays manual, and the build depends on data-source read access by next sprint."
+      }
+    }
+  ];
+
+  // ---- Helpers ----
+  function labelFor(key) {
+    for (var i = 0; i < GATES.length; i++) if (GATES[i].key === key) return GATES[i].label;
+    return key;
+  }
+
+  function scoreColor(s) {
+    return s <= 0 ? "var(--red)" : (s === 1 ? "var(--amber)" : "var(--green)");
+  }
+
+  function verdictFromScores(dims) {
+    var scores = dims.map(function (d) { return d.score; });
+    if (scores.some(function (s) { return s <= 0; })) return { label: "NOT READY", color: "var(--red)" };
+    if (scores.every(function (s) { return s === 2; })) return { label: "READY", color: "var(--green)" };
+    return { label: "NEEDS WORK", color: "var(--amber)" };
+  }
+
+  function esc(t) {
+    var d = document.createElement("div");
+    d.textContent = t;
+    return d.innerHTML;
+  }
+
+  function pad(n) {
+    return String(n + 1).length < 2 ? "0" + (n + 1) : String(n + 1);
+  }
+
+  // ---- Build static bits ----
+  var legend = document.getElementById("legend");
+  legend.innerHTML = GATES.map(function (g, i) {
+    return '<div><b>' + pad(i) + '</b>' + esc(g.label) + '</div>';
+  }).join("");
+
+  var picker = document.getElementById("picker");
+  picker.innerHTML = EXAMPLES.map(function (ex) {
+    return '<button class="ex" type="button" data-id="' + ex.id + '" aria-pressed="false">' + esc(ex.label) + '</button>';
+  }).join("");
+
+  // ---- Render a result ----
+  function render(ex) {
+    var dims = ex.result.dimensions.map(function (d) {
+      return { key: d.key, label: labelFor(d.key), score: Math.max(0, Math.min(2, d.score)), gap: d.gap };
+    });
+    var v = verdictFromScores(dims);
+
+    var html = '';
+    html += '<div class="item fade"><span class="tag">The item</span>' + esc(ex.input) + '</div>';
+
+    html += '<div class="verdict-block fade" style="border-top-color:' + v.color + '">';
+    html += '<div class="kicker">Verdict</div>';
+    html += '<div class="verdict" style="color:' + v.color + '">' + v.label + '</div>';
+    html += '<div class="verdict-note">Any gate at 0 means not ready. All five at 2 means ready.</div>';
+    html += '</div>';
+
+    html += '<div class="kicker">Gates</div><div class="gates">';
+    dims.forEach(function (d, i) {
+      html += '<div class="gate fade">';
+      html += '<div class="mark" style="background:' + scoreColor(d.score) + '" aria-hidden="true">' + d.score + '</div>';
+      html += '<div><div class="name"><span class="num">' + pad(i) + '</span>' + esc(d.label) + '</div>';
+      html += '<div class="gap">' + esc(d.gap) + '</div></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+
+    if (ex.result.questions && ex.result.questions.length) {
+      html += '<div class="fade" style="margin-bottom:28px"><div class="kicker">Resolve before you start</div>';
+      ex.result.questions.slice(0, 3).forEach(function (q, i) {
+        html += '<div class="q"><span class="qn">' + pad(i) + '</span><span>' + esc(q) + '</span></div>';
+      });
+      html += '</div>';
+    }
+
+    if (ex.result.sharper) {
+      html += '<div class="fade"><div class="kicker">How it should read</div>';
+      html += '<div class="sharper">' + esc(ex.result.sharper) + '</div></div>';
+    }
+
+    document.getElementById("result").innerHTML = html;
+
+    var btns = picker.querySelectorAll(".ex");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-id") === ex.id ? "true" : "false");
+    }
+  }
+
+  picker.addEventListener("click", function (e) {
+    var btn = e.target.closest(".ex");
+    if (!btn) return;
+    var id = btn.getAttribute("data-id");
+    var ex = EXAMPLES.filter(function (x) { return x.id === id; })[0];
+    if (ex) render(ex);
+  });
+
+  document.getElementById("own-btn").addEventListener("click", function () {
+    document.getElementById("own-note").classList.add("show");
+  });
+
+  // Show the first example on load so the page is never empty.
+  if (EXAMPLES.length) render(EXAMPLES[0]);
+</script>
+</body>
+</html>
