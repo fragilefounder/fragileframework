@@ -1,100 +1,984 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>The Emotional Backlog™ | Agile Heartbreaks, Honestly Handled</title>
-<meta name="description" content="Anonymous Agile confessions — shared by you, answered by frAGILE. A space for the sprint-bruised soul.">
-<meta name="keywords" content="Agile therapy, product management burnout, anonymous Agile stories, Emotional Backlog">
-<meta name="author" content="Thach Nguyen">
-<meta property="og:title" content="The Emotional Backlog™">
-<meta property="og:description" content="Share your Agile heartbreak. We’ll answer with empathy (and satire).">
-<meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
-<meta property="og:url" content="https://fragileframework.com/emotional-backlog.html">
-<meta property="og:type" content="article">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Emotional Backlog | frAGILE Framework</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Emotional Backlog™ | frAGILE Framework™</title>
+  <meta name="description" content="An archive of unspoken organizational grievances, passive-aggressive tickets, and Agile heartbreaks filed with frAGILE Framework sarcasm and care.">
+  <meta name="author" content="Thach Nguyen">
+  <meta name="keywords" content="Emotional Backlog, Agile satire, product management burnout, anonymous Agile stories, passive aggressive tickets, frAGILE Framework">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Emotional Backlog™ | frAGILE Framework™">
+  <meta property="og:description" content="Anonymous Agile confessions, passive-aggressive tickets, and organizational grief filed for review.">
+  <meta property="og:url" content="https://fragileframework.com/emotional-backlog.html">
+  <meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Emotional Backlog™ | frAGILE Framework™">
+  <meta name="twitter:description" content="Come for the satire. Stay for the organizational scar tissue.">
+  <meta name="twitter:image" content="https://fragileframework.com/images/fragile-logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
-  <link rel="icon" href="images/favicon.png" />
+  <link rel="icon" href="images/favicon.png">
+
+  <style>
+    /*
+      frAGILE Emotional Backlog page layer
+      Uses shared Phase 1 tokens from fragile-theme.css.
+      This layer owns the archive/ticket composition only.
+    */
+
+    .backlog-hero .hero__inner {
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+      min-height: min(760px, calc(100vh - var(--nav-height)));
+      align-items: stretch;
+    }
+
+    .backlog-hero .hero__title {
+      max-width: 9ch;
+    }
+
+    .backlog-hero .hero__lede {
+      max-width: 790px;
+    }
+
+    .archive-card {
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      background: var(--paper-light);
+      color: var(--ink);
+      border: 3px solid var(--paper-light);
+      box-shadow: 10px 10px 0 var(--red);
+    }
+
+    .archive-card__topline {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .archive-card__stamp {
+      display: inline-block;
+      padding: 0.32rem 0.55rem;
+      color: var(--red);
+      border: 2px solid currentColor;
+      transform: rotate(2deg);
+      white-space: nowrap;
+    }
+
+    .archive-card__number {
+      margin-bottom: 1.25rem;
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(5.5rem, 12vw, 10rem);
+      line-height: 0.78;
+    }
+
+    .archive-card__title {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 5.2vw, 4.8rem);
+      font-weight: 400;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .archive-card__copy {
+      color: var(--ink-brown);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .archive-card__meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      padding: 0;
+      margin: 2rem 0 0;
+      list-style: none;
+    }
+
+    .archive-card__meta li {
+      padding: 0.85rem;
+      background: var(--paper-deep);
+      border: 1px solid var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      line-height: 1.45;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .archive-card__meta strong {
+      display: block;
+      color: var(--red-dark);
+      font-size: 0.62rem;
+    }
+
+    .archive-intro {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .archive-intro__label {
+      position: sticky;
+      top: calc(var(--nav-height) + 1.5rem);
+      padding: 1.25rem;
+      background: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .archive-intro__label .stamp {
+      margin-bottom: 1.5rem;
+    }
+
+    .archive-intro__title {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-2);
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .archive-intro__meta {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.7;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .archive-intro__copy {
+      font-size: var(--step-1);
+      line-height: 1.6;
+    }
+
+    .archive-intro__copy p {
+      margin-bottom: 1.35rem;
+    }
+
+    .archive-warning {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      margin-top: 2rem;
+      background: var(--ink);
+      color: var(--paper-light);
+      border-left: 10px solid var(--red);
+      box-shadow: var(--shadow-md);
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      line-height: 1.65;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ticket-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .ticket-card {
+      position: relative;
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      padding: clamp(1.35rem, 3vw, 2rem);
+      background: var(--paper-light);
+      color: var(--ink);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .ticket-card::before {
+      position: absolute;
+      top: -0.85rem;
+      right: 1rem;
+      content: attr(data-status);
+      padding: 0.34rem 0.55rem;
+      background: var(--red);
+      color: var(--paper-light);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transform: rotate(2deg);
+    }
+
+    .ticket-card--dark {
+      background: var(--ink);
+      color: var(--paper-light);
+      border-color: var(--ink);
+      box-shadow: 8px 8px 0 var(--red);
+    }
+
+    .ticket-card--red {
+      background: var(--red);
+      color: var(--paper-light);
+      border-color: var(--ink);
+      box-shadow: var(--shadow-md);
+    }
+
+    .ticket-card--red::before {
+      background: var(--paper-light);
+      color: var(--red);
+      border: 2px solid var(--red);
+    }
+
+    .ticket-card__header {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      margin-bottom: 1.35rem;
+      border-bottom: 1px solid currentColor;
+    }
+
+    .ticket-card__id {
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 0.8;
+    }
+
+    .ticket-card--red .ticket-card__id,
+    .ticket-card--dark .ticket-card__id {
+      color: var(--paper-light);
+    }
+
+    .severity-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.55rem;
+      border: 2px solid currentColor;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ticket-card__label {
+      margin-bottom: 0.7rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .ticket-card--dark .ticket-card__label,
+    .ticket-card--red .ticket-card__label {
+      color: rgba(251, 246, 236, 0.7);
+    }
+
+    .ticket-card__title {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-2);
+      font-weight: 400;
+      line-height: 0.98;
+      text-transform: uppercase;
+    }
+
+    .ticket-card__copy {
+      margin-bottom: 1.5rem;
+      color: var(--ink-brown);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .ticket-card--dark .ticket-card__copy,
+    .ticket-card--red .ticket-card__copy {
+      color: rgba(251, 246, 236, 0.82);
+    }
+
+    .ticket-card__reply {
+      padding: 1rem;
+      margin-top: auto;
+      background: var(--paper-deep);
+      border-left: 6px solid var(--red);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .ticket-card--dark .ticket-card__reply,
+    .ticket-card--red .ticket-card__reply {
+      background: rgba(251, 246, 236, 0.1);
+      color: var(--paper-light);
+      border-left-color: var(--paper-light);
+    }
+
+    .ticket-card__meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+      padding: 0;
+      margin: 1.25rem 0 0;
+      list-style: none;
+    }
+
+    .ticket-card__meta li {
+      padding: 0.65rem;
+      border: 1px solid currentColor;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      line-height: 1.4;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .ticket-card__meta strong {
+      display: block;
+      color: var(--red-dark);
+      font-size: 0.58rem;
+    }
+
+    .ticket-card--dark .ticket-card__meta strong,
+    .ticket-card--red .ticket-card__meta strong {
+      color: var(--paper-light);
+    }
+
+    .submission-panel {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .submission-panel__brief {
+      padding: clamp(1.35rem, 3vw, 2rem);
+      background: var(--red);
+      color: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .submission-panel__brief h2 {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-3);
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .submission-panel__brief p {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .submission-form {
+      padding: clamp(1.35rem, 3vw, 2.25rem);
+      background: var(--paper-light);
+      color: var(--ink);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-field--full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label,
+    .consent-check label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--paper-deep);
+      color: var(--ink);
+      border: var(--border);
+      border-radius: 0;
+      font-family: var(--font-serif);
+    }
+
+    .form-field textarea {
+      min-height: 190px;
+      resize: vertical;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--muted);
+      opacity: 1;
+    }
+
+    .consent-check {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.85rem;
+      align-items: start;
+      padding: 1rem;
+      margin: 1rem 0 1.25rem;
+      background: var(--paper-deep);
+      border-left: 8px solid var(--red);
+    }
+
+    .consent-check input {
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: 0.1rem;
+      accent-color: var(--red);
+    }
+
+    .form-footnote {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.55;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .intake-rules {
+      padding: 0;
+      margin: 1.5rem 0 0;
+      list-style: none;
+      border-top: 1px solid rgba(251, 246, 236, 0.35);
+    }
+
+    .intake-rules li {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 1rem;
+      padding-block: 1rem;
+      border-bottom: 1px solid rgba(251, 246, 236, 0.35);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      line-height: 1.55;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .intake-rules strong {
+      color: var(--paper-light);
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 0.9;
+    }
+
+    .queue-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .queue-list__item {
+      display: grid;
+      grid-template-columns: minmax(70px, 110px) minmax(0, 1fr) auto;
+      gap: clamp(1rem, 3vw, 2rem);
+      align-items: center;
+      padding-block: clamp(1.3rem, 3vw, 2rem);
+      border-bottom: 1px solid rgba(251, 246, 236, 0.22);
+    }
+
+    .queue-list__item:last-child {
+      border-bottom: 0;
+    }
+
+    .queue-list__id {
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(2.7rem, 6vw, 4.8rem);
+      line-height: 0.8;
+    }
+
+    .queue-list__title {
+      margin-bottom: 0.3rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .queue-list__copy {
+      margin: 0;
+      color: rgba(251, 246, 236, 0.72);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.55;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .queue-list__badge {
+      padding: 0.4rem 0.65rem;
+      border: 2px solid var(--red);
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transform: rotate(-2deg);
+    }
+
+    .closing-strip {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      background: var(--paper-light);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .closing-strip__title {
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 5.8rem);
+      font-weight: 400;
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .closing-strip__copy {
+      max-width: 780px;
+      font-size: var(--step-1);
+      line-height: 1.55;
+    }
+
+    .closing-strip__stamp {
+      justify-self: end;
+      padding: 0.8rem 1rem;
+      color: var(--red);
+      border: 4px solid currentColor;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-align: center;
+      text-transform: uppercase;
+      transform: rotate(3deg);
+    }
+
+    @media (max-width: 1040px) {
+      .backlog-hero .hero__inner,
+      .archive-intro,
+      .submission-panel,
+      .closing-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-intro__label {
+        position: relative;
+        top: auto;
+      }
+
+      .ticket-board {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-strip__stamp {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .archive-card__topline,
+      .archive-card__meta,
+      .form-grid,
+      .ticket-card__meta {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-card__topline {
+        display: grid;
+      }
+
+      .archive-card__stamp {
+        justify-self: start;
+      }
+
+      .ticket-card__header {
+        display: grid;
+      }
+
+      .queue-list__item {
+        grid-template-columns: 64px minmax(0, 1fr);
+      }
+
+      .queue-list__badge {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <img src="images/IMG_6806.png" alt="frAGILE Framework Logo" class="logo" loading="lazy" style="max-width: 200px; margin-bottom: 1rem;">
-    <h1>The Emotional Backlog</h1>
-    <p>Come for the satire. Stay for the soul.</p>
-    <nav>
-    <a href="index.html">Home</a>
-    <a href="manifesto.html">Manifesto</a>
-    <a href="playbook.html">Playbook</a> 
-    <a href="readiness-check.html">Tools</a>
-    <a href="emotional-backlog.html">Emotional Backlog</a>
-    <a href="about.html">About Thach</a>
-    </nav>
+  <a class="skip-link" href="#main-content">Skip the group therapy. Read the tickets.</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
+        fr<span class="accent">AGILE</span><span class="slash">/</span>Framework
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="site-nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="manifesto.html">Manifesto</a></li>
+          <li><a href="playbook.html">Playbook</a></li>
+          <li><a href="readiness-check.html">Tools</a></li>
+          <li><a href="emotional-backlog.html" aria-current="page">Emotional Backlog</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="submit">
-      <h2>📬 Submit to The Emotional Backlog</h2>
-      <p>Share your most frAGILE moment. No names. No shame. Just honesty and healing.</p>
+  <div class="document-bar" aria-label="Document classification">
+    <div class="container document-bar__inner">
+      <span>Archive: FF-EMO-BACKLOG</span>
+      <span>Classification: Anonymous / Cathartic / Slightly Too Real</span>
+      <span>Status: Open for intake</span>
+    </div>
+  </div>
 
-      <form name="emotional-backlog" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" style="max-width: 500px; margin: 2rem auto; text-align: left;">
-        <input type="hidden" name="form-name" value="emotional-backlog" />
-        <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
+  <main id="main-content">
+    <section class="hero backlog-hero" aria-labelledby="backlog-title">
+      <div class="container hero__inner">
+        <div>
+          <div class="eyebrow">Emotional backlog / organizational grievance archive</div>
+          <h1 class="hero__title" id="backlog-title"><span class="small">Filed as:</span> Unspoken work feelings</h1>
+          <p class="hero__lede">An unofficial archive for the sprint-bruised, roadmap-haunted, meeting-concussed people quietly whispering, “This could have been a decision.”</p>
+          <div class="hero__actions">
+            <a class="button" href="#submit-ticket">Submit a ticket</a>
+            <a class="button button--outline" href="#archive">Open the archive</a>
+          </div>
+        </div>
 
-        <label for="title" style="font-weight: bold;">Give it a headline (optional)</label>
-        <input type="text" name="title" id="title" placeholder="e.g., 'Shiny Demo, Hollow Soul'" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
-
-        <label for="message" aria-label="Share your Agile story anonymously" style="font-weight: bold;">Your story *</label>
-        <textarea name="message" id="message" rows="6" required placeholder="What broke you this sprint?" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"></textarea>
-
-        <button type="submit" style="padding: 0.6rem 1.2rem; background-color: #cc0000; color: white; border: none; border-radius: 5px; cursor: pointer;">
-          Submit Anonymously
-        </button>
-        <p style="font-size: 12pt; color: var(--gray);">Your story is anonymous and won’t be shared without consent.</p>
-      </form>
+        <aside class="archive-card" aria-label="Archive intake summary">
+          <div>
+            <div class="archive-card__topline">
+              <span>Backlog type: emotional debt</span>
+              <span class="archive-card__stamp">Unprioritized</span>
+            </div>
+            <div class="archive-card__number">∞</div>
+            <h2 class="archive-card__title">Feelings in Jira drag</h2>
+            <p class="archive-card__copy">For the stories too weird for the retro, too honest for the status report, and too human for a transformation deck with a suspicious number of arrows.</p>
+          </div>
+          <ul class="archive-card__meta" aria-label="Archive metadata">
+            <li><strong>Owner</strong> Nobody, naturally</li>
+            <li><strong>SLA</strong> Emotionally impossible</li>
+            <li><strong>Priority</strong> Later, allegedly</li>
+            <li><strong>Resolution</strong> Mostly snacks</li>
+          </ul>
+        </aside>
+      </div>
     </section>
 
-    <section class="entry">
-      <h2>Shiny Demo, Hollow Soul</h2>
-      <p><strong>Dear frAGILE,</strong><br>
-      I just did a demo where I pretended we had progress. The backend isn’t built. The design’s not approved. But I smiled and clicked through Figma like it was live. I hate how good I am at this.</p>
-      <p><strong>Dear Shiny,</strong><br>
-      What you pulled off was impressive. And yes — emotionally exhausting. You're not faking success. You're faking stability, because the team needs hope. That’s not deception. That’s survival.<br><br>
-      But remember: you deserve to be proud of <em>real</em> progress too. Build something small. Ship something honest. Even if it’s just a truth bomb in the next standup.<br><br>
-      You’re not a fraud. You’re frAGILE. And you’re not alone.
-      <div class="signature">— Love, The Cult of Clarity</div>
-      </p>
+    <section class="section section--paper-light" aria-labelledby="archive-intro-title">
+      <div class="container archive-intro">
+        <aside class="archive-intro__label" aria-label="Archive handling note">
+          <span class="stamp">Case intake</span>
+          <h2 class="archive-intro__title" id="archive-intro-title">The emotional debt register.</h2>
+          <p class="archive-intro__meta">Not a therapy product. Not HR. Not your Scrum Master’s next icebreaker. Mercifully.</p>
+        </aside>
+
+        <div class="archive-intro__copy">
+          <p>The Emotional Backlog exists for the things teams feel but rarely file: fake demos, alignment fatigue, backlog guilt, stakeholder fog, and the tiny spiritual injuries caused by saying “quick sync” with a straight face.</p>
+          <p>Submit anonymously. Read generously. Laugh because it helps, then fix the actual system because laughter without behavior change is just a standup with better timing.</p>
+          <div class="archive-warning">Do not paste confidential, proprietary, regulated, client, employee, or company-sensitive information. Change names. Remove details. Keep the wound, redact the org chart.</div>
+        </div>
+      </div>
     </section>
 
-    <section class="entry">
-      <h2>Alignment Fatigue</h2>
-      <p><strong>Dear frAGILE,</strong><br>
-      I’ve been in back-to-back alignment meetings for three weeks. We’re aligning on alignment. The work isn’t moving. I don’t even know what we’re building anymore.</p>
-      <p><strong>Dear Fatigued,</strong><br>
-      You are experiencing a sacred ritual we call “Alignment Spiral.” It’s what happens when fear of misstep outweighs trust in progress.<br><br>
-      Break the loop. Propose a prototype. Ship a stub. Start somewhere, and let the next step reveal itself.<br><br>
-      Alignment is important. But motion is how we find direction.<br><br>
-      May your next meeting be short and slightly useful.
-      <div class="signature">— Love, The Cult of Clarity</div>
-      </p>
+    <section class="section" id="archive" aria-labelledby="ticket-archive-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Archived tickets</div>
+            <h2 class="section-heading__title" id="ticket-archive-title">Passive-aggressive issues, professionally formatted.</h2>
+          </div>
+          <p class="section-heading__caption">Sample cases. Names changed because lawsuits are not a growth strategy.</p>
+        </div>
+
+        <div class="ticket-board">
+          <article class="ticket-card" data-status="Needs Witness" aria-labelledby="ticket-demo-title">
+            <div class="ticket-card__header">
+              <span class="ticket-card__id">EB-01</span>
+              <span class="severity-badge">Severity: Theater</span>
+            </div>
+            <div class="ticket-card__label">Category / Demo séance</div>
+            <h3 class="ticket-card__title" id="ticket-demo-title">Shiny Demo, Hollow Soul</h3>
+            <p class="ticket-card__copy"><strong>Dear frAGILE,</strong> I just did a demo where I pretended we had progress. The backend is not built. The design is not approved. But I smiled and clicked through Figma like it was live. I hate how good I am at this.</p>
+            <div class="ticket-card__reply"><strong>Reply:</strong> You are not faking success. You are faking stability because the room demanded hope in business casual. Build something small. Ship something honest. Even if it is just one truth bomb in the next standup.</div>
+            <ul class="ticket-card__meta" aria-label="Ticket metadata for Shiny Demo Hollow Soul">
+              <li><strong>Root cause</strong> Roadmap cosplay</li>
+              <li><strong>Suggested fix</strong> Prototype truth</li>
+            </ul>
+          </article>
+
+          <article class="ticket-card ticket-card--dark" data-status="Looping" aria-labelledby="ticket-alignment-title">
+            <div class="ticket-card__header">
+              <span class="ticket-card__id">EB-02</span>
+              <span class="severity-badge">Severity: Spiral</span>
+            </div>
+            <div class="ticket-card__label">Category / Alignment fatigue</div>
+            <h3 class="ticket-card__title" id="ticket-alignment-title">Alignment on Alignment</h3>
+            <p class="ticket-card__copy"><strong>Dear frAGILE,</strong> I have been in back-to-back alignment meetings for three weeks. We are aligning on alignment. The work is not moving. I do not even know what we are building anymore.</p>
+            <div class="ticket-card__reply"><strong>Reply:</strong> You are trapped in the Alignment Spiral, where fear of misstep outranks movement. Ask what decision is required, who owns it, and what changes after the meeting. If nobody knows, cancel the sequel.</div>
+            <ul class="ticket-card__meta" aria-label="Ticket metadata for Alignment on Alignment">
+              <li><strong>Root cause</strong> Decision avoidance</li>
+              <li><strong>Suggested fix</strong> Name the call</li>
+            </ul>
+          </article>
+
+          <article class="ticket-card" data-status="Aged Out" aria-labelledby="ticket-backlog-title">
+            <div class="ticket-card__header">
+              <span class="ticket-card__id">EB-03</span>
+              <span class="severity-badge">Severity: Compost</span>
+            </div>
+            <div class="ticket-card__label">Category / Backlog guilt</div>
+            <h3 class="ticket-card__title" id="ticket-backlog-title">Landfill Grooming</h3>
+            <p class="ticket-card__copy"><strong>Dear frAGILE,</strong> My backlog is a landfill. I cannot look at it. Grooming just means moving trash from one pile to another. I feel like I am failing my team.</p>
+            <div class="ticket-card__reply"><strong>Reply:</strong> Backlogs are not sacred scrolls. They are compost piles. Archive the noise. Find the signal. Your team needs a compass, not a hoarder with admin permissions.</div>
+            <ul class="ticket-card__meta" aria-label="Ticket metadata for Landfill Grooming">
+              <li><strong>Root cause</strong> Infinite intake</li>
+              <li><strong>Suggested fix</strong> Ruthless deletion</li>
+            </ul>
+          </article>
+
+          <article class="ticket-card ticket-card--red" data-status="Escalated" aria-labelledby="ticket-priority-title">
+            <div class="ticket-card__header">
+              <span class="ticket-card__id">EB-04</span>
+              <span class="severity-badge">Severity: Executive</span>
+            </div>
+            <div class="ticket-card__label">Category / Priority fog</div>
+            <h3 class="ticket-card__title" id="ticket-priority-title">Everything Is Critical</h3>
+            <p class="ticket-card__copy"><strong>Dear frAGILE,</strong> Every stakeholder says their thing is priority one. Leadership says we need focus, then forwards twelve “small asks” with visible urgency and invisible tradeoffs.</p>
+            <div class="ticket-card__reply"><strong>Reply:</strong> If everything is priority one, priority is dead. Ask what gets delayed, deprioritized, or unfunded. Watch the room discover math. It is painful, but so is pretending capacity is a personality trait.</div>
+            <ul class="ticket-card__meta" aria-label="Ticket metadata for Everything Is Critical">
+              <li><strong>Root cause</strong> No tradeoffs</li>
+              <li><strong>Suggested fix</strong> Public sequencing</li>
+            </ul>
+          </article>
+
+          <article class="ticket-card" data-status="Blocked" aria-labelledby="ticket-dependency-title">
+            <div class="ticket-card__header">
+              <span class="ticket-card__id">EB-05</span>
+              <span class="severity-badge">Severity: Invisible</span>
+            </div>
+            <div class="ticket-card__label">Category / Dependency séance</div>
+            <h3 class="ticket-card__title" id="ticket-dependency-title">The Dependency Has Feelings</h3>
+            <p class="ticket-card__copy"><strong>Dear frAGILE,</strong> We committed to a date before confirming the dependency team even knew we existed. Now we are “partnering closely,” which seems to mean sending them increasingly haunted Slack messages.</p>
+            <div class="ticket-card__reply"><strong>Reply:</strong> A dependency is not real until another team names the owner, date, interface, risk, and escape hatch. Until then, you have a wish wearing a program-plan lanyard.</div>
+            <ul class="ticket-card__meta" aria-label="Ticket metadata for The Dependency Has Feelings">
+              <li><strong>Root cause</strong> Assumed capacity</li>
+              <li><strong>Suggested fix</strong> Signed handshake</li>
+            </ul>
+          </article>
+
+          <article class="ticket-card ticket-card--dark" data-status="Reopened" aria-labelledby="ticket-retro-title">
+            <div class="ticket-card__header">
+              <span class="ticket-card__id">EB-06</span>
+              <span class="severity-badge">Severity: Seasonal</span>
+            </div>
+            <div class="ticket-card__label">Category / Retro déjà vu</div>
+            <h3 class="ticket-card__title" id="ticket-retro-title">Same Sticky, New Wall</h3>
+            <p class="ticket-card__copy"><strong>Dear frAGILE,</strong> We keep identifying the same retro themes every sprint. Communication. Clarity. Dependencies. Then we create action items, forget them, and return to the scene of the crime two weeks later.</p>
+            <div class="ticket-card__reply"><strong>Reply:</strong> That is not continuous improvement. That is organizational karaoke. Pick one action, assign one owner, define one visible consequence. Otherwise the retro is just group journaling with colored squares.</div>
+            <ul class="ticket-card__meta" aria-label="Ticket metadata for Same Sticky New Wall">
+              <li><strong>Root cause</strong> No consequence</li>
+              <li><strong>Suggested fix</strong> One owner</li>
+            </ul>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section class="entry">
-      <h2>Backlog Guilt</h2>
-      <p><strong>Dear frAGILE,</strong><br>
-      My backlog is a landfill. I can’t look at it. Grooming just means moving trash from one pile to another. I feel like I’m failing my team.</p>
-      <p><strong>Dear Guilty,</strong><br>
-      Backlogs are not sacred scrolls. They’re compost piles. And your job is not to polish every ticket — it’s to fertilize the few that matter.<br><br>
-      Archive the noise. Highlight the signal. Your team needs a compass, not a hoarder.<br><br>
-      You’re not failing. You’re learning to let go.
-      <div class="signature">— Love, The Cult of Clarity</div>
-      </p>
+    <section class="section section--dark" aria-labelledby="triage-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Triage queue</div>
+            <h2 class="section-heading__title" id="triage-title">Currently simmering in the archive.</h2>
+          </div>
+          <p class="section-heading__caption">Not all wounds become case studies. Some just become knowing nods.</p>
+        </div>
+
+        <ol class="queue-list">
+          <li class="queue-list__item">
+            <span class="queue-list__id">07</span>
+            <div>
+              <h3 class="queue-list__title">The Product Owner of Nothing</h3>
+              <p class="queue-list__copy">Assigned accountability for outcomes, denied authority over scope. Classic.</p>
+            </div>
+            <span class="queue-list__badge">Pending therapy</span>
+          </li>
+          <li class="queue-list__item">
+            <span class="queue-list__id">08</span>
+            <div>
+              <h3 class="queue-list__title">The Roadmap Mood Board</h3>
+              <p class="queue-list__copy">Beautiful quarters. Inspirational labels. Zero contact with delivery physics.</p>
+            </div>
+            <span class="queue-list__badge">Under review</span>
+          </li>
+          <li class="queue-list__item">
+            <span class="queue-list__id">09</span>
+            <div>
+              <h3 class="queue-list__title">The Mandatory Optional Process</h3>
+              <p class="queue-list__copy">Nobody owns it. Everyone must comply. The governance circle of life.</p>
+            </div>
+            <span class="queue-list__badge">Ceremonial</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--paper-deep section-rule" id="submit-ticket" aria-labelledby="submit-title">
+      <div class="container submission-panel">
+        <aside class="submission-panel__brief">
+          <div class="eyebrow">Submit evidence</div>
+          <h2 id="submit-title">File your emotional ticket.</h2>
+          <p>Anonymous submissions are welcome. Confessional specificity is encouraged. Identifying details are not. We are building satire, not a subpoena exhibit.</p>
+          <ul class="intake-rules" aria-label="Submission rules">
+            <li><strong>01</strong> Remove company, client, vendor, employee, and project names.</li>
+            <li><strong>02</strong> Keep the pattern. Redact the people.</li>
+            <li><strong>03</strong> Tell the truth without making Legal develop a facial twitch.</li>
+          </ul>
+        </aside>
+
+        <form class="submission-form" name="emotional-backlog" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="emotional-backlog">
+          <p class="sr-only" hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="title">Ticket headline</label>
+              <input type="text" name="title" id="title" autocomplete="off" placeholder="e.g., Shiny Demo, Hollow Soul">
+            </div>
+
+            <div class="form-field">
+              <label for="category">Grievance type</label>
+              <select name="category" id="category">
+                <option value="">Select one, sadly</option>
+                <option value="fake-progress">Fake progress</option>
+                <option value="alignment-fatigue">Alignment fatigue</option>
+                <option value="backlog-guilt">Backlog guilt</option>
+                <option value="priority-theater">Priority theater</option>
+                <option value="retro-deja-vu">Retro déjà vu</option>
+                <option value="other-organizational-haunting">Other organizational haunting</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="severity">Emotional severity</label>
+              <select name="severity" id="severity">
+                <option value="mildly-haunted">Mildly haunted</option>
+                <option value="meeting-concussed">Meeting-concussed</option>
+                <option value="roadmap-bruised">Roadmap-bruised</option>
+                <option value="spiritually-blocked">Spiritually blocked</option>
+                <option value="requires-snacks">Requires snacks</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="status">Current status</label>
+              <select name="status" id="status">
+                <option value="unspoken">Unspoken</option>
+                <option value="whispered-in-slack">Whispered in Slack</option>
+                <option value="raised-then-ignored">Raised then ignored</option>
+                <option value="converted-to-action-item">Converted to action item</option>
+                <option value="buried-under-roadmap">Buried under roadmap</option>
+              </select>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="message">Your anonymous story</label>
+              <textarea name="message" id="message" required placeholder="What broke you this sprint? Remove names, company details, customer details, proprietary specifics, and anything that would make compliance suddenly appear in the doorway."></textarea>
+            </div>
+          </div>
+
+          <div class="consent-check">
+            <input type="checkbox" name="redacted" id="redacted" required>
+            <label for="redacted">I removed identifying and confidential details. The pain remains. The lawsuit does not.</label>
+          </div>
+
+          <button class="button" type="submit">Submit anonymously</button>
+          <p class="form-footnote">Your story is anonymous and will not be published without review. frAGILE reserves the right to edit for clarity, safety, rhythm, and reduced PowerPoint odor.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="closing-title">
+      <div class="container closing-strip">
+        <div>
+          <div class="eyebrow">Archive note</div>
+          <h2 class="closing-strip__title" id="closing-title">The feelings are not the problem.</h2>
+          <p class="closing-strip__copy">The problem is pretending the feelings are irrational when they are often accurate readings of broken systems. Name the pattern. Laugh at the absurdity. Then change the operating behavior before the same ticket reopens next sprint wearing a fake mustache.</p>
+          <div class="button-row">
+            <a class="button" href="#submit-ticket">File another one</a>
+            <a class="button button--outline" href="readiness-check.html">Interrogate a backlog item</a>
+          </div>
+        </div>
+        <div class="closing-strip__stamp">Archive open<br>Hope questionable</div>
+      </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2025–2026 frAGILE Framework™ · Satire project by Thach Nguyen</span>
+      <span class="site-footer__tag">All feelings remain confidential. Even the spicy ones.</span>
+    </div>
+  </footer>
 </body>
-  <footer>
-  <p>
-    © 2025 frAGILE Framework™. All feelings remain confidential. Even the spicy ones.
-  </p>
-</footer>
 </html>
