@@ -32,34 +32,6 @@
       This layer owns case-file composition only.
     */
 
-    .playbook-chapter-card {
-      padding-block: clamp(6.5rem, 13vw, 10rem) clamp(5.75rem, 11vw, 8.5rem);
-      text-align: center;
-      background: var(--paper);
-      border-bottom: var(--border);
-    }
-
-    .playbook-volume {
-      display: inline-flex;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: clamp(2rem, 5vw, 3rem);
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: var(--step--1);
-      font-weight: 700;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-    }
-
-    .playbook-volume::before,
-    .playbook-volume::after {
-      width: clamp(2.5rem, 7vw, 4rem);
-      height: 1px;
-      content: "";
-      background: currentColor;
-    }
-
     .playbook-ornament {
       margin-block: 1.55rem;
       color: var(--red);
@@ -67,37 +39,6 @@
       font-size: 1rem;
       letter-spacing: 0.55em;
       user-select: none;
-    }
-
-    .playbook-title {
-      max-width: 9ch;
-      margin: 0 auto;
-      font-family: var(--font-display);
-      font-size: clamp(5.25rem, 13vw, 12rem);
-      font-weight: 400;
-      line-height: 0.83;
-      letter-spacing: -0.015em;
-      text-transform: uppercase;
-    }
-
-    .playbook-title__small {
-      display: block;
-      margin-bottom: 0.18em;
-      font-family: var(--font-serif);
-      font-size: 0.18em;
-      font-style: italic;
-      line-height: 1;
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    .playbook-subtitle {
-      max-width: 760px;
-      margin: clamp(2rem, 5vw, 3rem) auto 0;
-      color: var(--ink-brown);
-      font-size: clamp(1.15rem, 2.5vw, 1.65rem);
-      font-style: italic;
-      line-height: 1.55;
     }
 
     .playbook-index {
@@ -622,10 +563,6 @@
     }
 
     @media (max-width: 760px) {
-      .playbook-title {
-        font-size: clamp(4.25rem, 22vw, 7rem);
-      }
-
       .playbook-index__list,
       .case-grid {
         grid-template-columns: 1fr;
@@ -718,8 +655,6 @@
         flex-direction: column;
       }
 
-      .playbook-volume::before,
-      .playbook-volume::after,
       .playbook-signoff__mark::before,
       .playbook-signoff__mark::after {
         width: 1.1rem;
@@ -757,13 +692,17 @@
   </div>
 
   <main id="main-content">
-    <section class="playbook-chapter-card" aria-labelledby="playbook-title">
-      <div class="container">
-        <div class="playbook-volume">A Field Manual</div>
-        <div class="playbook-ornament" aria-hidden="true">✳ &nbsp; ✳ &nbsp; ✳</div>
-        <h1 class="playbook-title" id="playbook-title"><span class="playbook-title__small">The</span>Playbook</h1>
-        <div class="playbook-ornament" aria-hidden="true">✳ &nbsp; ✳ &nbsp; ✳</div>
-        <p class="playbook-subtitle">Field notes from ceremonies that solved nothing, filed under names that should not have been printed.</p>
+    <section class="hero playbook-hero" aria-labelledby="playbook-title">
+      <div class="container hero__inner">
+        <div>
+          <div class="eyebrow">A field manual</div>
+          <h1 class="hero__title" id="playbook-title"><span class="small">The</span> Playbook</h1>
+          <p class="hero__lede">Field notes from ceremonies that solved nothing, filed under names that should not have been printed.</p>
+          <div class="hero__actions">
+            <a class="button" href="#ceremonies">Read the cases</a>
+            <a class="button button--outline" href="#findings">Jump to findings</a>
+          </div>
+        </div>
       </div>
     </section>
 
