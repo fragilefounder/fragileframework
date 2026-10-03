@@ -1,0 +1,702 @@
+[
+  {
+    "number": 1,
+    "term": "Actionable Insights",
+    "definition": "Raw data tweaked and tortured until it agrees with the decision leadership already made.",
+    "slug": "actionable-insights",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 2,
+    "term": "Agile",
+    "definition": "A flexible way of working, commonly implemented as a rigid calendar of ceremonies for discussing why the flexible work cannot change.",
+    "slug": "agile",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 3,
+    "term": "Alignment",
+    "definition": "The thirty-second period when everyone agrees on a direction before returning to their departments with five different interpretations of it.",
+    "slug": "alignment",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 4,
+    "term": "Architecture",
+    "definition": "The structural foundation expected to survive every new strategy while remaining firmly outside this quarter's scope.",
+    "slug": "architecture",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 5,
+    "term": "Artifact",
+    "definition": "A document created to prove that a conversation happened, usually moments before another meeting is scheduled to discuss the document.",
+    "slug": "artifact",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 6,
+    "term": "Asynchronous (Async)",
+    "definition": "A communication method designed to let people respond on their own schedule, followed approximately eleven minutes later by, \"Just checking if you saw this.\"",
+    "slug": "asynchronous-async",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 7,
+    "term": "Backlog",
+    "definition": "A digital graveyard of low-priority bug reports, minor feature requests, and abandoned dreams that no sprint will ever touch.",
+    "slug": "backlog",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 8,
+    "term": "Bake-off",
+    "definition": "Two teams asked to prove which approach is better, usually after the preferred approach has already appeared in the executive deck.",
+    "slug": "bake-off",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 9,
+    "term": "Bandwidth",
+    "definition": "Your remaining mental capacity to tolerate another meeting that could have been a three-sentence email.",
+    "slug": "bandwidth",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 10,
+    "term": "Benchmark",
+    "definition": "Studying competitors to understand the market, shortly before rebuilding the exact feature everyone agreed was mediocre.",
+    "slug": "benchmark",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 11,
+    "term": "Bespoke",
+    "definition": "A custom fix for one important customer, quietly promoted to a permanent problem for everyone else.",
+    "slug": "bespoke",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 12,
+    "term": "Capacity Planning",
+    "definition": "The careful allocation of 100 percent of a team's available time before accounting for meetings, support, defects, dependencies, emergencies, or reality.",
+    "slug": "capacity-planning",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 13,
+    "term": "Change Management",
+    "definition": "The organizational discipline of preparing people for a change they usually discover from the new interface on Monday morning.",
+    "slug": "change-management",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 14,
+    "term": "Circle Back",
+    "definition": "A polite tactic used to end a conversation you have zero intention of ever resuming.",
+    "slug": "circle-back",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 15,
+    "term": "Core Competency",
+    "definition": "The thing an organization is unusually good at, generally receiving less investment than the new thing mentioned during the latest executive offsite.",
+    "slug": "core-competency",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 16,
+    "term": "Customer-Centric",
+    "definition": "A commitment to placing customers at the center of every decision, except decisions involving deadlines, budgets, sales commitments, architecture, or executive preference.",
+    "slug": "customer-centric",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 17,
+    "term": "Dark Pattern",
+    "definition": "Designing a user interface so intentionally confusing that canceling a subscription requires a phone call and a notary public.",
+    "slug": "dark-pattern",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 18,
+    "term": "Deep Dive",
+    "definition": "Spending two hours analyzing a microscopic edge case while the core application actively burns down.",
+    "slug": "deep-dive",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 19,
+    "term": "Deliverable",
+    "definition": "A tangible output demonstrating progress, frequently confused with progress itself.",
+    "slug": "deliverable",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 20,
+    "term": "Dependency",
+    "definition": "Something another team must finish before you can finish your work, ensuring that neither team's delivery date can ever be discussed with confidence.",
+    "slug": "dependency",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 21,
+    "term": "Discovery",
+    "definition": "The disciplined process of learning what should be built before building it, ideally conducted before everyone has already decided what will be built.",
+    "slug": "discovery",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 22,
+    "term": "Dogfooding",
+    "definition": "Using your own product internally to experience exactly what customers experience, followed by explaining why the internal experience is somehow different.",
+    "slug": "dogfooding",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 23,
+    "term": "Ecosystem",
+    "definition": "A collection of separate, poorly connected software products sold as a unified suite.",
+    "slug": "ecosystem",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 24,
+    "term": "Edge Case",
+    "definition": "A user behavior considered statistically insignificant until the user experiencing it is sufficiently important.",
+    "slug": "edge-case",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 25,
+    "term": "Empowerment",
+    "definition": "Giving a team total autonomy to make decisions, provided those decisions align perfectly with the CEO's gut feeling.",
+    "slug": "empowerment",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 26,
+    "term": "Epic",
+    "definition": "A Jira ticket so vaguely defined and massive in scope that it slowly swallows three consecutive quarters of roadmap space.",
+    "slug": "epic",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 27,
+    "term": "Escalation",
+    "definition": "The formal process of adding progressively more senior people to an unresolved problem until the original problem becomes secondary.",
+    "slug": "escalation",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 28,
+    "term": "ETA (Estimated Time of Arrival)",
+    "definition": "A date requested before enough information exists to provide a date, and therefore provided anyway.",
+    "slug": "eta-estimated-time-of-arrival",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 29,
+    "term": "Feature Creep",
+    "definition": "The gradual addition of individually reasonable requests until a simple application requires a flight manual.",
+    "slug": "feature-creep",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 30,
+    "term": "Firefight",
+    "definition": "Urgent work performed to resolve an emergency while postponing the non-urgent work intended to prevent future emergencies.",
+    "slug": "firefight",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 31,
+    "term": "Flywheel",
+    "definition": "A circular diagram in a presentation slide used to make a basic sales loop sound like physics.",
+    "slug": "flywheel",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 32,
+    "term": "Frictionless",
+    "definition": "A marketing claim applied to a checkout flow that currently requires three redirects, SMS verification, and a password reset.",
+    "slug": "frictionless",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 33,
+    "term": "Gap Analysis",
+    "definition": "A structured comparison between where your product is and where everyone suddenly remembers they wanted it to be.",
+    "slug": "gap-analysis",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 34,
+    "term": "Go-To-Market (GTM)",
+    "definition": "The coordinated effort by Product, Sales, Marketing, Operations, and Support to discover they each had a different launch date.",
+    "slug": "go-to-market-gtm",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 35,
+    "term": "Governance",
+    "definition": "A collection of meetings, approvals, committees, and decision rights created to ensure important decisions are made deliberately, eventually, or elsewhere.",
+    "slug": "governance",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 36,
+    "term": "Graceful Degradation",
+    "definition": "A system's ability to fail politely while the incident channel becomes considerably less polite.",
+    "slug": "graceful-degradation",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 37,
+    "term": "Greenfield",
+    "definition": "A clean slate on which to rebuild the same approval process that made the previous system impossible to change.",
+    "slug": "greenfield",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 38,
+    "term": "Hard Stop",
+    "definition": "A polite meeting exit tactic used to escape an unproductive call five minutes before your next unproductive call.",
+    "slug": "hard-stop",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 39,
+    "term": "Headwinds",
+    "definition": "Conditions outside the organization's control. Frequently discovered near the end of a difficult quarter.",
+    "slug": "headwinds",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 40,
+    "term": "Heuristic",
+    "definition": "A practical rule of thumb used when perfect information is unavailable, later presented in PowerPoint with sufficient confidence to resemble perfect information.",
+    "slug": "heuristic",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 41,
+    "term": "HiPPO (Highest Paid Person's Opinion)",
+    "definition": "The ultimate decision-making framework that overrides all user research, A/B testing, and logical reasoning.",
+    "slug": "hippo-highest-paid-person-s-opinion",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 42,
+    "term": "Impact",
+    "definition": "The measurable difference created by an initiative, usually described most enthusiastically before anyone agrees how it will be measured.",
+    "slug": "impact",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 43,
+    "term": "Incremental",
+    "definition": "Shipping in small increments, each celebrated as a major milestone until somebody asks whether the destination has changed.",
+    "slug": "incremental",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 44,
+    "term": "Intake",
+    "definition": "A structured process for receiving unstructured requests from people who have already promised them to someone.",
+    "slug": "intake",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 45,
+    "term": "Iterative",
+    "definition": "Improving something through repeated cycles, assuming the second cycle survives the roadmap.",
+    "slug": "iterative",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 46,
+    "term": "Jira",
+    "definition": "A system for making work visible by transforming human effort into rectangles.",
+    "slug": "jira",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 47,
+    "term": "Job To Be Done (JTBD)",
+    "definition": "A useful way of understanding what customers are actually trying to accomplish, occasionally expanded until understanding the framework becomes its own job to be done.",
+    "slug": "job-to-be-done-jtbd",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 48,
+    "term": "Kicking the Can",
+    "definition": "Postponing the same critical fix until its original estimate qualifies as historical documentation.",
+    "slug": "kicking-the-can",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 49,
+    "term": "KPI (Key Performance Indicator)",
+    "definition": "A metric considered important enough to appear on an executive dashboard and stable enough to be redefined when necessary.",
+    "slug": "kpi-key-performance-indicator",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 50,
+    "term": "Lean",
+    "definition": "The elimination of waste from a process, sometimes enthusiastically extended to include staffing.",
+    "slug": "lean",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 51,
+    "term": "Legacy Code",
+    "definition": "Software everyone wants to replace, provided the replacement causes no downtime, costs nothing, and was finished last quarter.",
+    "slug": "legacy-code",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 52,
+    "term": "Low-Hanging Fruit",
+    "definition": "Easy tasks that have been ignored for so long they are now rotting at the bottom of the backlog.",
+    "slug": "low-hanging-fruit",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 53,
+    "term": "Market Validation",
+    "definition": "Evidence that customers actually want something, ideally obtained from customers who are neither relatives nor currently employed by the company.",
+    "slug": "market-validation",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 54,
+    "term": "Microservices",
+    "definition": "Dividing one application into independently deployable services, then creating a standing committee to coordinate their independence.",
+    "slug": "microservices",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 55,
+    "term": "MoSCoW Method",
+    "definition": "A prioritization tool where stakeholders label 95% of items as \"Must Haves\" and ignore the remaining letters.",
+    "slug": "moscow-method",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 56,
+    "term": "MVP (Minimum Viable Product)",
+    "definition": "The smallest version capable of testing a meaningful assumption, frequently interpreted as the smallest version everyone can tolerate apologizing for.",
+    "slug": "mvp-minimum-viable-product",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 57,
+    "term": "No-Code",
+    "definition": "Software that allows people to create applications without traditional programming, thereby moving several traditional programming problems somewhere less visible.",
+    "slug": "no-code",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 58,
+    "term": "Non-Negotiable",
+    "definition": "A surprise feature request introduced at 4:30 PM on a Friday by an executive who saw a demo video on LinkedIn.",
+    "slug": "non-negotiable",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 59,
+    "term": "North Star Metric",
+    "definition": "The single measure intended to orient the organization toward long-term value, supported by approximately 47 additional measures.",
+    "slug": "north-star-metric",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 60,
+    "term": "Offboarding",
+    "definition": "A carefully documented departure process that discovers the departing employee owns half the team's automations.",
+    "slug": "offboarding",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 61,
+    "term": "Offsite",
+    "definition": "A meeting held somewhere expensive enough that ordinary meetings briefly feel strategic.",
+    "slug": "offsite",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 62,
+    "term": "OKR (Objectives & Key Results)",
+    "definition": "A framework connecting ambitious goals to measurable outcomes, traditionally rediscovered near the end of each quarter.",
+    "slug": "okr-objectives-key-results",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 63,
+    "term": "Organic Growth",
+    "definition": "Growth achieved without marketing spend, not counting the founder personally messaging the entire internet.",
+    "slug": "organic-growth",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 64,
+    "term": "Pain Point",
+    "definition": "A genuine customer problem that becomes progressively more dramatic as it moves closer to a sales presentation.",
+    "slug": "pain-point",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 65,
+    "term": "Parity",
+    "definition": "Rebuilding every mediocre feature your competitor has so users can be equally disappointed by your platform.",
+    "slug": "parity",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 66,
+    "term": "Pivot",
+    "definition": "A strategic change in direction made after new evidence emerges, or immediately before old evidence becomes impossible to ignore.",
+    "slug": "pivot",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 67,
+    "term": "Post-Mortem",
+    "definition": "A structured examination of what went wrong, conducted in a psychologically safe environment where everyone already knows exactly what went wrong.",
+    "slug": "post-mortem",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 68,
+    "term": "Proof of Concept (PoC)",
+    "definition": "A temporary experiment created solely to demonstrate feasibility and therefore naturally considered for production.",
+    "slug": "proof-of-concept-poc",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 69,
+    "term": "QBR (Quarterly Business Review)",
+    "definition": "A four-hour meeting where leaders present 80-slide decks to peers who are secretly clearing their email inboxes.",
+    "slug": "qbr-quarterly-business-review",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 70,
+    "term": "Quality Assurance (QA)",
+    "definition": "The systematic effort to discover whether software behaves as intended before customers perform the same research independently.",
+    "slug": "quality-assurance-qa",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 71,
+    "term": "RACI Matrix",
+    "definition": "A matrix that assigns responsibility, accountability, consultation, and information so precisely that nobody is quite sure who can say yes.",
+    "slug": "raci-matrix",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 72,
+    "term": "Readiness",
+    "definition": "The organizational condition achieved immediately before discovering three things nobody realized were required.",
+    "slug": "readiness",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 73,
+    "term": "Refactor",
+    "definition": "Improving the internal structure of software without changing its external behavior, making it simultaneously essential to engineering and nearly invisible to everyone funding it.",
+    "slug": "refactor",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 74,
+    "term": "Retrospective (Retro)",
+    "definition": "A recurring meeting dedicated to identifying how the team can improve, including several improvements first identified during the previous retrospective.",
+    "slug": "retrospective-retro",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 75,
+    "term": "Roadmap",
+    "definition": "A colorful visual timeline of promised features that will be completely rearranged by next Tuesday morning.",
+    "slug": "roadmap",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 76,
+    "term": "Scope Creep",
+    "definition": "The quiet, steady expansion of a project's requirements until a simple patch turns into a complete system rebuild.",
+    "slug": "scope-creep",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 77,
+    "term": "Silo",
+    "definition": "An organizational boundary that functions perfectly until a customer needs two departments to solve the same problem.",
+    "slug": "silo",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 78,
+    "term": "Single Source of Truth",
+    "definition": "The authoritative location for information, alongside the spreadsheet, Slack thread, PowerPoint, Jira ticket, SharePoint page, and copy someone saved locally.",
+    "slug": "single-source-of-truth",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 79,
+    "term": "Spike",
+    "definition": "A time-boxed investigation intended to reduce uncertainty, occasionally concluding with a professionally documented increase in uncertainty.",
+    "slug": "spike",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 80,
+    "term": "Sprint",
+    "definition": "A fixed period for completing selected work, followed by another fixed period containing some remarkably familiar selected work.",
+    "slug": "sprint",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 81,
+    "term": "Stakeholder",
+    "definition": "Anyone whose input is essential, whose priorities are urgent, and whose decision rights remain under active discussion.",
+    "slug": "stakeholder",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 82,
+    "term": "Synergy",
+    "definition": "The predicted benefit of working together, most reliably observed in PowerPoint before the teams have met.",
+    "slug": "synergy",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 83,
+    "term": "T-Shirt Sizing",
+    "definition": "Estimating complex work using clothing sizes so everyone can disagree about effort without becoming distracted by numbers.",
+    "slug": "t-shirt-sizing",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 84,
+    "term": "Technical Debt",
+    "definition": "The future cost created by today's expedient technical decisions, making it one of the few forms of debt routinely approved without a repayment schedule.",
+    "slug": "technical-debt",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 85,
+    "term": "Thought Leadership",
+    "definition": "The public sharing of expertise and original thinking, plus several observations about leadership that were previously available on coffee mugs.",
+    "slug": "thought-leadership",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 86,
+    "term": "Traction",
+    "definition": "Getting three sign-ups in a week and using exponential trendlines to project a billion-dollar valuation by Q4.",
+    "slug": "traction",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 87,
+    "term": "Unblock",
+    "definition": "To remove an obstacle preventing progress, commonly accomplished by scheduling a meeting with the person who did not answer the message.",
+    "slug": "unblock",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 88,
+    "term": "Unicorn",
+    "definition": "A privately held startup valued above one billion dollars, proving that mythical creatures can, under certain market conditions, have capitalization tables.",
+    "slug": "unicorn",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 89,
+    "term": "User Story",
+    "definition": "A concise description of user value written in ordinary language before acquiring fourteen acceptance criteria and three technical dependencies.",
+    "slug": "user-story",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 90,
+    "term": "UX (User Experience)",
+    "definition": "The discipline of making a product intuitive until seventeen non-negotiable requirements arrive from six departments.",
+    "slug": "ux-user-experience",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 91,
+    "term": "Value Add",
+    "definition": "Extra features thrown into a contract for free because the customer threatened to switch to a competitor.",
+    "slug": "value-add",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 92,
+    "term": "Value Proposition",
+    "definition": "The compelling reason customers should choose the product, polished until everyone can recite it and nobody can explain it.",
+    "slug": "value-proposition",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 93,
+    "term": "Velocity",
+    "definition": "A measure of how much work a team completes over time, most useful until somebody decides it should become a target.",
+    "slug": "velocity",
+    "category": "Product & Strategy"
+  },
+  {
+    "number": 94,
+    "term": "Water-Scrum-Fall",
+    "definition": "Quarterly commitments at the top, two-week sprints in the middle, and a release train that still waits for permission to leave the station.",
+    "slug": "water-scrum-fall",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 95,
+    "term": "White Paper",
+    "definition": "An authoritative industry report whose final finding is that you should enter your corporate email address.",
+    "slug": "white-paper",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 96,
+    "term": "WIP (Work in Progress)",
+    "definition": "A permanent state of existence for seven different features that will sit 90% complete for the next six months.",
+    "slug": "wip-work-in-progress",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 97,
+    "term": "X-Functional (Cross-Functional)",
+    "definition": "Gathering eight people from different departments in a room to guarantee that no single person has authority to make a decision.",
+    "slug": "x-functional-cross-functional",
+    "category": "Meetings & Governance"
+  },
+  {
+    "number": 98,
+    "term": "YOY (Year-Over-Year)",
+    "definition": "The growth comparison metric you switch to when your Month-Over-Month numbers look terrifying.",
+    "slug": "yoy-year-over-year",
+    "category": "Metrics & Marketing"
+  },
+  {
+    "number": 99,
+    "term": "Zero-Day",
+    "definition": "A previously unknown security vulnerability for which no fix yet exists, traditionally discovered at the exact moment everyone responsible becomes unavailable.",
+    "slug": "zero-day",
+    "category": "Engineering & Delivery"
+  },
+  {
+    "number": 100,
+    "term": "Zombie Ticket",
+    "definition": "A Jira issue that was closed six months ago, only to be reopened by an angry user on a Saturday morning.",
+    "slug": "zombie-ticket",
+    "category": "Engineering & Delivery"
+  }
+]
