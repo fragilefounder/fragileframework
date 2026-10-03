@@ -1323,6 +1323,15 @@ input:focus-visible {
 .dict-search-label {display:block; font:700 .78rem var(--font-mono); text-transform:uppercase; letter-spacing:.12em; margin-bottom:.7rem;}
 .dict-search {display:block; width:100%;border:2px solid var(--ink); background:white; font:1rem var(--font-mono);padding:1rem 1.1rem;border-radius:0; color:var(--ink);}
 .dict-search:focus {outline:3px solid var(--red);outline-offset:3px;}
+
+/* One-tap clear for dictionary search; topic and alphabet selections persist. */
+.dict-search-wrap {position:relative;}
+.dict-search-wrap .dict-search {padding-right:6.25rem;}
+.dict-search-clear {position:absolute;right:.65rem;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;gap:.35rem;padding:.45rem .55rem;border:1px solid var(--ink);background:var(--paper-light);color:var(--ink);font:700 .8rem var(--font-mono);cursor:pointer;min-height:2.75rem;}
+.dict-search-clear:hover,.dict-search-clear:focus-visible {background:var(--ink);color:white;}
+.dict-search-clear[hidden] {display:none;}
+@media(max-width:480px){.dict-search-wrap .dict-search {padding-right:4.1rem;}.dict-search-clear {right:.45rem;padding:.35rem .45rem;}.dict-search-clear span {display:none;}}
+
 .dict-categories,.dict-alphabet {display:flex;gap:.45rem;flex-wrap:wrap;margin-top:1rem;}
 .dict-filter {font:700 .73rem var(--font-mono);text-transform:uppercase;letter-spacing:.015em;cursor:pointer;padding:.65rem .75rem;background:transparent;border:1px solid var(--ink);color:var(--ink);}
 .dict-filter:hover,.dict-filter[aria-pressed="true"] {background:var(--ink);color:var(--paper-light);}

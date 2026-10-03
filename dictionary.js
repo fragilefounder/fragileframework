@@ -2,11 +2,13 @@
 'use strict';
 const search=document.getElementById('dictionary-search');
 const status=document.getElementById('dictionary-status');
+const clearSearch=document.getElementById('dictionary-search-clear');
 const cards=[...document.querySelectorAll('.dict-entry')];
 const empty=document.getElementById('dictionary-empty');
 let category='All terms'; let letter='ALL';
 const normalize=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase();
 function update(){
+  clearSearch.hidden=search.value.length===0;
   const q=normalize(search.value.trim());let count=0;
   for(const card of cards){const ok=(!q||normalize(card.dataset.search).includes(q))&&(category==='All terms'||card.dataset.category===category)&&(letter==='ALL'||card.dataset.letter===letter);card.hidden=!ok;if(ok)count++;}
   status.textContent=count===100?'Showing all 100 terms.':`Showing ${count} of 100 terms.`;
@@ -14,6 +16,7 @@ function update(){
 }
 function select(group,btn,field){group.querySelectorAll('button').forEach(el=>el.setAttribute('aria-pressed',String(el===btn)));if(field==='category')category=btn.dataset.category;else letter=btn.dataset.letter;update();}
 search.addEventListener('input',update);
+clearSearch.addEventListener('click',()=>{search.value='';update();search.focus();});
 const cats=document.querySelector('.dict-categories');const alphabet=document.querySelector('.dict-alphabet');
 cats.addEventListener('click',e=>{const btn=e.target.closest('button[data-category]');if(btn)select(cats,btn,'category');});
 alphabet.addEventListener('click',e=>{const btn=e.target.closest('button[data-letter]');if(btn&&!btn.disabled)select(alphabet,btn,'letter');});
