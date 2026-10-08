@@ -1,30 +1,80 @@
-(() => {
-'use strict';
-const search=document.getElementById('dictionary-search');
-const status=document.getElementById('dictionary-status');
-const clearSearch=document.getElementById('dictionary-search-clear');
-const cards=[...document.querySelectorAll('.dict-entry')];
-const empty=document.getElementById('dictionary-empty');
-let category='All terms'; let letter='ALL';
-const normalize=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase();
-function update(){
-  clearSearch.hidden=search.value.length===0;
-  const q=normalize(search.value.trim());let count=0;
-  for(const card of cards){const ok=(!q||normalize(card.dataset.search).includes(q))&&(category==='All terms'||card.dataset.category===category)&&(letter==='ALL'||card.dataset.letter===letter);card.hidden=!ok;if(ok)count++;}
-  status.textContent=count===100?'Showing all 100 terms.':`Showing ${count} of 100 terms.`;
-  empty.hidden=count!==0;
-}
-function select(group,btn,field){group.querySelectorAll('button').forEach(el=>el.setAttribute('aria-pressed',String(el===btn)));if(field==='category')category=btn.dataset.category;else letter=btn.dataset.letter;update();}
-search.addEventListener('input',update);
-clearSearch.addEventListener('click',()=>{search.value='';update();search.focus();});
-const cats=document.querySelector('.dict-categories');const alphabet=document.querySelector('.dict-alphabet');
-cats.addEventListener('click',e=>{const btn=e.target.closest('button[data-category]');if(btn)select(cats,btn,'category');});
-alphabet.addEventListener('click',e=>{const btn=e.target.closest('button[data-letter]');if(btn&&!btn.disabled)select(alphabet,btn,'letter');});
-document.getElementById('dictionary-reset').addEventListener('click',()=>{search.value='';select(cats,cats.querySelector('[data-category="All terms"]'),'category');select(alphabet,alphabet.querySelector('[data-letter="ALL"]'),'letter');search.focus();});
-async function copy(text,btn){let success=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);success=true;}else{const node=document.createElement('textarea');node.value=text;node.style.position='fixed';node.style.opacity='0';document.body.append(node);node.select();success=document.execCommand('copy');node.remove();}}catch(e){success=false;}
- if(success){const before=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent=before;},1900);}else{window.prompt('Copy manually:',text);}}
-document.getElementById('dictionary-list').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;if(btn.dataset.copy)copy(btn.dataset.copy,btn);if(btn.dataset.share)copy(`${location.origin}${location.pathname}#${btn.dataset.share}`,btn);});
-// Direct hash links always reveal the requested entry even if filters were changed.
-function revealHash(){const slug=decodeURIComponent(location.hash.slice(1));if(!slug)return;const match=document.getElementById(slug);if(match&&match.classList.contains('dict-entry')){search.value='';select(cats,cats.querySelector('[data-category="All terms"]'),'category');select(alphabet,alphabet.querySelector('[data-letter="ALL"]'),'letter');match.scrollIntoView({block:'start'});}}
-window.addEventListener('hashchange',revealHash);if(location.hash)requestAnimationFrame(revealHash);
+(function () {
+  "use strict";
+
+  const entries = Array.from(document.querySelectorAll(".dict-entry"));
+  const search = document.getElementById("dictionary-search");
+  const clear = document.getElementById("dictionary-search-clear");
+  const status = document.getElementById("dictionary-status");
+  const empty = document.getElementById("dictionary-empty");
+  const reset = document.getElementById("dictionary-reset");
+  const categoryButtons = Array.from(document.querySelectorAll("[data-category]"));
+  const letterButtons = Array.from(document.querySelectorAll("[data-letter]"));
+  let category = "All terms";
+  let letter = "ALL";
+
+  function update() {
+    const query = search.value.trim().toLowerCase();
+    let visible = 0;
+    entries.forEach((entry) => {
+      const matchesQuery = !query || entry.dataset.search.includes(query);
+      const matchesCategory = category === "All terms" || entry.dataset.category === category;
+      const matchesLetter = letter === "ALL" || entry.dataset.letter === letter;
+      const show = matchesQuery && matchesCategory && matchesLetter;
+      entry.hidden = !show;
+      if (show) visible += 1;
+    });
+    const filtered = query || category !== "All terms" || letter !== "ALL";
+    status.textContent = filtered
+      ? `Showing ${visible} of ${entries.length} terms.`
+      : `Showing all ${entries.length} terms.`;
+    clear.hidden = !query;
+    empty.hidden = visible !== 0;
+  }
+
+  function select(buttons, selected) {
+    buttons.forEach((button) => button.setAttribute("aria-pressed", String(button === selected)));
+  }
+
+  search.addEventListener("input", update);
+  clear.addEventListener("click", () => {
+    search.value = "";
+    search.focus();
+    update();
+  });
+  categoryButtons.forEach((button) => button.addEventListener("click", () => {
+    category = button.dataset.category;
+    select(categoryButtons, button);
+    update();
+  }));
+  letterButtons.forEach((button) => button.addEventListener("click", () => {
+    letter = button.dataset.letter;
+    select(letterButtons, button);
+    update();
+  }));
+  reset.addEventListener("click", () => {
+    search.value = "";
+    category = "All terms";
+    letter = "ALL";
+    select(categoryButtons, categoryButtons.find((button) => button.dataset.category === category));
+    select(letterButtons, letterButtons.find((button) => button.dataset.letter === letter));
+    update();
+  });
+
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest(".dict-copy");
+    if (!button) return;
+    const text = button.dataset.share
+      ? `${location.origin}${location.pathname}#${button.dataset.share}`
+      : button.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(text);
+      const previous = button.textContent;
+      button.textContent = "Copied";
+      window.setTimeout(() => { button.textContent = previous; }, 1400);
+    } catch (_) {
+      window.prompt("Copy this:", text);
+    }
+  });
+
+  update();
 })();
