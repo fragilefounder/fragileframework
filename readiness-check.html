@@ -574,6 +574,7 @@
 
     .own-textarea {
       display: block;
+      box-sizing: border-box;
       width: 100%;
       min-height: 160px;
       resize: vertical;
@@ -824,17 +825,15 @@
             <section class="submission-panel" aria-labelledby="own-title">
               <div class="submission-panel__label">Try your own</div>
               <h3 class="submission-panel__title" id="own-title">Sanitized backlog chaos only.</h3>
-              <p>Paste a cleaned-up epic, story, or business ask. This public page shows the scoring path, not live AI grading. Because even satire needs a privacy policy and a chair in Legal.</p>
+              <p>Paste a cleaned-up epic, story, or business ask. An AI model scores it against the same five gates. The verdict comes from the scores using the fixed rule above, not from the model's mood.</p>
 
-              <div class="privacy-warning"><strong>Privacy warning:</strong> Do not paste confidential data. The satire is public. Keep customer, employee, legal, security, financial, and proprietary details out of the demo.</div>
+              <div class="privacy-warning"><strong>Privacy warning:</strong> Do not paste confidential data. Your text is sent to Anthropic's API to be scored and is not saved by this site. Keep customer, employee, legal, security, financial, and proprietary details out of it.</div>
 
               <label class="own-label" for="own-input">Sanitized item</label>
-              <textarea class="own-textarea" id="own-input" rows="6" placeholder="Example: New clients wait three days for a manual eligibility check. We want to automate the standard rules first... but remove anything confidential before pasting, captain obvious."></textarea>
-              <button class="button" type="button" id="own-button">See scoring path</button>
+              <textarea class="own-textarea" id="own-input" rows="6" maxlength="2500" placeholder="Example: New clients wait three days for a manual eligibility check. We want to automate the standard rules first... but remove anything confidential before pasting, captain obvious."></textarea>
+              <button class="button" type="button" id="own-button">Score my item</button>
 
-              <div class="own-note" id="own-note" aria-live="polite">
-                <strong>This public demo does not grade pasted text yet.</strong> The live version scores your item against the same five gates, returns the verdict, exposes the gaps, and rewrites the ask into something a team could actually build. Tiny miracle. Mildly accusatory.
-              </div>
+              <div class="own-note" id="own-note" aria-live="polite"></div>
             </section>
 
             <div class="tool-footnote">Five gates. Fixed standard. Computed verdict. If the story needs a meeting to explain what it means, congratulations, you found gate zero.</div>
@@ -1121,8 +1120,57 @@
         chooseExample(button.getAttribute("data-id"));
       });
 
-      ownButton.addEventListener("click", function () {
+      // Live grading: send the pasted item to the server function,
+      // then draw the results with the same render() the examples use.
+      var ownInput = document.getElementById("own-input");
+
+      function showNote(message) {
+        ownNote.textContent = message;
         ownNote.classList.add("show");
+      }
+
+      ownButton.addEventListener("click", function () {
+        var text = ownInput.value.trim();
+
+        // Cheap checks in the browser first, so obvious mistakes never cost an API call.
+        if (text.length < 40) {
+          showNote("Give it at least 40 characters. \"Make it better\" is not a backlog item.");
+          return;
+        }
+
+        ownButton.disabled = true;
+        ownButton.textContent = "Interrogating...";
+        showNote("Scoring against five gates. This usually takes 5 to 15 seconds.");
+
+        // The API call: POST the item as JSON to our own server function.
+        fetch("/api/readiness-check", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ requirement: text })
+        })
+          .then(function (response) {
+            if (response.status === 429) {
+              throw new Error("Easy there. Five checks a minute. Even interrogators take breaks.");
+            }
+            return response.json().then(function (data) {
+              if (!response.ok) {
+                throw new Error(data && data.error ? data.error : "Something broke. Try again.");
+              }
+              return data;
+            });
+          })
+          .then(function (data) {
+            render({ id: "own", label: "Your item", input: text, result: data });
+            ownNote.classList.remove("show");
+            document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
+          })
+          .catch(function (error) {
+            showNote(error && error.message ? error.message : "Something broke. Try again.");
+          })
+          .then(function () {
+            ownButton.disabled = false;
+            ownButton.textContent = "Score my item";
+          });
       });
 
       if (EXAMPLES.length) {
