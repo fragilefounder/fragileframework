@@ -797,6 +797,91 @@
       text-transform: uppercase;
     }
 
+    /* Phones: get the text box onto the first screen. */
+    @media (max-width: 600px) {
+      .document-bar {
+        display: none; /* decorative classification strip; desktop keeps it */
+      }
+
+      .rc-intro {
+        padding-block: 1.1rem 0.9rem;
+      }
+
+      .rc-intro__topline {
+        margin-bottom: 0.5rem;
+      }
+
+      .rc-intro__topline .eyebrow {
+        font-size: 0.68rem;
+      }
+
+      .rc-tag {
+        padding: 0.15rem 0.45rem;
+        font-size: 0.65rem;
+      }
+
+      .rc-title {
+        margin-bottom: 0.5rem;
+        font-size: clamp(1.9rem, 9vw, 2.4rem);
+      }
+
+      .rc-lede {
+        margin-bottom: 0.4rem;
+        font-size: 1.02rem;
+      }
+
+      .rc-explainer {
+        margin-bottom: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .rc-form {
+        padding: 0.9rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .rc-form__head {
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+
+      .rc-label {
+        flex: none;
+        margin-bottom: 0;
+        font-size: 1.15rem;
+        white-space: nowrap;
+      }
+
+      .rc-form__head .text-link {
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: flex-end;
+        font-size: 0.68rem;
+        text-align: right;
+      }
+
+      .rc-help {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .rc-privacy {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .rc-verify-note {
+        margin: -0.25rem 0 0.4rem;
+        font-size: 0.85rem;
+      }
+
+      .rc-textarea {
+        min-height: 10rem;
+      }
+    }
+
     @media (max-width: 480px) {
       .rc-actions .button {
         width: 100%;
@@ -892,7 +977,7 @@
             <label class="rc-label" for="rc-input">Backlog item</label>
             <a class="text-link" href="#how-scoring-works">How the scoring works</a>
           </div>
-          <p class="rc-help" id="rc-instruction">Paste one story, epic, or business ask, with the context and acceptance criteria you have.</p>
+          <p class="rc-help" id="rc-instruction">Include the context and acceptance criteria you have.</p>
           <p class="rc-privacy" id="rc-privacy"><strong>Use a sanitized item.</strong> Your text goes to Anthropic for assessment. Remove confidential, personal, and proprietary details.</p>
           <details class="rc-verify-note">
             <summary>Browser verification by Cloudflare Turnstile</summary>
