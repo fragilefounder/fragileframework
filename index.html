@@ -36,11 +36,11 @@
 
   <header class="site-nav">
     <div class="site-nav__inner">
-      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home" aria-current="page">
-        <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><span class="slash">/</span><span class="brand-page-label">Framework</span>
-      </a>
-
-      <nav class="site-nav__menu" aria-label="Primary navigation"><button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" hidden><span class="site-nav__toggle-icon" aria-hidden="true"></span>Menu</button><ul class="site-nav__links" id="site-nav-links"><li><a href="dictionary.html">Dictionary</a></li><li><a href="field-notes.html">Field Notes</a></li><li><a href="tools.html">Tools</a></li><li><a href="about.html">About</a></li></ul></nav>
+      <div class="site-nav__identity">
+        <a class="site-nav__brand" href="index.html" aria-label="frAGILE, home page" aria-current="page"><span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span></a>
+        <span class="site-nav__page"><span class="slash" aria-hidden="true">/</span>Framework</span>
+      </div>
+      <nav class="site-nav__menu" aria-label="Primary navigation"><button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" hidden><span class="site-nav__toggle-icon" aria-hidden="true"></span>Menu</button><ul class="site-nav__links" id="site-nav-links"><li><a href="readiness-check.html">Tools</a></li><li><a href="resources.html">Resources</a></li><li><a href="dictionary.html">Dictionary</a></li><li><a href="about.html">About</a></li></ul></nav>
     </div>
   </header>
 
@@ -65,8 +65,7 @@
             <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> is satire with substance for product teams who have watched process become performance art and still want the work to matter.
           </p>
           <div class="hero__actions">
-            <a class="button" href="dictionary.html">Browse the Dictionary</a>
-            <a class="button button--outline" href="tools.html">Pick a Tool</a>
+            <a class="button" href="readiness-check.html">Run the Readiness Check</a>
           </div>
         </div>
 
@@ -78,11 +77,54 @@
       </div>
     </section>
 
-    <section class="section section--paper-light home-purpose" aria-labelledby="purpose-title">
+    <section class="section section--paper-light home-start" id="start" aria-labelledby="start-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Section I. Start here</div>
+            <h2 class="section-heading__title" id="start-title">Three ways <span class="accent">in.</span></h2>
+          </div>
+          <p class="section-heading__caption">Check one piece of work, read the material, or translate the jargon.</p>
+        </div>
+
+        <ul class="home-destinations">
+          <li class="card card--dark home-destination">
+            <div class="card__label">Tools</div>
+            <h3 class="card__title">Readiness Check</h3>
+            <p class="card__copy">Run one story, epic, or business ask through five fixed gates. The result is ready, needs work, or should be politely escorted out of sprint planning.</p>
+            <ul class="home-gates" aria-label="The five readiness gates">
+              <li>Problem clarity</li><li>User and value</li><li>Scope boundaries</li><li>Acceptance evidence</li><li>Dependencies and risk</li>
+            </ul>
+            <p class="home-destination__note">Experimental. Do not paste confidential data.</p>
+            <div class="card__footer"><a class="text-link" href="readiness-check.html">Run the Readiness Check</a></div>
+          </li>
+
+          <li class="card home-destination" id="field-check">
+            <div class="card__label">Resources</div>
+            <h3 class="card__title">Read and discuss</h3>
+            <p class="card__copy">The Manifesto, the Playbook, and the Team Check-in: five questions about how your team works. Read them online or take the PDFs into a workshop. No email required.</p>
+            <div class="card__footer"><a class="text-link" href="resources.html">Browse Resources</a></div>
+          </li>
+
+          <li class="card home-destination">
+            <div class="card__label">Dictionary</div>
+            <h3 class="card__title">Corporate language, translated</h3>
+            <figure class="home-sample">
+              <figcaption class="home-sample__term">Alignment</figcaption>
+              <blockquote>The thirty-second period when everyone agrees on a direction before returning to their departments with five different interpretations of it.</blockquote>
+            </figure>
+            <p class="card__copy">One hundred terms. Search them, filter by topic, or link a colleague to the one they needed to hear.</p>
+            <div class="card__footer"><a class="text-link" href="dictionary.html">Browse the Dictionary</a></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-rule home-purpose" aria-labelledby="purpose-title">
       <div class="container">
         <div class="home-purpose__inner">
           <div>
-            <div class="eyebrow">Section I. What this is</div>
+            <div class="eyebrow">Section II. What this is</div>
             <h2 class="section-heading__title" id="purpose-title">A roast with a <span class="accent">recovery plan.</span></h2>
           </div>
           <div class="truth-grid">
@@ -100,71 +142,11 @@
       </div>
     </section>
 
-    <section class="section section--dark home-dictionary" aria-labelledby="dictionary-title">
-      <div class="container home-dictionary__inner">
-        <div>
-          <div class="eyebrow">Section II. The Dictionary</div>
-          <h2 class="home-dictionary__title" id="dictionary-title">Corporate language, <span class="accent">translated.</span></h2>
-          <p class="home-dictionary__copy">One hundred definitions of the things we say when nobody wants to explain what actually happened. Search by term, filter by topic, or link a colleague directly to the one they needed to hear.</p>
-          <div class="button-row">
-            <a class="button" href="dictionary.html">Browse all 100 terms</a>
-          </div>
-        </div>
-
-        <figure class="home-dictionary__sample">
-          <figcaption class="home-dictionary__sample-label">From the Dictionary · Meetings &amp; Governance</figcaption>
-          <p class="home-dictionary__term">Alignment</p>
-          <blockquote class="home-dictionary__definition">The thirty-second period when everyone agrees on a direction before returning to their departments with five different interpretations of it.</blockquote>
-          <a class="text-link" href="dictionary.html#alignment">Open this entry</a>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section section--paper-light home-notes" id="field-notes" aria-labelledby="field-notes-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">Section III. Field Notes</div>
-            <h2 class="section-heading__title" id="field-notes-title">The reading <span class="accent">material.</span></h2>
-          </div>
-          <p class="section-heading__caption">The long-form documents. <a href="field-notes.html">All Field Notes</a>, including the Emotional Backlog and every PDF.</p>
-        </div>
-
-        <div class="home-notes__grid">
-          <article class="card">
-            <div class="card__label">Field Note I</div>
-            <h3 class="card__title">The Manifesto</h3>
-            <p class="card__copy">The familiar values, restated without the LinkedIn lighting. Four broken defaults and the useful truth underneath each one.</p>
-            <div class="card__footer">
-              <a class="text-link" href="manifesto.html">Read the Manifesto</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__label">Field Note II</div>
-            <h3 class="card__title">The Playbook</h3>
-            <p class="card__copy">Case files from ceremonies that solved nothing, roles that forgot their purpose, and dashboards that somehow became strategy.</p>
-            <div class="card__footer">
-              <a class="text-link" href="playbook.html">Read the Playbook</a>
-            </div>
-          </article>
-        </div>
-
-        <aside class="home-notes__aside" aria-labelledby="backlog-title">
-          <div>
-            <h3 class="home-notes__aside-title" id="backlog-title">Something the case files missed?</h3>
-            <p>The Emotional Backlog is for the things teams feel but rarely file: alignment fatigue, backlog guilt, fake demos, and other tiny spiritual injuries.</p>
-          </div>
-          <a class="text-link" href="emotional-backlog.html">Open the Emotional Backlog</a>
-        </aside>
-      </div>
-    </section>
-
     <section class="section section--dark" aria-labelledby="signals-title">
       <div class="container">
         <div class="section-heading">
           <div>
-            <div class="eyebrow">Section IV. Known symptoms</div>
+            <div class="eyebrow">Section III. Known symptoms</div>
             <h2 class="section-heading__title" id="signals-title">Four signals the process has become the <span class="accent">product.</span></h2>
           </div>
           <p class="section-heading__caption">No diagnostic license. Considerable field exposure.</p>
@@ -191,80 +173,6 @@
       </div>
     </section>
 
-    <section class="section section--paper-deep" id="tools" aria-labelledby="tool-title">
-      <div class="container tool-spotlight">
-        <div class="tool-spotlight__scorecard" aria-label="Backlog readiness gates">
-          <div class="kicker">Go / No-Go Gate</div>
-          <ul class="gate-list">
-            <li><span>Problem clarity</span><strong>Required</strong></li>
-            <li><span>User and value</span><strong>Required</strong></li>
-            <li><span>Scope boundaries</span><strong>Required</strong></li>
-            <li><span>Acceptance evidence</span><strong>Required</strong></li>
-            <li><span>Dependencies and risk</span><strong>Required</strong></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="eyebrow">Section V. Tools</div>
-          <h2 class="tool-spotlight__title" id="tool-title">Your backlog does not need refinement. It needs interrogation.</h2>
-          <p class="tool-spotlight__copy">Run an epic, story, or business ask through five readiness gates. The result is ready, needs work, or should be politely escorted out of sprint planning.</p>
-          <div class="button-row">
-            <a class="button" href="readiness-check.html">Run the Readiness Check</a>
-          </div>
-          <p class="form-note">Do not paste confidential data. The satire is public. Your roadmap probably should not be.</p>
-          <p class="home-tools__companion">Looking at the whole team rather than one item? The <a href="docs/frAGILE_Field_Check.pdf" download>Field Check (PDF)</a> asks five questions about how your team works. <a href="tools.html">Compare the two checks</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--paper-light section-rule" id="downloads" aria-labelledby="downloads-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">Section VI. Downloads</div>
-            <h2 class="section-heading__title" id="downloads-title">Portable sarcasm. <span class="accent">Use responsibly.</span></h2>
-          </div>
-          <p class="section-heading__caption">Four PDFs for workshops, team conversations, or a suspiciously quiet retrospective. No email required.</p>
-        </div>
-
-        <p class="home-downloads__more"><a href="field-documents.html">Field Documents</a> has a preview, a download and, where one exists, an online version of each.</p>
-
-        <ul class="home-downloads">
-          <li class="resource">
-            <div>
-              <h3 class="resource__title">Manifesto</h3>
-              <p class="resource__meta">PDF · Four values · Mild organizational discomfort</p>
-            </div>
-            <a class="text-link" href="docs/frAGILE_Manifesto.pdf" download>Download Manifesto (PDF)</a>
-          </li>
-
-          <li class="resource">
-            <div>
-              <h3 class="resource__title">Playbook</h3>
-              <p class="resource__meta">PDF · Twelve case files · Zero certification credits</p>
-            </div>
-            <a class="text-link" href="docs/frAGILE_Playbook.pdf" download>Download Playbook (PDF)</a>
-          </li>
-
-          <li class="resource">
-            <div>
-              <h3 class="resource__title">Dictionary</h3>
-              <p class="resource__meta">PDF · One hundred terms · Still accumulating</p>
-            </div>
-            <a class="text-link" href="The_frAGILE_Dictionary.pdf" download>Download Dictionary (PDF)</a>
-          </li>
-
-          <li class="resource" id="field-check">
-            <div>
-              <h3 class="resource__title">Field Check</h3>
-              <p class="resource__meta">PDF · Five questions about how your team works</p>
-            </div>
-            <a class="text-link" href="docs/frAGILE_Field_Check.pdf" download>Download Field Check (PDF)</a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
     <section class="section" id="creator" aria-labelledby="creator-title">
       <div class="container creator">
         <aside class="creator__file" aria-label="Creator personnel file">
@@ -283,7 +191,7 @@
         </aside>
 
         <div class="creator__content">
-          <div class="eyebrow">Section VII. About the creator</div>
+          <div class="eyebrow">Section IV. About the creator</div>
           <h2 class="creator__title" id="creator-title">Built by someone who has attended enough alignment meetings.</h2>
           <div class="creator__copy">
             <p>Thach Nguyen is a product leader who has spent enough time around roadmaps, retrospectives, and transformation programs to notice when the language has detached from the work.</p>

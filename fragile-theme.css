@@ -312,8 +312,6 @@ input:focus-visible {
   transform: translateY(0);
 }
 
-
-
 /* =========================
    3a. Brand Casing Utilities
    =========================
@@ -406,8 +404,84 @@ input:focus-visible {
   color: var(--red);
 }
 
-.site-nav__brand .slash {
-  margin-inline: 0.45rem;
+/* Identity: the logo is the only link to Home. The page label beside it is plain text,
+   so the link's job is unambiguous. */
+.site-nav__identity {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: 0.15rem;
+}
+
+.site-nav__brand {
+  position: relative;
+  gap: 0.4rem;
+  padding-inline: 0.2rem;
+  margin-inline: -0.2rem;
+}
+
+/* Home cue, visible at rest on every device (including touch): a small house mark. */
+.site-nav__home-icon {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: var(--muted-light);
+  transition: color var(--ease-fast);
+}
+
+/* "Go home" label: appears under the logo on hover and on keyboard focus. */
+.site-nav__home-tip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 2;
+  padding: 0.3rem 0.5rem;
+  background: var(--paper-light);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--red);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-3px);
+  transition: opacity var(--ease-fast), transform var(--ease-fast), visibility var(--ease-fast);
+  pointer-events: none;
+}
+
+.site-nav__brand:hover .site-nav__home-tip,
+.site-nav__brand:focus-visible .site-nav__home-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.site-nav__brand:hover .site-nav__home-icon,
+.site-nav__brand:focus-visible .site-nav__home-icon {
+  color: var(--paper-light);
+}
+
+.site-nav__page {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--paper-light);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-nav__page .slash {
+  margin-inline: 0.4rem 0.45rem;
   color: var(--muted-light);
   font-family: var(--font-mono);
 }
@@ -528,20 +602,17 @@ input:focus-visible {
     gap: 0.4rem 1rem;
   }
 
-  .site-nav__brand {
-    display: flex;
+  .site-nav__identity {
     flex: 1 1 0;
-    align-items: center;
-    min-width: 0;
-    min-height: 44px;
+  }
+
+  .site-nav__brand {
+    flex: 0 0 auto;
     font-size: 1.2rem;
   }
 
-  .site-nav__brand .brand-page-label {
-    overflow: hidden;
-    min-width: 0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  .site-nav__page {
+    font-size: 1.2rem;
   }
 
   /* With JavaScript: compact bar, links behind the Menu button */
@@ -607,9 +678,8 @@ input:focus-visible {
   }
 }
 
-@media (max-width: 340px) {
-  .site-nav__brand .slash,
-  .site-nav__brand .brand-page-label {
+@media (max-width: 360px) {
+  .site-nav__page {
     display: none;
   }
 }
@@ -1557,188 +1627,10 @@ input:focus-visible {
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-/* Dictionary feature */
-.page-home .home-dictionary {
-  border-bottom: 12px solid var(--red);
-}
-
-.page-home .home-dictionary__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
-}
-
-.page-home .home-dictionary .eyebrow {
-  color: var(--red-on-dark);
-}
-
-.page-home .home-dictionary__title {
-  margin-bottom: 1.25rem;
-  font-family: var(--font-display);
-  font-size: var(--step-4);
-  font-weight: 400;
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-
-.page-home .home-dictionary__title .accent {
-  color: var(--red-on-dark);
-}
-
-.page-home .home-dictionary__copy {
-  max-width: 34rem;
-  margin-bottom: 2rem;
-  color: #eee5d9;
-  font-size: var(--step-1);
-  line-height: 1.6;
-}
-
-.page-home .home-dictionary__sample {
-  margin: 0;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  background: var(--paper-light);
-  color: var(--ink);
-  border: var(--border);
-  box-shadow: 8px 8px 0 var(--red);
-}
-
-.page-home .home-dictionary__sample-label {
-  margin-bottom: 1rem;
-  color: var(--red-dark);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.page-home .home-dictionary__term {
-  margin-bottom: 0.75rem;
-  font-family: var(--font-display);
-  font-size: var(--step-3);
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.page-home .home-dictionary__definition {
-  margin: 0 0 1.5rem;
-  color: var(--ink-brown);
-  font-size: var(--step-1);
-  line-height: 1.6;
-}
-
-/* Field Notes */
-.page-home .home-notes__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.25rem, 3vw, 2rem);
-}
-
-.page-home .home-notes .card__title {
-  font-size: var(--step-3);
-}
-
-.page-home .home-notes__aside {
-  display: flex;
-  gap: 1rem 2rem;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 1.5rem;
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
-  border: 1px dashed var(--ink);
-}
-
-.page-home .home-notes__aside p {
-  margin: 0;
-  color: var(--ink-brown);
-}
-
-.page-home .home-notes__aside-title {
-  margin-bottom: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.page-home .home-notes__aside .text-link {
-  flex: 0 0 auto;
-}
-
-/* Tools */
-.page-home .home-tools__companion {
-  max-width: 36rem;
-  padding-top: 1.25rem;
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--muted-light);
-}
-
-.page-home .home-tools__companion a {
-  color: var(--red-dark);
-  font-weight: 700;
-}
-
-/* Downloads: four named PDFs together */
-.page-home .home-downloads {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  background: var(--ink);
-  border: var(--border);
-  box-shadow: var(--shadow-md);
-}
-
-.page-home .home-downloads .resource {
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.25rem;
-}
-
-.page-home .home-downloads .resource + .resource {
-  border: 0;
-}
-
-.page-home .home-downloads .text-link {
-  min-height: 44px;
-}
-
 @media (max-width: 980px) {
-  .page-home .home-purpose__inner,
-  .page-home .home-dictionary__inner {
+  .page-home .home-purpose__inner {
     grid-template-columns: 1fr;
   }
-
-  .page-home .home-downloads {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .page-home .home-notes__grid,
-  .page-home .home-downloads {
-    grid-template-columns: 1fr;
-  }
-
-  .page-home .home-notes__aside {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .page-home .home-dictionary__title {
-    font-size: clamp(2.9rem, 14vw, 4.5rem);
-  }
-}
-
-/* Download links: let the label wrap naturally with its arrow; keep a 44px target */
-.page-home .home-downloads .text-link {
-  display: block;
-  padding-block: 0.65rem;
-  line-height: 1.5;
 }
 
 /* The "Solo project" stamp overlapped the personnel-file text on main; give it room */
@@ -2124,15 +2016,9 @@ html:not(.js) .page-dictionary .dict-entry__buttons {
   padding-block: clamp(3rem, 6vw, 5.5rem);
 }
 
-.page-home .section-heading__caption a,
-.page-home .home-tools__companion a,
-.page-home .home-downloads__more a {
+.page-home .section-heading__caption a {
   color: var(--red-dark);
   font-weight: 700;
-}
-
-.page-home .home-downloads__more {
-  margin: 0 0 1.5rem;
 }
 
 /* =========================
@@ -2172,41 +2058,6 @@ html:not(.js) .page-dictionary .dict-entry__buttons {
   line-height: 1.6;
 }
 
-/* Field Notes: four cards */
-.note-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.25rem, 3vw, 2rem);
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-/* Tools: side-by-side comparison */
-.tool-compare {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border: var(--border);
-  box-shadow: var(--shadow-md);
-}
-
-.tool-compare__option {
-  display: flex;
-  flex-direction: column;
-  padding: clamp(1.4rem, 3vw, 2.25rem);
-  background: var(--paper-light);
-}
-
-.tool-compare__option + .tool-compare__option {
-  border-left: var(--border);
-}
-
-.tool-compare__option--dark {
-  background: var(--ink);
-  color: var(--paper-light);
-}
-
-.tool-compare__kicker,
 .doc-card__label {
   margin-bottom: 0.6rem;
   color: var(--red-dark);
@@ -2217,11 +2068,6 @@ html:not(.js) .page-dictionary .dict-entry__buttons {
   text-transform: uppercase;
 }
 
-.tool-compare__option--dark .tool-compare__kicker {
-  color: var(--red-on-dark);
-}
-
-.tool-compare__title,
 .doc-card__title {
   margin-bottom: 0.75rem;
   font-family: var(--font-display);
@@ -2231,31 +2077,17 @@ html:not(.js) .page-dictionary .dict-entry__buttons {
   text-transform: uppercase;
 }
 
-.tool-compare__question {
-  margin-bottom: 1.5rem;
-  font-size: var(--step-1);
-  font-style: italic;
-  line-height: 1.45;
-}
-
-.tool-compare__facts,
 .doc-card__facts {
   display: grid;
   gap: 0.9rem;
   margin: 0 0 1.75rem;
 }
 
-.tool-compare__facts div,
 .doc-card__facts div {
   padding-top: 0.75rem;
   border-top: 1px solid var(--muted-light);
 }
 
-.tool-compare__option--dark .tool-compare__facts div {
-  border-color: rgba(251, 246, 236, 0.3);
-}
-
-.tool-compare__facts dt,
 .doc-card__facts dt {
   margin-bottom: 0.2rem;
   color: var(--muted);
@@ -2266,45 +2098,8 @@ html:not(.js) .page-dictionary .dict-entry__buttons {
   text-transform: uppercase;
 }
 
-.tool-compare__option--dark .tool-compare__facts dt {
-  color: #cfc4b6;
-}
-
-.tool-compare__facts dd,
 .doc-card__facts dd {
   margin: 0;
-}
-
-.tool-compare__example {
-  margin: 0 0 1.75rem;
-  padding: 1rem 1.1rem;
-  border: 1px dashed currentColor;
-  font-size: 0.95rem;
-}
-
-.tool-compare__example strong {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.tool-compare__option .button-row {
-  margin-top: auto;
-}
-
-.tool-compare__option--dark .form-note {
-  color: #cfc4b6;
-}
-
-.rule-of-thumb {
-  max-width: 46rem;
-  margin: clamp(2rem, 4vw, 3rem) auto 0;
-  font-size: var(--step-1);
-  line-height: 1.5;
-  text-align: center;
 }
 
 /* Field Documents: one card per PDF */
@@ -2361,22 +2156,6 @@ html:not(.js) .page-dictionary .dict-entry__buttons {
   }
 }
 
-@media (max-width: 760px) {
-  .note-grid,
-  .tool-compare {
-    grid-template-columns: 1fr;
-  }
-
-  .tool-compare__option + .tool-compare__option {
-    border-top: var(--border);
-    border-left: 0;
-  }
-}
-
-.page-field-notes .card--dark .text-link {
-  color: var(--red-on-dark);
-}
-
 /* Dictionary opening on wide screens: title and one-sentence lede share a row, so entries
    start within the first screen. No fixed heights; content sets the size. */
 @media (min-width: 981px) {
@@ -2417,56 +2196,123 @@ html:not(.js) .page-dictionary .dict-entry__buttons {
   padding-right: 1.1rem;
 }
 
-/* Tools: both choices sit directly under the short introduction; detail comes after. */
-.tool-choices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem 1rem;
-  padding: 0;
-  margin: 1.75rem 0 0;
-  list-style: none;
-}
-
-.tool-choices .button--light:hover {
-  background: var(--paper);
-  border-color: var(--paper);
-}
-
-.tools-compare__title {
-  margin-bottom: 0.75rem;
-}
-
-.tools-compare__lede {
-  max-width: 44rem;
-  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
-  font-size: var(--step-1);
-  line-height: 1.55;
-}
-
-.tool-compare__more {
-  margin: 1.25rem 0 0;
-  font-size: 0.95rem;
-}
-
-.tool-compare__more a {
-  color: var(--red-dark);
-  font-weight: 700;
-}
-
-@media (max-width: 520px) {
-  .tool-choices {
-    flex-direction: column;
-  }
-
-  .tool-choices .button {
-    width: 100%;
-  }
-}
-
 /* Dictionary shared links (#term): the site-wide smooth scroll could be interrupted while
    dictionary.js scrolled to a shared term just after load, leaving the page partway down
    (about 1 load in 10 in testing). The Dictionary jumps instead. Scoped with :has() so no
    other page changes; browsers without :has() keep the previous behavior. */
 html:has(> body.page-dictionary) {
   scroll-behavior: auto;
+}
+
+/* =========================
+   20. Pass 2: three destinations on the homepage, Resources intro, redirects
+   ========================= */
+.page-home .home-destinations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.page-home .home-destination .card__label {
+  color: var(--red-dark);
+}
+
+.page-home .home-destination.card--dark .card__label {
+  color: var(--red-on-dark);
+}
+
+.page-home .home-destination.card--dark .text-link {
+  color: var(--red-on-dark);
+}
+
+.page-home .home-gates {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0;
+  margin: -0.5rem 0 1.25rem;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.page-home .home-gates li {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(251, 246, 236, 0.18);
+}
+
+.page-home .home-destination__note {
+  margin: 0 0 1.25rem;
+  color: rgba(251, 246, 236, 0.75);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.page-home .home-sample {
+  padding: 1rem 1.1rem;
+  margin: 0 0 1.25rem;
+  border: 1px dashed var(--ink);
+}
+
+.page-home .home-sample__term {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.page-home .home-sample blockquote {
+  margin: 0;
+  color: var(--ink-brown);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.page-intro__note {
+  max-width: 44rem;
+  margin: 1.25rem 0 0;
+  color: #dbcec2;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.page-intro__note a,
+.page-intro__lede a {
+  color: var(--paper-light);
+  font-weight: 700;
+}
+
+.anchor-alias {
+  display: block;
+  height: 0;
+}
+
+@media (max-width: 980px) {
+  .page-home .home-destinations {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Retired-URL pages: the destinations as a plain list of links */
+.moved-links {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  list-style: none;
+}
+
+.moved-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--paper-light);
+  font-weight: 700;
 }
