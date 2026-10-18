@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#0A0A0A">
 
   <link rel="canonical" href="https://fragileframework.com/">
-  <link rel="icon" href="images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fragileframework.com/">
@@ -234,11 +234,11 @@
           <p class="section-heading__caption">For workshops, team conversations, or a suspiciously quiet retrospective.</p>
         </div>
 
-        <div class="resource-strip">
+        <div class="resource-strip resource-strip--three">
           <article class="resource">
             <div>
               <h3 class="resource__title">Manifesto</h3>
-              <p class="resource__meta">Editable document · Four values · Mild organizational discomfort</p>
+              <p class="resource__meta">PDF · Four values · Mild organizational discomfort</p>
             </div>
             <a class="text-link" href="docs/frAGILE_Manifesto.pdf" download>Download</a>
           </article>
@@ -246,9 +246,17 @@
           <article class="resource">
             <div>
               <h3 class="resource__title">Playbook</h3>
-              <p class="resource__meta">Editable document · Case files · Zero certification credits</p>
+              <p class="resource__meta">PDF · Case files · Zero certification credits</p>
             </div>
             <a class="text-link" href="docs/frAGILE_Playbook.pdf" download>Download</a>
+          </article>
+
+          <article class="resource" id="field-check">
+            <div>
+              <h3 class="resource__title">Field Check</h3>
+              <p class="resource__meta">PDF · Five questions about how your team works</p>
+            </div>
+            <a class="text-link" href="docs/frAGILE_Field_Check.pdf" download>Download Field Check (PDF)</a>
           </article>
         </div>
       </div>
@@ -287,24 +295,6 @@
       </div>
     </section>
 
-    <section class="section section--paper-deep section-rule newsletter" aria-labelledby="newsletter-title">
-      <div class="container newsletter__inner">
-        <div class="eyebrow">Final section. Voluntary subscription</div>
-        <h2 class="newsletter__title" id="newsletter-title">Join the movement. Or at least the mailing list.</h2>
-        <p class="newsletter__copy">Occasional <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> updates. No spam. No thought leadership funnel disguised as friendship.</p>
-
-        <form class="signup-form" name="loyalty-pledge" method="post" action="/thanks-pledge.html" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="loyalty-pledge">
-          <p hidden>
-            <label>Do not fill this out if you are human: <input name="bot-field"></label>
-          </p>
-          <label class="sr-only" for="email">Email address</label>
-          <input id="email" type="email" name="email" autocomplete="email" placeholder="you@probably-overbooked.com" required>
-          <button class="button" type="submit">Subscribe</button>
-        </form>
-        <p class="form-note">Unsubscribe whenever the content starts sounding like a webinar.</p>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
