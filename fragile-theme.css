@@ -23,6 +23,7 @@
   --ink-brown: #2c1c0c;
   --red: #cc0000;
   --red-dark: #8f0000;
+  --red-on-dark: #f04444; /* signature red, lightened for small text on black (about 5:1) */
   --muted: #6b6157;
   --muted-light: #9a8f82;
   --white: #ffffff;
@@ -311,8 +312,6 @@ input:focus-visible {
   transform: translateY(0);
 }
 
-
-
 /* =========================
    3a. Brand Casing Utilities
    =========================
@@ -387,7 +386,10 @@ input:focus-visible {
 }
 
 .site-nav__brand {
+  display: inline-flex;
   flex: 0 0 auto;
+  align-items: center;
+  min-height: 44px;
   color: var(--paper-light);
   font-family: var(--font-display);
   font-size: 1.35rem;
@@ -402,8 +404,84 @@ input:focus-visible {
   color: var(--red);
 }
 
-.site-nav__brand .slash {
-  margin-inline: 0.45rem;
+/* Identity: the logo is the only link to Home. The page label beside it is plain text,
+   so the link's job is unambiguous. */
+.site-nav__identity {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: 0.15rem;
+}
+
+.site-nav__brand {
+  position: relative;
+  gap: 0.4rem;
+  padding-inline: 0.2rem;
+  margin-inline: -0.2rem;
+}
+
+/* Home cue, visible at rest on every device (including touch): a small house mark. */
+.site-nav__home-icon {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: var(--muted-light);
+  transition: color var(--ease-fast);
+}
+
+/* "Go home" label: appears under the logo on hover and on keyboard focus. */
+.site-nav__home-tip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 2;
+  padding: 0.3rem 0.5rem;
+  background: var(--paper-light);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--red);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-3px);
+  transition: opacity var(--ease-fast), transform var(--ease-fast), visibility var(--ease-fast);
+  pointer-events: none;
+}
+
+.site-nav__brand:hover .site-nav__home-tip,
+.site-nav__brand:focus-visible .site-nav__home-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.site-nav__brand:hover .site-nav__home-icon,
+.site-nav__brand:focus-visible .site-nav__home-icon {
+  color: var(--paper-light);
+}
+
+.site-nav__page {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--paper-light);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-nav__page .slash {
+  margin-inline: 0.4rem 0.45rem;
   color: var(--muted-light);
   font-family: var(--font-mono);
 }
@@ -416,13 +494,15 @@ input:focus-visible {
   margin: 0;
   list-style: none;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .site-nav__links a {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0.45rem 0.6rem;
   color: var(--paper-light);
   border: 1px solid transparent;
@@ -431,14 +511,177 @@ input:focus-visible {
   transition: color var(--ease-fast), border-color var(--ease-fast), background var(--ease-fast);
 }
 
+/* Hover keeps light text (red text on near-black measured 3.36:1). Red stays as the
+   border and a dark red wash; the underline gives a cue that does not rely on color. */
 .site-nav__links a:hover {
-  color: var(--red);
+  color: var(--paper-light);
+  background: rgba(204, 0, 0, 0.22);
+  border-color: var(--red);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.site-nav__links a[aria-current="page"],
+.site-nav__links a[aria-current="page"]:hover {
+  background: var(--red);
+  color: var(--paper-light);
   border-color: var(--red);
 }
 
-.site-nav__links a[aria-current="page"] {
-  background: var(--red);
+/* Pass 2: Field Notes is current while reading the Manifesto or Playbook */
+.site-nav__links a[aria-current="true"] {
+  border-color: var(--red);
+}
+
+.site-nav__links a:focus-visible,
+.site-nav__brand:focus-visible,
+.site-nav__toggle:focus-visible {
+  outline: 3px solid var(--paper-light);
+  outline-offset: 2px;
+}
+
+/* Disclosure toggle: only rendered when JavaScript has run (nav.js removes [hidden]) */
+.site-nav__toggle {
+  display: none;
+  min-height: 44px;
+  min-width: 44px;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.5rem 0.85rem;
+  background: transparent;
   color: var(--paper-light);
+  border: 1px solid rgba(251, 246, 236, 0.55);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.site-nav__toggle[hidden] {
+  display: none !important;
+}
+
+.site-nav__toggle:hover {
+  border-color: var(--red);
+}
+
+.site-nav__toggle-icon,
+.site-nav__toggle-icon::before,
+.site-nav__toggle-icon::after {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+}
+
+.site-nav__toggle-icon {
+  position: relative;
+}
+
+.site-nav__toggle-icon::before,
+.site-nav__toggle-icon::after {
+  position: absolute;
+  left: 0;
+  content: "";
+}
+
+.site-nav__toggle-icon::before { top: -5px; }
+.site-nav__toggle-icon::after { top: 5px; }
+
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-icon { background: transparent; }
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-icon::before { top: 0; transform: rotate(45deg); }
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-icon::after { top: 0; transform: rotate(-45deg); }
+
+@media (max-width: 760px) {
+  .site-nav__inner {
+    flex-wrap: nowrap;
+    gap: 0.4rem 1rem;
+  }
+
+  .site-nav__identity {
+    flex: 1 1 0;
+  }
+
+  .site-nav__brand {
+    flex: 0 0 auto;
+    font-size: 1.2rem;
+  }
+
+  .site-nav__page {
+    font-size: 1.2rem;
+  }
+
+  /* With JavaScript: compact bar, links behind the Menu button */
+  .js .site-nav__toggle {
+    display: inline-flex;
+  }
+
+  .js .site-nav__links {
+    display: none;
+  }
+
+  /* Opens as a panel directly under the bar (the sticky header is its containing block) */
+  .js .site-nav.is-open .site-nav__links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: grid;
+    gap: 0;
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+    padding: 0.25rem var(--gutter) 0.85rem;
+    background: var(--ink);
+    border-bottom: 3px solid var(--red);
+    font-size: 0.85rem;
+  }
+
+  .js .site-nav.is-open .site-nav__links li + li {
+    border-top: 1px solid rgba(251, 246, 236, 0.18);
+  }
+
+  .js .site-nav.is-open .site-nav__links a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Without JavaScript: every link stays visible and wraps; the bar scrolls away
+     instead of sticking, so a taller nav never covers the content. */
+  html:not(.js) .site-nav {
+    position: relative;
+  }
+
+  html:not(.js) .site-nav__inner {
+    flex-wrap: wrap;
+    padding-block: 0.6rem;
+  }
+
+  html:not(.js) .site-nav__menu {
+    flex-basis: 100%;
+  }
+
+  html:not(.js) .site-nav__links {
+    flex-wrap: wrap;
+    padding-block: 0.4rem 0.2rem;
+  }
+
+  html:not(.js) .site-nav__links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-nav__page {
+    display: none;
+  }
 }
 
 /* =========================
@@ -1156,7 +1399,7 @@ input:focus-visible {
 }
 
 .site-footer__tag {
-  color: var(--red);
+  color: var(--red-on-dark); /* signature red measured 3.36:1 on the black footer */
 }
 
 /* =========================
@@ -1170,20 +1413,6 @@ input:focus-visible {
   .resource-strip--three .resource + .resource {
     border-top: var(--border);
     border-left: 0;
-  }
-
-  .site-nav__inner {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 0;
-    padding-block: 0.75rem 0;
-  }
-
-  .site-nav__links {
-    width: calc(100vw - (var(--gutter) * 2));
-    overflow-x: auto;
-    padding-block: 0.65rem;
-    scrollbar-width: thin;
   }
 
   .hero__inner,
@@ -1210,10 +1439,6 @@ input:focus-visible {
 }
 
 @media (max-width: 760px) {
-  :root {
-    --nav-height: 104px;
-  }
-
   .document-bar__inner,
   .section-heading,
   .site-footer__inner {
@@ -1378,3 +1603,725 @@ input:focus-visible {
 .dict-endnote p {max-width:740px;}
 @media(max-width:780px){.dict-list{grid-template-columns:1fr}.dict-entry h2{font-size:2rem}}
 @media(prefers-reduced-motion:reduce){.dict-entry{scroll-behavior:auto}}
+
+/* =========================
+   17. Pass 2: Homepage prototype
+   Scoped to body.page-home so no other page body changes.
+   ========================= */
+.page-home .home-purpose {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.page-home .home-purpose__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.page-home .home-purpose .section-heading__title {
+  margin-bottom: 0;
+}
+
+.page-home .home-purpose .truth-grid {
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+@media (max-width: 980px) {
+  .page-home .home-purpose__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The "Solo project" stamp overlapped the personnel-file text on main; give it room */
+.page-home .creator__file-meta {
+  padding-bottom: 3.25rem;
+}
+
+/* =========================
+   18. Pass 2: Dictionary prototype
+   Scoped to body.page-dictionary; overrides the Stage 1 dict-* rules above.
+   ========================= */
+
+/* Shorter masthead so search is reachable sooner */
+.page-dictionary .dict-hero {
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom-width: 8px;
+}
+
+.page-dictionary .dict-hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin: 0.4rem 0 0.6rem;
+}
+
+.page-dictionary .dict-hero__lede {
+  margin-bottom: 0;
+}
+
+.page-dictionary .dict-hero__foot {
+  margin-top: 1.5rem;
+}
+
+.page-dictionary .dict-hero__foot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Search and filters */
+.page-dictionary .dict-utility {
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0 1.25rem;
+  background: var(--paper-deep);
+}
+
+.page-dictionary .dict-search-label {
+  font-size: 0.8rem;
+}
+
+.page-dictionary .dict-search {
+  min-height: 3.5rem;
+  border-width: 3px;
+  box-shadow: var(--shadow-sm);
+  font-size: 1.1rem;
+}
+
+.page-dictionary .dict-search::placeholder {
+  color: var(--muted);
+}
+
+.page-dictionary .dict-filters {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.page-dictionary .dict-filter-row {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0.5rem 1rem;
+  align-items: start;
+}
+
+.page-dictionary .dict-filter-row__label {
+  padding-top: 0.7rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-dictionary .dict-categories,
+.page-dictionary .dict-alphabet {
+  margin-top: 0;
+}
+
+.page-dictionary .dict-alphabet {
+  padding-top: 0;
+  border-top: 0;
+  gap: 0.3rem;
+}
+
+.page-dictionary .dict-filter {
+  min-height: 44px;
+  background: var(--paper-light);
+  font-size: 0.8rem;
+}
+
+.page-dictionary .dict-alphabet .dict-filter {
+  min-width: 44px;
+  padding: 0.4rem 0.5rem;
+}
+
+.page-dictionary .dict-filter:hover,
+.page-dictionary .dict-filter[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper-light);
+}
+
+.page-dictionary .dict-filter[aria-pressed="true"] {
+  box-shadow: 3px 3px 0 var(--red);
+}
+
+.page-dictionary .dict-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--muted-light);
+}
+
+.page-dictionary .dict-status {
+  margin: 0;
+}
+
+.page-dictionary .dict-clear-filters {
+  min-height: 44px;
+  padding: 0.4rem 0.2rem;
+  background: none;
+  border: 0;
+  color: var(--red-dark);
+  font: 700 0.78rem var(--font-mono);
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.page-dictionary .dict-clear-filters[hidden] {
+  display: none;
+}
+
+.page-dictionary .dict-clear-filters:focus-visible,
+.page-dictionary .dict-hero__foot a:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* Without JavaScript the controls cannot work, so show a note instead of dead buttons */
+.page-dictionary .dict-nojs {
+  display: none;
+  margin: 1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+html:not(.js) .page-dictionary .dict-nojs {
+  display: block;
+}
+
+html:not(.js) .page-dictionary .dict-search-label,
+html:not(.js) .page-dictionary .dict-search-wrap,
+html:not(.js) .page-dictionary .dict-filters,
+html:not(.js) .page-dictionary .dict-results,
+html:not(.js) .page-dictionary .dict-entry__buttons {
+  display: none;
+}
+
+/* Entries: clearer reading hierarchy */
+.page-dictionary .dict-main {
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(3.5rem, 7vw, 5rem);
+}
+
+.page-dictionary .dict-list {
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.page-dictionary .dict-entry {
+  padding: clamp(1.25rem, 2.6vw, 2rem);
+  background: var(--paper-light);
+  border-width: 2px;
+  border-top: 6px solid var(--ink);
+}
+
+.page-dictionary .dict-entry__eyebrow {
+  color: var(--red-dark);
+}
+
+.page-dictionary .dict-entry h2 {
+  margin: 0.55rem 0 0.75rem;
+  font-size: clamp(1.75rem, 2.6vw, 2.4rem);
+  line-height: 1.05;
+}
+
+.page-dictionary .dict-entry__definition {
+  max-width: 38rem;
+  margin-bottom: 1.4rem;
+  font-size: clamp(1.02rem, 1.3vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.page-dictionary .dict-entry__bottom {
+  padding-top: 0.6rem;
+}
+
+.page-dictionary .dict-entry__cat {
+  color: var(--muted);
+}
+
+.page-dictionary .dict-copy,
+.page-dictionary .dict-link {
+  min-height: 44px;
+  padding: 0.4rem 0.35rem;
+  color: var(--red-dark);
+}
+
+.page-dictionary .dict-entry:target {
+  outline: 4px solid var(--red);
+  outline-offset: 4px;
+}
+
+.page-dictionary .dict-empty {
+  text-align: center;
+}
+
+.page-dictionary .dict-empty h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .page-dictionary .dict-filter-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .page-dictionary .dict-filter-row__label {
+    padding-top: 0;
+  }
+
+  .page-dictionary .dict-categories {
+    gap: 0.35rem;
+  }
+
+  .page-dictionary .dict-alphabet {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  }
+
+  .page-dictionary .dict-alphabet [data-letter="ALL"] {
+    grid-column: span 2;
+  }
+
+  .page-dictionary .dict-entry h2 {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-dictionary .dict-search {
+    font-size: 1rem;
+  }
+
+  .page-dictionary .dict-hero__foot > span:nth-child(2) {
+    display: none;
+  }
+}
+
+/* Small red text on black measured 3.36:1 against AA's 4.5:1. On the homepage's dark
+   sections, use the lighter red the Dictionary masthead already uses (about 5:1). */
+.page-home .hero .eyebrow,
+.page-home .hero__title .small,
+.page-home .section--dark .eyebrow,
+.page-home .principle-list__text em {
+  color: var(--red-on-dark);
+}
+
+/* Mobile: Topic and First letter collapse behind one button (dictionary-filters.js).
+   The button carries a summary of the active filters, so selection stays visible. */
+.page-dictionary .dict-filters-toggle {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .page-dictionary .dict-utility.filters-ready .dict-filters-toggle:not([hidden]) {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.6rem 0.9rem;
+    margin-top: 1rem;
+    background: var(--paper-light);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    font-family: var(--font-mono);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .page-dictionary .dict-filters-toggle:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+  }
+
+  .page-dictionary .dict-filters-toggle__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .page-dictionary .dict-filters-toggle__summary {
+    flex: 1 1 auto;
+    min-width: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  .page-dictionary .dict-filters-toggle.is-filtered .dict-filters-toggle__summary {
+    color: var(--red-dark);
+    font-weight: 700;
+  }
+
+  .page-dictionary .dict-filters-toggle__icon {
+    flex: 0 0 auto;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.2rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-25%) rotate(45deg);
+  }
+
+  .page-dictionary .dict-filters-toggle[aria-expanded="true"] .dict-filters-toggle__icon {
+    transform: translateY(25%) rotate(-135deg);
+  }
+
+  /* filters-ready is added last by dictionary-filters.js. If that script fails or is
+     blocked, the filters simply stay expanded and usable. */
+  .page-dictionary .dict-utility.filters-ready:not(.is-filters-open) .dict-filters {
+    display: none;
+  }
+
+  .page-dictionary .dict-results {
+    margin-top: 1rem;
+  }
+}
+
+/* Dictionary opening on small screens: the task (search) comes before the paperwork.
+   The document bar and department kicker are decoration here; the title stays. */
+@media (max-width: 760px) {
+  .page-dictionary .document-bar,
+  .page-dictionary .dict-hero__kicker {
+    display: none;
+  }
+
+  .page-dictionary .dict-hero h1 {
+    margin-top: 0;
+  }
+
+  .page-dictionary .dict-hero__lede {
+    font-size: 1.05rem;
+  }
+
+  .page-dictionary .dict-utility {
+    padding-top: 1.1rem;
+  }
+}
+
+/* Homepage hero: drop the inherited viewport-height minimum and trim the padding so the
+   Dictionary and Tools paths sit near the top. Scoped to the homepage only. */
+.page-home .hero__inner {
+  min-height: 0;
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+
+.page-home .section-heading__caption a {
+  color: var(--red-dark);
+  font-weight: 700;
+}
+
+/* =========================
+   19. Pass 2: Field Notes, Tools and Field Documents pages
+   New class names only (page-intro, note-grid, tool-compare, doc-list), so no existing
+   page body is affected. Reuses tokens, cards, buttons, borders and shadows.
+   ========================= */
+.page-intro {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 4vw, 3rem);
+  background: var(--ink);
+  color: var(--paper-light);
+  border-bottom: 8px solid var(--red);
+}
+
+.page-intro .eyebrow {
+  color: var(--red-on-dark);
+}
+
+.page-intro__title {
+  margin: 0.5rem 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.page-intro__title .accent {
+  color: var(--red-on-dark);
+}
+
+.page-intro__lede {
+  max-width: 44rem;
+  margin: 0;
+  color: #eee5d9;
+  font-size: var(--step-1);
+  line-height: 1.6;
+}
+
+.doc-card__label {
+  margin-bottom: 0.6rem;
+  color: var(--red-dark);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.doc-card__title {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.doc-card__facts {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 0 1.75rem;
+}
+
+.doc-card__facts div {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--muted-light);
+}
+
+.doc-card__facts dt {
+  margin-bottom: 0.2rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.doc-card__facts dd {
+  margin: 0;
+}
+
+/* Field Documents: one card per PDF */
+.doc-list {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.doc-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+  background: var(--paper-light);
+  border: var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.doc-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-self: start;
+  padding-left: clamp(1.25rem, 3vw, 2.5rem);
+  border-left: 1px solid var(--muted-light);
+}
+
+.doc-card__actions .button {
+  width: 100%;
+}
+
+.doc-card__note,
+.doc-card__meta {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .doc-card {
+    grid-template-columns: 1fr;
+  }
+
+  .doc-card__actions {
+    padding-top: 1.25rem;
+    padding-left: 0;
+    border-top: 1px solid var(--muted-light);
+    border-left: 0;
+  }
+}
+
+/* Dictionary opening on wide screens: title and one-sentence lede share a row, so entries
+   start within the first screen. No fixed heights; content sets the size. */
+@media (min-width: 981px) {
+  .page-dictionary .dict-hero .container {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0 clamp(2rem, 5vw, 4rem);
+    align-items: end;
+  }
+
+  .page-dictionary .dict-hero__kicker {
+    grid-column: 1 / -1;
+  }
+
+  .page-dictionary .dict-hero h1 {
+    margin-bottom: 0;
+    font-size: clamp(3rem, 6vw, 5.25rem);
+  }
+
+  .page-dictionary .dict-hero__lede {
+    max-width: 30rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .page-dictionary .dict-utility {
+    padding-top: 1.5rem;
+  }
+
+  .page-dictionary .dict-main {
+    padding-top: 1.75rem;
+  }
+}
+
+/* The right padding reserves room for the Clear button, which only appears once something
+   is typed. While the placeholder shows, the field is empty and Clear is hidden, so the
+   placeholder can use that room instead of truncating. Text stays 16px or larger. */
+.page-dictionary .dict-search-wrap .dict-search:placeholder-shown {
+  padding-right: 1.1rem;
+}
+
+/* Dictionary shared links (#term): the site-wide smooth scroll could be interrupted while
+   dictionary.js scrolled to a shared term just after load, leaving the page partway down
+   (about 1 load in 10 in testing). The Dictionary jumps instead. Scoped with :has() so no
+   other page changes; browsers without :has() keep the previous behavior. */
+html:has(> body.page-dictionary) {
+  scroll-behavior: auto;
+}
+
+/* =========================
+   20. Pass 2: three destinations on the homepage, Resources intro, redirects
+   ========================= */
+.page-home .home-destinations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.page-home .home-destination .card__label {
+  color: var(--red-dark);
+}
+
+.page-home .home-destination.card--dark .card__label {
+  color: var(--red-on-dark);
+}
+
+.page-home .home-destination.card--dark .text-link {
+  color: var(--red-on-dark);
+}
+
+.page-home .home-gates {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0;
+  margin: -0.5rem 0 1.25rem;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.page-home .home-gates li {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(251, 246, 236, 0.18);
+}
+
+.page-home .home-destination__note {
+  margin: 0 0 1.25rem;
+  color: rgba(251, 246, 236, 0.75);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.page-home .home-sample {
+  padding: 1rem 1.1rem;
+  margin: 0 0 1.25rem;
+  border: 1px dashed var(--ink);
+}
+
+.page-home .home-sample__term {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.page-home .home-sample blockquote {
+  margin: 0;
+  color: var(--ink-brown);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.page-intro__note {
+  max-width: 44rem;
+  margin: 1.25rem 0 0;
+  color: #dbcec2;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.page-intro__note a,
+.page-intro__lede a {
+  color: var(--paper-light);
+  font-weight: 700;
+}
+
+/* An empty anchor kept for an old link. Positioned out of flow so it never
+   takes a cell in a grid or flex parent. */
+.doc-card {
+  position: relative;
+}
+
+.anchor-alias {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 980px) {
+  .page-home .home-destinations {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Retired-URL pages: the destinations as a plain list of links */
+.moved-links {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  list-style: none;
+}
+
+.moved-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--paper-light);
+  font-weight: 700;
+}
