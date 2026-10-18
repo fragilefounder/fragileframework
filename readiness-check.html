@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Backlog Readiness Check | frAGILE Framework™</title>
+  <title>Readiness Check | frAGILE Framework™</title>
   <meta name="description" content="Check one story, epic, or business ask against five fixed readiness gates: problem clarity, user and value, scope boundaries, acceptance evidence, and dependencies and risk.">
   <meta name="author" content="Thach Nguyen">
   <meta name="keywords" content="backlog readiness, product management, agile satire, requirements quality, acceptance criteria, frAGILE Framework">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Backlog Readiness Check | frAGILE Framework™">
+  <meta property="og:title" content="Readiness Check | frAGILE Framework™">
   <meta property="og:description" content="Your backlog does not need refinement. It needs interrogation.">
   <meta property="og:url" content="https://fragileframework.com/readiness-check.html">
   <meta property="og:image" content="https://fragileframework.com/images/og-readiness-check.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Backlog Readiness Check | frAGILE Framework™">
+  <meta name="twitter:title" content="Readiness Check | frAGILE Framework™">
   <meta name="twitter:description" content="A fixed-standard readiness gate for backlog items trying to sneak into delivery wearing a fake mustache.">
   <meta name="twitter:image" content="https://fragileframework.com/images/og-readiness-check.png">
 
@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
+  <script src="nav.js"></script>
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <script>
     // Cloudflare Turnstile loads on its own schedule. These two hooks record
@@ -932,20 +933,11 @@
 
   <header class="site-nav">
     <div class="site-nav__inner">
-      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
-        <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><span class="slash">/</span><span class="brand-page-label">Tools</span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <ul class="site-nav__links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="manifesto.html">Manifesto</a></li>
-          <li><a href="playbook.html">Playbook</a></li>
-          <li><a href="dictionary.html">Dictionary</a></li>
-          <li><a href="readiness-check.html" aria-current="page">Tools</a></li>
-          <li><a href="emotional-backlog.html">Emo Backlog</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
+      <div class="site-nav__identity">
+        <a class="site-nav__brand" href="index.html" aria-label="frAGILE, go home"><span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><svg class="site-nav__home-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path d="M2 7.5 8 2.5l6 5M3.75 6.25V13.5h3v-4h2.5v4h3V6.25" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"/></svg><span class="site-nav__home-tip" aria-hidden="true">Go home</span></a>
+        <span class="site-nav__page"><span class="slash" aria-hidden="true">/</span>Tools</span>
+      </div>
+      <nav class="site-nav__menu" aria-label="Primary navigation"><button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" hidden><span class="site-nav__toggle-icon" aria-hidden="true"></span>Menu</button><ul class="site-nav__links" id="site-nav-links"><li><a href="readiness-check.html" aria-current="page">Tools</a></li><li><a href="resources.html">Resources</a></li><li><a href="dictionary.html">Dictionary</a></li><li><a href="about.html">About</a></li></ul></nav>
     </div>
   </header>
 
@@ -964,7 +956,7 @@
           <span class="eyebrow">Go / No-Go Gate</span>
           <span class="rc-tag">Experimental</span>
         </div>
-        <h1 class="rc-title" id="readiness-title">Backlog Readiness Check</h1>
+        <h1 class="rc-title" id="readiness-title">Readiness Check</h1>
         <p class="rc-lede">Your backlog does not need refinement. It needs interrogation.</p>
         <p class="rc-explainer">Check one story, epic, or business ask against five readiness gates. See what is clear, what is missing, and what to resolve next.</p>
       </div>
