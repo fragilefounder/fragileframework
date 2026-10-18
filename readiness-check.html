@@ -927,8 +927,9 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="landing.css">
 </head>
-<body>
+<body class="page-readiness landing-page">
   <a class="skip-link" href="#main-content">Skip the ceremony. Interrogate the backlog.</a>
 
   <header class="site-nav">
@@ -957,8 +958,7 @@
           <span class="rc-tag">Experimental</span>
         </div>
         <h1 class="rc-title" id="readiness-title">Readiness Check</h1>
-        <p class="rc-lede">Your backlog does not need refinement. It needs interrogation.</p>
-        <p class="rc-explainer">Check one story, epic, or business ask against five readiness gates. See what is clear, what is missing, and what to resolve next.</p>
+        <p class="rc-explainer">Check one story, epic, or business ask against five readiness gates.</p>
       </div>
     </section>
 
@@ -967,14 +967,14 @@
         <form class="rc-form" id="rc-form" novalidate>
           <div class="rc-form__head">
             <label class="rc-label" for="rc-input">Backlog item</label>
-            <a class="text-link" href="#how-scoring-works">How the scoring works</a>
+            <div class="rc-input-actions" id="rc-input-actions" hidden>
+              <button type="button" id="rc-clear" aria-label="Clear backlog item" aria-controls="rc-input" disabled>Clear</button>
+              <button type="button" id="rc-undo-clear" aria-label="Undo clearing backlog item" aria-controls="rc-input" hidden>Undo clear</button>
+            </div>
+            <p class="sr-only" id="rc-clear-status" role="status" aria-live="polite"></p>
           </div>
           <p class="rc-help" id="rc-instruction">Include the context and acceptance criteria you have.</p>
           <p class="rc-privacy" id="rc-privacy"><strong>Use a sanitized item.</strong> Your text goes to Anthropic for assessment. Remove confidential, personal, and proprietary details.</p>
-          <details class="rc-verify-note">
-            <summary>Browser verification by Cloudflare Turnstile</summary>
-            <p>To limit automated abuse, Cloudflare Turnstile checks your browser before each assessment. Cloudflare receives browser signals for that check, not your backlog item. See the <a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile privacy addendum</a>.</p>
-          </details>
 
           <textarea
             class="rc-textarea"
@@ -989,9 +989,14 @@
             <span id="rc-count" aria-live="off">0 / 2,500 characters</span>
             <span>Accepted: 40–2,500 characters</span>
           </div>
+          <p><a class="text-link" href="#how-scoring-works">How the scoring works</a></p>
+          <details class="rc-verify-note">
+            <summary>Browser verification by Cloudflare Turnstile</summary>
+            <p>To limit automated abuse, Cloudflare Turnstile checks your browser before each assessment. Cloudflare receives browser signals for that check, not your backlog item. See the <a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile privacy addendum</a>.</p>
+          </details>
           <p class="rc-error" id="rc-error" hidden></p>
 
-          <div class="rc-turnstile" id="rc-turnstile" aria-label="Browser verification"></div>
+          <div class="rc-turnstile" id="rc-turnstile" role="group" aria-label="Browser verification"></div>
 
           <div class="rc-actions">
             <button class="button" type="submit" id="rc-submit">Check readiness</button>
@@ -1697,5 +1702,6 @@
       updateCount();
     }());
   </script>
+  <script src="readiness-clear.js" defer></script>
 </body>
 </html>
