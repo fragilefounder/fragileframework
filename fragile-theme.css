@@ -2289,8 +2289,17 @@ html:has(> body.page-dictionary) {
   font-weight: 700;
 }
 
+/* An empty anchor kept for an old link. Positioned out of flow so it never
+   takes a cell in a grid or flex parent. */
+.doc-card {
+  position: relative;
+}
+
 .anchor-alias {
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
   height: 0;
 }
 
