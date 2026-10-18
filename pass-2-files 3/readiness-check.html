@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backlog Readiness Check | frAGILE Framework™</title>
+  <meta name="description" content="Check one story, epic, or business ask against five fixed readiness gates: problem clarity, user and value, scope boundaries, acceptance evidence, and dependencies and risk.">
+  <meta name="author" content="Thach Nguyen">
+  <meta name="keywords" content="backlog readiness, product management, agile satire, requirements quality, acceptance criteria, frAGILE Framework">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Backlog Readiness Check | frAGILE Framework™">
+  <meta property="og:description" content="Your backlog does not need refinement. It needs interrogation.">
+  <meta property="og:url" content="https://fragileframework.com/readiness-check.html">
+  <meta property="og:image" content="https://fragileframework.com/images/og-readiness-check.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Backlog Readiness Check | frAGILE Framework™">
+  <meta name="twitter:description" content="A fixed-standard readiness gate for backlog items trying to sneak into delivery wearing a fake mustache.">
+  <meta name="twitter:image" content="https://fragileframework.com/images/og-readiness-check.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fragile-theme.css">
+  <script src="nav.js"></script>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <script>
+    // Cloudflare Turnstile loads on its own schedule. These two hooks record
+    // whether it arrived (or failed) so the page can react whenever it's ready.
+    window.rcTurnstileReady = function () {
+      window.rcTurnstileLoaded = true;
+      if (typeof window.rcOnTurnstile === "function") window.rcOnTurnstile();
+    };
+    window.rcTurnstileFailed = function () { window.rcTurnstileLoadFailed = true; };
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=rcTurnstileReady" async defer onerror="rcTurnstileFailed()"></script>
+
+  <style>
+    /*
+      frAGILE Readiness Check page layer.
+      Uses the shared tokens from fragile-theme.css. Classes here use the
+      rc- prefix so they never collide with shared theme components.
+    */
+
+    /* ---------- Score colors (always paired with a text label) ---------- */
+    :root {
+      --rc-missing: var(--red);
+      --rc-partial: #b26a00;
+      --rc-partial-text: #7a4700;
+      --rc-clear: #2f6b4f;
+      --rc-clear-text: #24523c;
+      --rc-add-bg: #dcebd9;
+      --rc-del-bg: #f3d9d4;
+    }
+
+    textarea:focus-visible,
+    summary:focus-visible,
+    [tabindex="-1"]:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 4px;
+    }
+
+    [tabindex="-1"]:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    .rc-page {
+      background: var(--paper-light);
+    }
+
+    /* ---------- Intro ---------- */
+    .rc-intro {
+      padding-block: clamp(2.25rem, 6vw, 3.75rem) clamp(1.5rem, 4vw, 2.25rem);
+    }
+
+    .rc-intro__topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .rc-intro__topline .eyebrow {
+      margin-bottom: 0;
+    }
+
+    .rc-tag {
+      display: inline-block;
+      padding: 0.25rem 0.55rem;
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rc-title {
+      margin: 0 0 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-3);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+    }
+
+    .rc-lede {
+      margin: 0 0 0.9rem;
+      font-size: var(--step-1);
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    .rc-explainer {
+      max-width: 62ch;
+      margin: 0 0 1rem;
+      line-height: 1.65;
+    }
+
+    .rc-intro .text-link {
+      min-height: 44px;
+    }
+
+    /* ---------- Form ---------- */
+    .rc-tool {
+      padding-bottom: clamp(3rem, 7vw, 5rem);
+    }
+
+    .rc-form {
+      padding: clamp(1.15rem, 3vw, 1.75rem);
+      background: var(--paper);
+      border: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .rc-label {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-family: var(--font-display);
+      font-size: var(--step-1);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .rc-help {
+      margin: 0 0 0.9rem;
+      line-height: 1.6;
+    }
+
+    .rc-privacy {
+      margin: 0 0 0.5rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--paper-light);
+      border: 2px dashed var(--ink);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .rc-privacy strong {
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .rc-textarea {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 12.5rem;
+      resize: vertical;
+      padding: 0.9rem 1rem;
+      background: var(--paper-light);
+      color: var(--ink);
+      border: var(--border);
+      border-radius: 0;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .rc-textarea[aria-invalid="true"] {
+      border-color: var(--red);
+      box-shadow: inset 0 0 0 1px var(--red);
+    }
+
+    .rc-textarea[readonly] {
+      background: var(--paper-deep);
+      color: var(--ink-brown);
+    }
+
+    .rc-field-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .rc-count--over {
+      color: var(--red-dark);
+      font-weight: 700;
+    }
+
+    .rc-error {
+      margin: 0.65rem 0 0;
+      padding-left: 0.75rem;
+      border-left: 4px solid var(--red);
+      color: var(--red-dark);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .rc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.1rem;
+      align-items: center;
+      margin-top: 1.1rem;
+    }
+
+    .rc-actions__hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .button[disabled] {
+      cursor: progress;
+      opacity: 0.75;
+      box-shadow: none;
+    }
+
+    .rc-button-secondary {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 0.9rem;
+      background: transparent;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .rc-button-secondary:hover {
+      background: var(--paper-deep);
+    }
+
+    /* ---------- Browser verification ---------- */
+    .rc-turnstile {
+      max-width: 100%;
+      margin-top: 1rem;
+    }
+
+    .rc-turnstile:empty {
+      margin-top: 0;
+    }
+
+    .rc-turnstile iframe {
+      max-width: 100%;
+    }
+
+    .rc-form__head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .rc-form__head .text-link {
+      min-height: 44px;
+    }
+
+    .rc-verify-note {
+      margin: -0.4rem 0 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .rc-verify-note summary {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      color: var(--ink-brown);
+      cursor: pointer;
+    }
+
+    .rc-verify-note p {
+      margin: 0 0 0.25rem;
+      padding-left: 0.9rem;
+      border-left: 3px solid var(--muted-light);
+    }
+
+    .rc-verify-note a {
+      color: var(--red-dark);
+      font-weight: 700;
+    }
+
+    /* Revision view toggle */
+    .rc-view-toggle {
+      display: inline-flex;
+      border: 2px solid var(--ink);
+    }
+
+    .rc-view-btn {
+      min-height: 44px;
+      padding: 0.5rem 0.85rem;
+      background: transparent;
+      color: var(--ink);
+      border: 0;
+      border-radius: 0;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .rc-view-btn + .rc-view-btn {
+      border-left: 2px solid var(--ink);
+    }
+
+    .rc-view-btn[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--paper-light);
+    }
+
+    .rc-revision-view {
+      margin-top: 0.85rem;
+    }
+
+    .rc-revision-view .rc-revision-text,
+    .rc-revision-view .rc-diff {
+      margin: 0;
+    }
+
+    /* ---------- Status and notices ---------- */
+    .rc-status {
+      min-height: 1.5rem;
+      margin: 1.25rem 0 0;
+      color: var(--ink-brown);
+      line-height: 1.5;
+    }
+
+    .rc-status--busy::before {
+      display: inline-block;
+      width: 0.8rem;
+      height: 0.8rem;
+      margin-right: 0.55rem;
+      border: 2px solid var(--ink);
+      border-right-color: transparent;
+      border-radius: 50%;
+      content: "";
+      vertical-align: -0.1rem;
+      animation: rc-spin 0.9s linear infinite;
+    }
+
+    @keyframes rc-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rc-status--busy::before {
+        animation: none;
+        border-right-color: var(--ink);
+        border-style: dotted;
+      }
+    }
+
+    .rc-notice {
+      margin: 1rem 0 0;
+      padding: 0.85rem 1rem;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-left-width: 8px;
+      line-height: 1.55;
+    }
+
+    .rc-notice--error {
+      border-left-color: var(--red);
+    }
+
+    .rc-empty {
+      margin: 1.5rem 0 0;
+      padding: 1.1rem 1rem;
+      border: 2px dashed var(--muted-light);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* ---------- Assessment ---------- */
+    .rc-assessment {
+      margin-top: 1.75rem;
+      animation: rc-fade 240ms ease both;
+    }
+
+    @keyframes rc-fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .rc-stale {
+      margin-bottom: 1rem;
+      padding: 0.7rem 0.9rem;
+      background: var(--ink);
+      color: var(--paper-light);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .rc-block {
+      margin-bottom: 1.25rem;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      background: var(--paper);
+      border: var(--border);
+    }
+
+    .rc-block__label {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .rc-heading {
+      margin: 0 0 0.85rem;
+      font-family: var(--font-display);
+      font-size: var(--step-1);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .rc-verdict {
+      border-left: 10px solid var(--ink);
+    }
+
+    .rc-verdict--not-ready { border-left-color: var(--rc-missing); }
+    .rc-verdict--needs-work { border-left-color: var(--rc-partial); }
+    .rc-verdict--ready { border-left-color: var(--rc-clear); }
+
+    .rc-verdict__word {
+      margin: 0 0 0.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 9vw, 4.5rem);
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .rc-verdict--not-ready .rc-verdict__word { color: var(--red-dark); }
+    .rc-verdict--needs-work .rc-verdict__word { color: var(--rc-partial-text); }
+    .rc-verdict--ready .rc-verdict__word { color: var(--rc-clear-text); }
+
+    .rc-verdict__reason {
+      margin: 0 0 0.6rem;
+      font-size: var(--step-0);
+      line-height: 1.55;
+    }
+
+    .rc-verdict__breakdown {
+      margin: 0 0 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .rc-scope-note {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .rc-gates {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .rc-gate {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.9rem;
+      padding: 0.95rem 0;
+      border-top: 1px solid var(--muted-light);
+    }
+
+    .rc-gate:first-child {
+      border-top: 0;
+      padding-top: 0.2rem;
+    }
+
+    .rc-score {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      color: var(--paper-light);
+      border: 1px solid var(--ink);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .rc-score--0 { background: var(--rc-missing); }
+    .rc-score--1 { background: var(--rc-partial); }
+    .rc-score--2 { background: var(--rc-clear); }
+
+    .rc-gate__title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+      align-items: baseline;
+      margin: 0 0 0.3rem;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .rc-gate__label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .rc-gate__label--0 { color: var(--red-dark); }
+    .rc-gate__label--1 { color: var(--rc-partial-text); }
+    .rc-gate__label--2 { color: var(--rc-clear-text); }
+
+    .rc-gate__finding {
+      margin: 0;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .rc-questions {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: rc-q;
+    }
+
+    .rc-question {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.75rem;
+      padding: 0.7rem 0;
+      border-top: 1px solid var(--muted-light);
+      counter-increment: rc-q;
+    }
+
+    .rc-question:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .rc-question::before {
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      line-height: 1.2;
+      content: counter(rc-q, decimal-leading-zero);
+    }
+
+    .rc-question__kind {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .rc-question__text {
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    .rc-muted {
+      margin: 0;
+      color: var(--ink-brown);
+      line-height: 1.55;
+    }
+
+    /* ---------- Revision ---------- */
+    .rc-changes {
+      margin: 0 0 1rem;
+      padding-left: 1.2rem;
+      line-height: 1.55;
+    }
+
+    .rc-placeholder-note {
+      margin: 0 0 1rem;
+      padding: 0.7rem 0.9rem;
+      background: var(--paper-light);
+      border: 2px dashed var(--ink);
+      line-height: 1.5;
+    }
+
+    .rc-revision-text {
+      margin: 0 0 1rem;
+      padding: 0.95rem 1rem;
+      background: var(--paper-light);
+      border: 1px solid var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .rc-placeholder {
+      padding: 0 0.15em;
+      background: transparent;
+      color: var(--ink);
+      border: 2px dashed var(--red);
+      font-weight: 700;
+    }
+
+    .rc-revision-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .rc-copy-feedback {
+      margin: 0.6rem 0 0;
+      color: var(--ink-brown);
+      font-size: 0.92rem;
+    }
+
+    .rc-details > summary {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: var(--red-dark);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .rc-diff {
+      margin-top: 1rem;
+    }
+
+    .rc-diff__legend {
+      margin: 0 0 0.6rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .rc-diff__body {
+      padding: 0.95rem 1rem;
+      background: var(--paper-light);
+      border: 1px solid var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .rc-diff ins {
+      background: var(--rc-add-bg);
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.18em;
+    }
+
+    .rc-diff del {
+      background: var(--rc-del-bg);
+      color: var(--ink-brown);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+    }
+
+    /* ---------- Scoring explanation ---------- */
+    .rc-scoring {
+      padding-block: clamp(3rem, 7vw, 5rem);
+      background: var(--paper-deep);
+      border-top: var(--border);
+    }
+
+    .rc-scoring__title {
+      margin: 0 0 1rem;
+      font-family: var(--font-display);
+      font-size: var(--step-2);
+      font-weight: 400;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .rc-scoring p {
+      line-height: 1.65;
+    }
+
+    .rc-scoring__gates {
+      margin: 1.5rem 0;
+      padding: 0;
+      list-style: none;
+      border-top: var(--border);
+    }
+
+    .rc-scoring__gates li {
+      display: grid;
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+      gap: 0.75rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--muted-light);
+    }
+
+    .rc-scoring__num {
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+
+    .rc-scoring__gates strong {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .rc-table {
+      width: 100%;
+      margin: 0.5rem 0 1.75rem;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .rc-table th,
+    .rc-table td {
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid var(--muted-light);
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .rc-table th {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .rc-table .rc-score {
+      width: 34px;
+      height: 34px;
+      font-size: 1.15rem;
+    }
+
+    .rc-subhead {
+      margin: 2rem 0 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* Phones: get the text box onto the first screen. */
+    @media (max-width: 600px) {
+      .document-bar {
+        display: none; /* decorative classification strip; desktop keeps it */
+      }
+
+      .rc-intro {
+        padding-block: 1.1rem 0.9rem;
+      }
+
+      .rc-intro__topline {
+        margin-bottom: 0.5rem;
+      }
+
+      .rc-intro__topline .eyebrow {
+        font-size: 0.68rem;
+      }
+
+      .rc-tag {
+        padding: 0.15rem 0.45rem;
+        font-size: 0.65rem;
+      }
+
+      .rc-title {
+        margin-bottom: 0.5rem;
+        font-size: clamp(1.9rem, 9vw, 2.4rem);
+      }
+
+      .rc-lede {
+        margin-bottom: 0.4rem;
+        font-size: 1.02rem;
+      }
+
+      .rc-explainer {
+        margin-bottom: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .rc-form {
+        padding: 0.9rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .rc-form__head {
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+
+      .rc-label {
+        flex: none;
+        margin-bottom: 0;
+        font-size: 1.15rem;
+        white-space: nowrap;
+      }
+
+      .rc-form__head .text-link {
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: flex-end;
+        font-size: 0.68rem;
+        text-align: right;
+      }
+
+      .rc-help {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .rc-privacy {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .rc-verify-note {
+        margin: -0.25rem 0 0.4rem;
+        font-size: 0.85rem;
+      }
+
+      .rc-textarea {
+        min-height: 10rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .rc-actions .button {
+        width: 100%;
+      }
+
+      /* Scoring tables become stacked entries: same meaning, new arrangement. */
+      .rc-table,
+      .rc-table tbody,
+      .rc-table tr,
+      .rc-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .rc-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
+      .rc-table tr {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--muted-light);
+      }
+
+      .rc-table td {
+        padding: 0.15rem 0;
+        border: 0;
+      }
+
+      .rc-table td[data-label]::before {
+        display: block;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        content: attr(data-label);
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip the ceremony. Interrogate the backlog.</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__brand" href="index.html" aria-label="frAGILE Framework home">
+        <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><span class="slash">/</span><span class="brand-page-label">Tools</span>
+      </a>
+      <nav class="site-nav__menu" aria-label="Primary navigation"><button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" hidden><span class="site-nav__toggle-icon" aria-hidden="true"></span>Menu</button><ul class="site-nav__links" id="site-nav-links"><li><a href="dictionary.html">Dictionary</a></li><li><a href="field-notes.html">Field Notes</a></li><li><a href="tools.html" aria-current="true">Tools</a></li><li><a href="about.html">About</a></li></ul></nav>
+    </div>
+  </header>
+
+  <div class="document-bar" aria-label="Document classification">
+    <div class="container document-bar__inner">
+      <span>Document III. Tool File: FF-GATE-005</span>
+      <span class="stamp">Sanitized for public viewing</span>
+      <span>Standard: Five fixed readiness gates</span>
+    </div>
+  </div>
+
+  <main id="main-content" class="rc-page">
+    <section class="rc-intro" aria-labelledby="readiness-title">
+      <div class="container--narrow">
+        <div class="rc-intro__topline">
+          <span class="eyebrow">Go / No-Go Gate</span>
+          <span class="rc-tag">Experimental</span>
+        </div>
+        <h1 class="rc-title" id="readiness-title">Backlog Readiness Check</h1>
+        <p class="rc-lede">Your backlog does not need refinement. It needs interrogation.</p>
+        <p class="rc-explainer">Check one story, epic, or business ask against five readiness gates. See what is clear, what is missing, and what to resolve next.</p>
+      </div>
+    </section>
+
+    <section class="rc-tool" aria-label="Readiness check">
+      <div class="container--narrow">
+        <form class="rc-form" id="rc-form" novalidate>
+          <div class="rc-form__head">
+            <label class="rc-label" for="rc-input">Backlog item</label>
+            <a class="text-link" href="#how-scoring-works">How the scoring works</a>
+          </div>
+          <p class="rc-help" id="rc-instruction">Include the context and acceptance criteria you have.</p>
+          <p class="rc-privacy" id="rc-privacy"><strong>Use a sanitized item.</strong> Your text goes to Anthropic for assessment. Remove confidential, personal, and proprietary details.</p>
+          <details class="rc-verify-note">
+            <summary>Browser verification by Cloudflare Turnstile</summary>
+            <p>To limit automated abuse, Cloudflare Turnstile checks your browser before each assessment. Cloudflare receives browser signals for that check, not your backlog item. See the <a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile privacy addendum</a>.</p>
+          </details>
+
+          <textarea
+            class="rc-textarea"
+            id="rc-input"
+            name="item"
+            rows="8"
+            spellcheck="true"
+            aria-describedby="rc-instruction rc-privacy rc-count rc-error"
+            placeholder="Describe the problem, who it affects, the scope, how success will be checked, and any dependencies or risks."></textarea>
+
+          <div class="rc-field-meta">
+            <span id="rc-count" aria-live="off">0 / 2,500 characters</span>
+            <span>Accepted: 40–2,500 characters</span>
+          </div>
+          <p class="rc-error" id="rc-error" hidden></p>
+
+          <div class="rc-turnstile" id="rc-turnstile" aria-label="Browser verification"></div>
+
+          <div class="rc-actions">
+            <button class="button" type="submit" id="rc-submit">Check readiness</button>
+            <p class="rc-actions__hint">Allow about 15–40 seconds.</p>
+          </div>
+
+          <noscript>
+            <p class="rc-notice rc-notice--error">The readiness check needs JavaScript to run. The scoring explanation below still describes how items are assessed.</p>
+          </noscript>
+        </form>
+
+        <p class="rc-status" id="rc-status" role="status" aria-live="polite"></p>
+        <div id="rc-alert"></div>
+
+        <div id="rc-results" aria-live="off" aria-busy="false">
+          <p class="rc-empty" id="rc-empty">Your assessment will appear here.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rc-scoring" id="how-scoring-works" aria-labelledby="scoring-title">
+      <div class="container--narrow">
+        <div class="eyebrow">The standard</div>
+        <h2 class="rc-scoring__title" id="scoring-title">How the scoring works</h2>
+        <p>Every item is checked against the same five gates. Only information stated in the item receives credit. Clear writing can still leave important decisions unanswered.</p>
+
+        <ol class="rc-scoring__gates" id="rc-gate-legend" aria-label="The five readiness gates"></ol>
+
+        <h3 class="rc-subhead">Scores</h3>
+        <table class="rc-table">
+          <thead>
+            <tr><th scope="col">Score</th><th scope="col">Label</th><th scope="col">Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="Score"><span class="rc-score rc-score--0" aria-hidden="true">0</span><span class="sr-only">0</span></td><td data-label="Label">Missing</td><td data-label="Meaning">The item does not address this gate.</td></tr>
+            <tr><td data-label="Score"><span class="rc-score rc-score--1" aria-hidden="true">1</span><span class="sr-only">1</span></td><td data-label="Label">Needs clarification</td><td data-label="Meaning">The gate is addressed, but the team would still need to guess or ask.</td></tr>
+            <tr><td data-label="Score"><span class="rc-score rc-score--2" aria-hidden="true">2</span><span class="sr-only">2</span></td><td data-label="Label">Clear</td><td data-label="Meaning">The description provides usable information for this gate.</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="rc-subhead">Verdict</h3>
+        <table class="rc-table">
+          <thead>
+            <tr><th scope="col">Scores</th><th scope="col">Verdict</th><th scope="col">Why</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="Scores">Any gate is 0</td><td data-label="Verdict"><strong>Not ready</strong></td><td data-label="Why">At least one gate is missing.</td></tr>
+            <tr><td data-label="Scores">No 0s, at least one 1</td><td data-label="Verdict"><strong>Needs work</strong></td><td data-label="Why">All gates are addressed, but some still need clarification.</td></tr>
+            <tr><td data-label="Scores">Every gate is 2</td><td data-label="Verdict"><strong>Ready</strong></td><td data-label="Why">All five gates meet the clarity standard.</td></tr>
+          </tbody>
+        </table>
+
+        <p>The verdict is calculated from the five scores by the fixed rule above, not chosen by the AI. There is no total out of ten: a strong gate cannot make up for a missing one. A strong write-up cannot talk its way into a pass.</p>
+        <p>The tool checks the description, not the world. It does not verify claims, judge whether the idea is valuable, or confirm that the work is feasible, approved, or safe to release. Confirm the findings with your team.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2025–2026 <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ · Satire project by Thach Nguyen</span>
+      <span class="site-footer__tag">No vibes laundering.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // ---------- Setup: paste your Turnstile site key here ----------
+      // The site key is public (it's meant to be in the page). The SECRET
+      // key goes only in Netlify as TURNSTILE_SECRET_KEY, never here.
+      var TURNSTILE_SITE_KEY = "0x4AAAAAAFZeYAf6ZlaY2eym";
+      var TURNSTILE_ACTION = "readiness_check";
+      var VERIFY_GUARD_MS = 20000; // give up if a non-interactive check stalls
+
+      // ---------- Fixed standard ----------
+      var GATES = [
+        { key: "problem", label: "Problem clarity", description: "Names the pain, the current failure, and why it matters now. Not just a solution wearing a hoodie." },
+        { key: "userValue", label: "User and value", description: "Identifies who benefits, the value created, and an outcome worth measuring. Feelings are not a metric." },
+        { key: "scope", label: "Scope boundaries", description: "Defines the first cut, what is excluded, edge cases, and where the work stops." },
+        { key: "acceptance", label: "Acceptance evidence", description: "Includes testable outcomes, examples, rules, data, or scenarios. Hope is not acceptance criteria." },
+        { key: "risk", label: "Dependencies and risk", description: "Names dependencies, owners, assumptions, known risks, and the fallback when reality files a complaint." }
+      ];
+      var SCORE_LABELS = ["Missing", "Needs clarification", "Clear"];
+      var MIN_CHARS = 40;
+      var MAX_CHARS = 2500;
+      var SLOW_AFTER_MS = 25000;   // switch to "still checking"
+      var GIVE_UP_AFTER_MS = 70000; // the server stops at 45s; this is a backstop
+      var PLACEHOLDER_RE = /\[DECISION NEEDED:[^\]]*\]/g;
+      var MSG = {
+        verify: "We could not verify your browser. Your item is still here. Please try verification again.",
+        budget: "The live check is temporarily unavailable because its usage allowance has been reached. Your item is still here.",
+        unavailable: "The readiness check is temporarily unavailable. Your item is still here.",
+        busy: "The readiness check is busy right now. Your item is still here. Try again in a minute.",
+        rate: "You have reached five checks in a minute. Wait a minute, then try again.",
+        timeout: "The check took too long. Your item is still here. Try again.",
+        generic: "We could not complete this check. Your item is still here. Try again."
+      };
+
+      // ---------- Elements ----------
+      var form = document.getElementById("rc-form");
+      var input = document.getElementById("rc-input");
+      var submit = document.getElementById("rc-submit");
+      var count = document.getElementById("rc-count");
+      var errorEl = document.getElementById("rc-error");
+      var statusEl = document.getElementById("rc-status");
+      var alertEl = document.getElementById("rc-alert");
+      var results = document.getElementById("rc-results");
+      var legend = document.getElementById("rc-gate-legend");
+      var widgetHost = document.getElementById("rc-turnstile");
+
+      // ---------- State ----------
+      // last: the most recent successful assessment and the exact text it
+      // was produced from. requestId lets us ignore late responses.
+      var last = null;
+      var requestId = 0;
+      var phase = "idle"; // idle | verifying | grading
+      var slowTimer = null;
+      var widgetId = null;
+      var pendingToken = null; // { resolve, reject, guard }
+
+      // ---------- Small DOM helper (text only, never innerHTML) ----------
+      function el(tag, attrs, children) {
+        var node = document.createElement(tag);
+        if (attrs) {
+          Object.keys(attrs).forEach(function (name) {
+            if (name === "text") node.textContent = attrs[name];
+            else if (name === "className") node.className = attrs[name];
+            else node.setAttribute(name, attrs[name]);
+          });
+        }
+        (children || []).forEach(function (child) {
+          if (child == null) return;
+          node.appendChild(typeof child === "string" ? document.createTextNode(child) : child);
+        });
+        return node;
+      }
+
+      function pad(n) { return (n < 10 ? "0" : "") + n; }
+      function fmt(n) { return n.toLocaleString("en-US"); }
+
+      // ---------- Scoring explanation (rendered from the same GATES) ----------
+      GATES.forEach(function (gate, i) {
+        legend.appendChild(el("li", null, [
+          el("span", { className: "rc-scoring__num", "aria-hidden": "true", text: pad(i + 1) }),
+          el("div", null, [el("strong", { text: gate.label }), gate.description])
+        ]));
+      });
+
+      // ---------- Verdict: fixed rule, computed here ----------
+      function verdictFor(dimensions) {
+        var scores = dimensions.map(function (d) { return d.score; });
+        if (scores.some(function (s) { return s === 0; })) {
+          return { label: "Not ready", cls: "not-ready", reason: "At least one gate is missing." };
+        }
+        if (scores.every(function (s) { return s === 2; })) {
+          return { label: "Ready", cls: "ready", reason: "All five gates meet the rubric's clarity standard." };
+        }
+        return { label: "Needs work", cls: "needs-work", reason: "All gates are addressed, but some still require clarification." };
+      }
+
+      function breakdown(dimensions) {
+        var c = [0, 0, 0];
+        dimensions.forEach(function (d) { c[d.score] += 1; });
+        var parts = [];
+        if (c[0]) parts.push(c[0] + " missing");
+        if (c[1]) parts.push(c[1] + (c[1] === 1 ? " needs" : " need") + " clarification");
+        if (c[2]) parts.push(c[2] + " clear");
+        return parts.join(" · ");
+      }
+
+      // ---------- Character count and length validation ----------
+      function trimmedLength() { return input.value.trim().length; }
+
+      function updateCount() {
+        var n = trimmedLength();
+        count.textContent = fmt(n) + " / 2,500 characters";
+        count.classList.toggle("rc-count--over", n > MAX_CHARS);
+        if (n > MAX_CHARS) {
+          showError("This item is over the 2,500-character limit. Remove " + fmt(n - MAX_CHARS) + " characters to continue.");
+        } else if (!errorEl.hidden && (n >= MIN_CHARS || errorEl.textContent.indexOf("over the") !== -1)) {
+          clearError();
+        }
+      }
+
+      function showError(message) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+        input.setAttribute("aria-invalid", "true");
+      }
+
+      function clearError() {
+        errorEl.textContent = "";
+        errorEl.hidden = true;
+        input.removeAttribute("aria-invalid");
+      }
+
+      function validate() {
+        var n = trimmedLength();
+        if (n < MIN_CHARS) return "Add at least 40 characters so there is enough information to assess.";
+        if (n > MAX_CHARS) return "This item is over the 2,500-character limit. Remove " + fmt(n - MAX_CHARS) + " characters to continue.";
+        return "";
+      }
+
+      // ---------- Stale handling ----------
+      function isStale() { return !!last && input.value !== last.text; }
+
+      function syncStale() {
+        var stale = isStale();
+        submit.textContent = phase !== "idle" ? (phase === "verifying" ? "Verifying…" : "Checking…") : (stale ? "Check again" : "Check readiness");
+        var section = results.querySelector(".rc-assessment");
+        if (!section) return;
+        var banner = section.querySelector(".rc-stale");
+        var want = phase !== "idle" ? "Previous assessment. A new check is running." : (stale ? "Previous assessment. Your item has changed." : "");
+        section.classList.toggle("rc-assessment--stale", !!want);
+        if (want && !banner) {
+          banner = el("p", { className: "rc-stale" });
+          section.insertBefore(banner, section.firstChild);
+        }
+        if (banner) {
+          if (want) banner.textContent = want;
+          else banner.parentNode.removeChild(banner);
+        }
+      }
+
+      input.addEventListener("input", function () {
+        updateCount();
+        syncStale();
+      });
+
+      // ---------- Status and alerts ----------
+      function setStatus(message, busy) {
+        statusEl.textContent = message;
+        statusEl.classList.toggle("rc-status--busy", !!busy);
+      }
+
+      function showAlert(message) {
+        alertEl.innerHTML = "";
+        if (message) alertEl.appendChild(el("p", { className: "rc-notice rc-notice--error", role: "alert", text: message }));
+      }
+
+      function setPhase(next) {
+        phase = next;
+        var busy = next !== "idle";
+        input.readOnly = busy;
+        submit.disabled = busy;
+        results.setAttribute("aria-busy", busy ? "true" : "false");
+        clearTimeout(slowTimer);
+        if (next === "verifying") {
+          // Verification has its own message; the grading wait hasn't started.
+          setStatus("Verifying your browser…", true);
+        } else if (next === "grading") {
+          setStatus("Checking your item against five gates. This usually takes 15–40 seconds.", true);
+          slowTimer = setTimeout(function () {
+            if (phase === "grading") setStatus("Still checking. You can keep this page open.", true);
+          }, SLOW_AFTER_MS);
+        }
+        syncStale();
+      }
+
+      // ---------- Browser verification (Cloudflare Turnstile) ----------
+      // Every check gets a brand-new one-time token right before it is sent,
+      // so a token can't expire while someone is writing, and no token is
+      // ever reused for a second check or a retry.
+      function siteKeyConfigured() {
+        return TURNSTILE_SITE_KEY && TURNSTILE_SITE_KEY.indexOf("REPLACE_WITH") !== 0;
+      }
+
+      function waitForTurnstile(timeoutMs) {
+        return new Promise(function (resolve, reject) {
+          if (window.turnstile && window.rcTurnstileLoaded !== false) return resolve();
+          if (window.rcTurnstileLoadFailed) return reject(new Error("load_failed"));
+          var done = false;
+          var timer = setTimeout(function () { if (!done) { done = true; reject(new Error("load_timeout")); } }, timeoutMs);
+          window.rcOnTurnstile = function () { if (!done) { done = true; clearTimeout(timer); resolve(); } };
+          var poll = setInterval(function () {
+            if (done) return clearInterval(poll);
+            if (window.rcTurnstileLoadFailed) { done = true; clearTimeout(timer); clearInterval(poll); reject(new Error("load_failed")); }
+            else if (window.turnstile) { done = true; clearTimeout(timer); clearInterval(poll); resolve(); }
+          }, 200);
+        });
+      }
+
+      function settleToken(err, token) {
+        if (!pendingToken) return;
+        var p = pendingToken;
+        pendingToken = null;
+        clearTimeout(p.guard);
+        if (err) p.reject(err); else p.resolve(token);
+      }
+
+      function ensureWidget() {
+        if (widgetId !== null) return;
+        widgetId = window.turnstile.render(widgetHost, {
+          sitekey: TURNSTILE_SITE_KEY,
+          action: TURNSTILE_ACTION,
+          execution: "execute",           // only run when Check readiness is pressed
+          appearance: "interaction-only", // visible only if a person must interact
+          size: "flexible",
+          theme: "light",
+          retry: "never",                 // failures come back to the page, not a silent loop
+          "refresh-expired": "never",     // we always fetch a fresh token per check
+          "response-field": false,
+          callback: function (token) { settleToken(null, token); },
+          "error-callback": function () { settleToken(new Error("verify_error")); return true; },
+          "unsupported-callback": function () { settleToken(new Error("unsupported")); },
+          "timeout-callback": function () { settleToken(new Error("interactive_timeout")); },
+          "before-interactive-callback": function () {
+            // A person needs to interact: stop the stall guard and point to it.
+            if (pendingToken) clearTimeout(pendingToken.guard);
+            setStatus("Verifying your browser… Complete the browser verification to continue.", true);
+            widgetHost.scrollIntoView({ block: "center", behavior: prefersReducedMotion() ? "auto" : "smooth" });
+          }
+        });
+      }
+
+      function getFreshToken() {
+        if (!siteKeyConfigured()) return Promise.reject(new Error("no_site_key"));
+        return waitForTurnstile(10000).then(function () {
+          return new Promise(function (resolve, reject) {
+            settleToken(new Error("superseded"));
+            pendingToken = {
+              resolve: resolve,
+              reject: reject,
+              guard: setTimeout(function () { settleToken(new Error("verify_stalled")); }, VERIFY_GUARD_MS)
+            };
+            try {
+              ensureWidget();
+              window.turnstile.reset(widgetId);   // discard any earlier token
+              window.turnstile.execute(widgetId); // ask for a brand-new one
+            } catch (e) {
+              settleToken(e);
+            }
+          });
+        });
+      }
+
+      // ---------- Submit ----------
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (phase !== "idle") return; // one active check at a time
+
+        var problem = validate();
+        if (problem) {
+          showError(problem);
+          input.focus();
+          return;
+        }
+        clearError();
+        showAlert("");
+
+        var snapshot = input.value; // the exact text this assessment belongs to
+        var myId = ++requestId;
+
+        setPhase("verifying");
+        getFreshToken().then(function (token) {
+          if (myId !== requestId) return;
+          grade(snapshot, token, myId);
+        }, function (err) {
+          if (myId !== requestId) return;
+          if (window.console && err) console.warn("Turnstile:", err.message);
+          // Never fall through to a paid call without a verified token.
+          fail(MSG.verify);
+          setPhase("idle");
+        });
+      });
+
+      function grade(snapshot, token, myId) {
+        var controller = typeof AbortController === "function" ? new AbortController() : null;
+        var giveUp = setTimeout(function () { if (controller) controller.abort(); }, GIVE_UP_AFTER_MS);
+
+        setPhase("grading");
+
+        fetch("/api/readiness-check", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ requirement: snapshot, turnstileToken: token }),
+          signal: controller ? controller.signal : undefined
+        })
+          .then(function (response) {
+            return response.text().then(function (body) {
+              var data = null;
+              try { data = JSON.parse(body); } catch (e) { data = null; }
+              return { status: response.status, ok: response.ok, data: data };
+            });
+          })
+          .then(function (res) {
+            if (myId !== requestId) return; // a newer request owns the page
+            if (res.ok && isValidAssessment(res.data)) {
+              last = { text: snapshot, data: res.data };
+              renderAssessment();
+              setStatus("Assessment complete.", false);
+              var heading = document.getElementById("rc-assessment-title");
+              if (heading) heading.focus();
+            } else {
+              fail(messageFor(res.status, res.data && res.data.code));
+            }
+          })
+          .catch(function (err) {
+            if (myId !== requestId) return;
+            fail(err && err.name === "AbortError" ? MSG.timeout : MSG.generic);
+          })
+          .then(function () {
+            clearTimeout(giveUp);
+            if (myId === requestId) setPhase("idle");
+          });
+      }
+
+      function fail(message) {
+        setStatus("", false);
+        showAlert(message);
+      }
+
+      // Server codes first (they are specific); HTTP status as a fallback.
+      // A 429 with no code comes from Netlify's per-visitor rate limit.
+      function messageFor(status, code) {
+        if (code === "verification_failed") return MSG.verify;
+        if (code === "budget_exhausted") return MSG.budget;
+        if (code === "busy") return MSG.busy;
+        if (code === "disabled" || code === "unavailable" || code === "config") return MSG.unavailable;
+        if (code === "timeout") return MSG.timeout;
+        if (status === 429) return MSG.rate;
+        if (status === 503) return MSG.unavailable;
+        if (status === 504) return MSG.timeout;
+        if (status === 413) return "This item is over the 2,500-character limit. Shorten it and try again.";
+        if (status === 400) return "The check could not read this item. Make sure it has at least 40 characters, then try again.";
+        return MSG.generic;
+      }
+
+      // Basic shape check: the page refuses to draw anything it can't trust.
+      function isValidAssessment(data) {
+        if (!data || !Array.isArray(data.dimensions) || data.dimensions.length !== GATES.length) return false;
+        return GATES.every(function (gate) {
+          var d = data.dimensions.filter(function (x) { return x && x.key === gate.key; });
+          return d.length === 1 && [0, 1, 2].indexOf(d[0].score) !== -1 && typeof d[0].gap === "string" && d[0].gap.trim();
+        });
+      }
+
+      // ---------- Render the assessment ----------
+      function renderAssessment() {
+        var data = last.data;
+        var dimensions = GATES.map(function (gate) {
+          var d = data.dimensions.filter(function (x) { return x.key === gate.key; })[0];
+          return { key: gate.key, label: gate.label, score: d.score, gap: d.gap };
+        });
+        var verdict = verdictFor(dimensions);
+        var questions = Array.isArray(data.questions) ? data.questions.filter(function (q) {
+          return q && typeof q.text === "string" && q.text.trim();
+        }).slice(0, 3) : [];
+
+        var section = el("section", { className: "rc-assessment", "aria-labelledby": "rc-assessment-title" });
+
+        // Overall verdict
+        var editBtn = el("button", { type: "button", className: "rc-button-secondary", text: "Edit item" });
+        editBtn.addEventListener("click", function () {
+          input.focus();
+          input.scrollIntoView({ block: "center", behavior: prefersReducedMotion() ? "auto" : "smooth" });
+        });
+        section.appendChild(el("div", { className: "rc-block rc-verdict rc-verdict--" + verdict.cls }, [
+          el("h2", { className: "rc-block__label", id: "rc-assessment-title", tabindex: "-1", text: "Assessment" }),
+          el("p", { className: "rc-verdict__word", text: verdict.label }),
+          el("p", { className: "rc-verdict__reason", text: verdict.reason + (verdict.cls === "ready" ? " Ready against these five gates, based on the text submitted." : "") }),
+          el("p", { className: "rc-verdict__breakdown", text: breakdown(dimensions) }),
+          el("p", { className: "rc-scope-note", text: "AI assessment of this description. Confirm the findings with your team." }),
+          editBtn
+        ]));
+
+        // Five gate findings, fixed order
+        var list = el("ol", { className: "rc-gates" });
+        dimensions.forEach(function (d, i) {
+          list.appendChild(el("li", { className: "rc-gate" }, [
+            el("span", { className: "rc-score rc-score--" + d.score, "aria-hidden": "true", text: String(d.score) }),
+            el("div", null, [
+              el("h3", { className: "rc-gate__title" }, [
+                el("span", { text: pad(i + 1) + " " + d.label }),
+                el("span", { className: "rc-gate__label rc-gate__label--" + d.score, text: d.score + " · " + SCORE_LABELS[d.score] })
+              ]),
+              el("p", { className: "rc-gate__finding", text: d.gap })
+            ])
+          ]));
+        });
+        section.appendChild(el("div", { className: "rc-block" }, [
+          el("h3", { className: "rc-heading", text: "Gate findings" }),
+          list
+        ]));
+
+        // Resolve next
+        var qBlock = el("div", { className: "rc-block" }, [el("h3", { className: "rc-heading", text: "Resolve next" })]);
+        if (questions.length) {
+          var ql = el("ol", { className: "rc-questions" });
+          questions.forEach(function (q) {
+            var blocking = q.blocking !== false;
+            ql.appendChild(el("li", { className: "rc-question" }, [
+              el("div", null, [
+                el("span", { className: "rc-question__kind", text: blocking ? "Decision before starting" : "Optional confirmation" }),
+                el("span", { className: "rc-question__text", text: q.text })
+              ])
+            ]));
+          });
+          qBlock.appendChild(ql);
+        } else if (verdict.cls === "ready") {
+          qBlock.appendChild(el("p", { className: "rc-muted", text: "No blocking questions identified against these five gates." }));
+        } else {
+          qBlock.appendChild(el("p", { className: "rc-muted", text: "No specific questions were returned. Start with the gates marked Missing or Needs clarification above." }));
+        }
+        section.appendChild(qBlock);
+
+        // Suggested revision
+        section.appendChild(renderRevision(data.revision, verdict));
+
+        results.innerHTML = "";
+        results.appendChild(section);
+        syncStale();
+      }
+
+      function renderRevision(revision, verdict) {
+        var block = el("div", { className: "rc-block" }, [el("h3", { className: "rc-heading", text: "Suggested revision" })]);
+        var status = revision && revision.status;
+        var text = revision && typeof revision.text === "string" ? revision.text : "";
+
+        // "none" is an editorial judgment; a promised revision with no text is
+        // just missing, so it falls through to "unavailable" below.
+        if (status === "none") {
+          block.appendChild(el("p", { className: "rc-muted", text: verdict.cls === "not-ready"
+            ? "No revision suggested. The item needs the decisions above before a rewrite would help."
+            : "No revision suggested. The submitted wording is clear enough for this assessment." }));
+          return block;
+        }
+        if ((status !== "substantial" && status !== "minor") || !text.trim()) {
+          block.appendChild(el("p", { className: "rc-muted", text: "A suggested revision is unavailable for this check. The assessment above is still valid." }));
+          return block;
+        }
+
+        var changes = Array.isArray(revision.changes) ? revision.changes.filter(function (c) { return typeof c === "string" && c.trim(); }) : [];
+        var hasPlaceholders = PLACEHOLDER_RE.test(text);
+        PLACEHOLDER_RE.lastIndex = 0;
+
+        block.appendChild(el("p", { className: "rc-block__label", text: "What changed" }));
+        if (changes.length) {
+          block.appendChild(el("ul", { className: "rc-changes" }, changes.map(function (c) { return el("li", { text: c }); })));
+        } else {
+          block.appendChild(el("p", { className: "rc-muted", text: "No change summary was provided. Use Show changes to compare." }));
+        }
+
+        var body = el("div");
+        if (hasPlaceholders) {
+          body.appendChild(el("p", { className: "rc-placeholder-note", text: "This revision still needs your decisions. Bracketed placeholders identify information missing from the original." }));
+        }
+
+        // One text area, two views: the clean revision, or the same revision
+        // marked up against the submitted text. Copy always copies the clean text.
+        var cleanBtn = el("button", { type: "button", className: "rc-view-btn", "aria-pressed": "true", text: "Clean version" });
+        var changesBtn = el("button", { type: "button", className: "rc-view-btn", "aria-pressed": "false", text: "Show changes" });
+        var copyBtn = el("button", { type: "button", className: "rc-button-secondary", text: "Copy revision" });
+        body.appendChild(el("div", { className: "rc-revision-actions" }, [
+          el("div", { className: "rc-view-toggle", role: "group", "aria-label": "Revision view" }, [cleanBtn, changesBtn]),
+          copyBtn
+        ]));
+
+        var view = el("div", { className: "rc-revision-view" });
+        var pre = el("div", { className: "rc-revision-text", tabindex: "0", "aria-label": "Suggested revision, clean version" });
+        appendWithPlaceholders(pre, text);
+        var diffHost = el("div", { className: "rc-diff", hidden: "" });
+        view.appendChild(pre);
+        view.appendChild(diffHost);
+        body.appendChild(view);
+        var feedback = el("p", { className: "rc-copy-feedback" });
+        body.appendChild(feedback);
+        var diffBuilt = false;
+
+        function showView(changes) {
+          if (changes && !diffBuilt) {
+            buildDiff(diffHost, last.text, text);
+            diffBuilt = true;
+          }
+          pre.hidden = changes;
+          diffHost.hidden = !changes;
+          cleanBtn.setAttribute("aria-pressed", changes ? "false" : "true");
+          changesBtn.setAttribute("aria-pressed", changes ? "true" : "false");
+        }
+        cleanBtn.addEventListener("click", function () { showView(false); });
+        changesBtn.addEventListener("click", function () { showView(true); });
+
+        copyBtn.addEventListener("click", function () {
+          copyText(text).then(function () {
+            copyBtn.textContent = "Copied";
+            feedback.textContent = "";
+            setStatus("Revision copied.", false); // announced through the live status
+            setTimeout(function () { copyBtn.textContent = "Copy revision"; }, 2000);
+          }, function () {
+            showView(false);
+            selectNode(pre);
+            feedback.textContent = "Copying did not complete. The revision is selected; copy it manually.";
+            setStatus("Copying did not complete. The revision is selected; copy it manually.", false);
+          });
+        });
+
+        if (status === "minor") {
+          var details = el("details", { className: "rc-details" }, [el("summary", { text: "Show revision" }), body]);
+          block.appendChild(details);
+        } else {
+          block.appendChild(body);
+        }
+        return block;
+      }
+
+      function appendWithPlaceholders(node, text) {
+        var lastIndex = 0;
+        text.replace(PLACEHOLDER_RE, function (match, offset) {
+          if (offset > lastIndex) node.appendChild(document.createTextNode(text.slice(lastIndex, offset)));
+          node.appendChild(el("mark", { className: "rc-placeholder", text: match }));
+          lastIndex = offset + match.length;
+          return match;
+        });
+        if (lastIndex < text.length) node.appendChild(document.createTextNode(text.slice(lastIndex)));
+      }
+
+      // ---------- Diff: computed here from the two strings ----------
+      // Placeholders are kept whole so a word inside one never "matches"
+      // the original text and splits the placeholder apart.
+      function tokenize(s) {
+        return s.match(/\[DECISION NEEDED:[^\]]*\]|\s+|[^\s]+/g) || [];
+      }
+
+      function diffTokens(a, b) {
+        var n = a.length, m = b.length;
+        if (n * m > 2000000) return null; // too large to compare in the browser
+        var dp = new Array(n + 1);
+        for (var i = 0; i <= n; i++) dp[i] = new Uint16Array(m + 1);
+        for (i = n - 1; i >= 0; i--) {
+          for (var j = m - 1; j >= 0; j--) {
+            dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+          }
+        }
+        var out = [];
+        i = 0; j = 0;
+        function push(type, tok) {
+          var prev = out[out.length - 1];
+          if (prev && prev.type === type) prev.text += tok;
+          else out.push({ type: type, text: tok });
+        }
+        while (i < n && j < m) {
+          if (a[i] === b[j]) { push("same", a[i]); i++; j++; }
+          else if (dp[i + 1][j] >= dp[i][j + 1]) { push("del", a[i]); i++; }
+          else { push("add", b[j]); j++; }
+        }
+        while (i < n) { push("del", a[i]); i++; }
+        while (j < m) { push("add", b[j]); j++; }
+        return out;
+      }
+
+      function buildDiff(host, original, revised) {
+        host.innerHTML = "";
+        var parts = diffTokens(tokenize(original), tokenize(revised));
+        if (!parts) {
+          host.appendChild(el("p", { className: "rc-muted", text: "These versions differ too much to compare word by word. Use the What changed summary and the clean revision above." }));
+          return;
+        }
+        host.appendChild(el("p", { className: "rc-diff__legend", text: "Compared with the exact text you submitted. Added text is highlighted and underlined. Removed text is struck through. Dashed boxes mark decisions you still need to make." }));
+        var bodyEl = el("div", { className: "rc-diff__body" });
+        parts.forEach(function (p) {
+          if (p.type === "same") {
+            bodyEl.appendChild(document.createTextNode(p.text));
+          } else if (p.type === "add") {
+            var ins = el("ins");
+            ins.appendChild(el("span", { className: "sr-only", text: "Added: " }));
+            appendWithPlaceholders(ins, p.text);
+            bodyEl.appendChild(ins);
+          } else {
+            var del = el("del");
+            del.appendChild(el("span", { className: "sr-only", text: "Removed: " }));
+            del.appendChild(document.createTextNode(p.text));
+            bodyEl.appendChild(del);
+          }
+        });
+        host.appendChild(bodyEl);
+      }
+
+      // ---------- Copy helpers ----------
+      function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        return Promise.reject(new Error("Clipboard unavailable"));
+      }
+
+      function selectNode(node) {
+        try {
+          var range = document.createRange();
+          range.selectNodeContents(node);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          node.focus();
+        } catch (e) { /* manual selection still works */ }
+      }
+
+      function prefersReducedMotion() {
+        return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      }
+
+      updateCount();
+    }());
+  </script>
+</body>
+</html>
