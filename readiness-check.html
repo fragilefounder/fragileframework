@@ -967,11 +967,6 @@
         <form class="rc-form" id="rc-form" novalidate>
           <div class="rc-form__head">
             <label class="rc-label" for="rc-input">Backlog item</label>
-            <div class="rc-input-actions" id="rc-input-actions" hidden>
-              <button type="button" id="rc-clear" aria-label="Clear backlog item" aria-controls="rc-input" disabled>Clear</button>
-              <button type="button" id="rc-undo-clear" aria-label="Undo clearing backlog item" aria-controls="rc-input" hidden>Undo clear</button>
-            </div>
-            <p class="sr-only" id="rc-clear-status" role="status" aria-live="polite"></p>
           </div>
           <p class="rc-help" id="rc-instruction">Include the context and acceptance criteria you have.</p>
           <p class="rc-privacy" id="rc-privacy"><strong>Use a sanitized item.</strong> Your text goes to Anthropic for assessment. Remove confidential, personal, and proprietary details.</p>
@@ -999,9 +994,16 @@
           <div class="rc-turnstile" id="rc-turnstile" role="group" aria-label="Browser verification"></div>
 
           <div class="rc-actions">
-            <button class="button" type="submit" id="rc-submit">Check readiness</button>
+            <div class="rc-actions__buttons" role="group" aria-label="Backlog actions">
+              <button class="button" type="submit" id="rc-submit">Check readiness</button>
+              <div class="rc-input-actions" id="rc-input-actions" hidden>
+                <button type="button" id="rc-clear" aria-label="Clear backlog item" aria-controls="rc-input" disabled>Clear</button>
+                <button type="button" id="rc-undo-clear" aria-label="Undo clearing backlog item" aria-controls="rc-input" hidden>Undo clear</button>
+              </div>
+            </div>
             <p class="rc-actions__hint">Allow about 15–40 seconds.</p>
           </div>
+          <p class="sr-only" id="rc-clear-status" role="status" aria-live="polite"></p>
 
           <noscript>
             <p class="rc-notice rc-notice--error">The readiness check needs JavaScript to run. The scoring explanation below still describes how items are assessed.</p>

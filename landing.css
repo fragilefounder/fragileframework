@@ -33,7 +33,7 @@
 .page-readiness .rc-explainer { margin: 0; font-size: 1rem; line-height: 1.55; }
 .page-readiness .rc-form { padding: 1rem; }
 .page-readiness .rc-help { font-size: .9rem; margin-bottom: .6rem; }
-.rc-input-actions { display: flex; justify-content: flex-end; gap: .75rem; margin-block: .5rem; }
+.rc-input-actions { display: contents; }
 .rc-input-actions[hidden], .rc-input-actions [hidden] { display: none; }
 .rc-input-actions button {
   min-height: 44px; padding: .4rem .8rem; border: 2px solid var(--ink);
@@ -60,10 +60,16 @@
 .page-about .personnel-card__meta { margin-top: .8rem; gap: .5rem; }
 .page-about .personnel-card__meta li { padding: .5rem; }
 .page-about .about-hero + .section { padding-top: 2rem; }
-/* Keep editing controls by the field label; disclosure remains available below input. */
+/* Pass 4: keep primary and secondary backlog actions together, in reading order. */
 .page-readiness .rc-form__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
 .page-readiness .rc-form__head .rc-label { margin: 0; }
-.page-readiness .rc-input-actions { margin: 0; }
+.page-readiness .rc-actions__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: center;
+}
+.page-readiness .rc-actions__buttons > .button { width: auto; }
 /* Ordinary text on dark About sections uses accessible red. Wordmarks retain brand red. */
 .page-about .section--dark .eyebrow,
 .page-about .section--dark .text-link,
@@ -91,4 +97,49 @@
 }
 @media (max-width: 360px) {
   .page-about .about-hero .hero__title { font-size: 2.4rem; }
+}
+
+/* Pass 4: Home uses the same short opening rhythm, with its own editorial headline. */
+.page-home .home-opening { border-bottom-width: 6px; }
+.page-home .home-opening .hero__inner {
+  grid-template-columns: 1fr;
+  min-height: 0;
+  padding-block: 1.25rem;
+  gap: 0;
+}
+.page-home .home-opening .eyebrow { margin-bottom: .6rem; }
+.page-home .home-opening .hero__title {
+  max-width: none;
+  margin-bottom: .7rem;
+  font-size: clamp(2.6rem, 5.2vw, 4.5rem);
+  line-height: 1;
+}
+.home-opening__accent { color: var(--red-on-dark); }
+.page-home .home-opening .hero__lede { max-width: 65ch; margin-bottom: 1rem; font-size: 1rem; line-height: 1.55; }
+.page-home .home-start { padding-top: 1.5rem; }
+.page-home .home-start .section-heading { gap: 1rem; padding-bottom: 1rem; margin-bottom: 1.25rem; }
+.page-home .home-start .section-heading .eyebrow { margin-bottom: .5rem; }
+.page-home .home-start .section-heading__title { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+.page-home .home-start .section-heading__caption { font-size: 1rem; }
+.page-home .home-start .hero__aside { max-width: none; margin-top: 2rem; border-color: var(--ink); }
+@media (max-width: 760px) {
+  .page-home .home-opening .hero__inner { padding-block: 1rem; }
+}
+@media (max-width: 360px) {
+  .page-readiness .rc-actions__buttons { gap: .5rem; }
+  .page-readiness .rc-actions__buttons > .button { padding-inline: .6rem; letter-spacing: .08em; }
+}
+
+.page-home .home-start .section-heading__caption { letter-spacing: .02em; text-transform: none; }
+@media (min-width: 981px) {
+  .page-home .home-opening .hero__inner > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 2rem;
+    align-items: start;
+  }
+  .page-home .home-opening .eyebrow { grid-column: 1 / -1; }
+  .page-home .home-opening .hero__title { grid-column: 1; grid-row: 2 / 4; }
+  .page-home .home-opening .hero__lede,
+  .page-home .home-opening .hero__actions { grid-column: 2; }
 }
