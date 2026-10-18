@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Emotional Backlog™ | frAGILE Framework™</title>
-  <meta name="description" content="An archive of unspoken organizational grievances, passive-aggressive tickets, and Agile heartbreaks filed with frAGILE Framework sarcasm and care.">
+  <meta name="description" content="An archive of unspoken organizational grievances, passive-aggressive tickets, and Agile heartbreaks. Submit a story with no name or email required.">
   <meta name="author" content="Thach Nguyen">
-  <meta name="keywords" content="Emotional Backlog, Agile satire, product management burnout, anonymous Agile stories, passive aggressive tickets, frAGILE Framework">
+  <meta name="keywords" content="Emotional Backlog, Agile satire, product management burnout, unsigned Agile stories, passive aggressive tickets, frAGILE Framework">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="The Emotional Backlog™ | frAGILE Framework™">
-  <meta property="og:description" content="Anonymous Agile confessions, passive-aggressive tickets, and organizational grief filed for review.">
+  <meta property="og:description" content="Agile confessions, passive-aggressive tickets, and organizational grief. No name or email required.">
   <meta property="og:url" content="https://fragileframework.com/emotional-backlog.html">
   <meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
 
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
-  <link rel="icon" href="images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 
   <style>
     /*
@@ -708,7 +708,7 @@
   <div class="document-bar" aria-label="Document classification">
     <div class="container document-bar__inner">
       <span>Document IV. Archive: FF-EMO-BACKLOG</span>
-      <span class="stamp">Anonymous by design</span>
+      <span class="stamp">No name required</span>
       <span>Status: Open for intake</span>
     </div>
   </div>
@@ -756,7 +756,7 @@
 
         <div class="archive-intro__copy">
           <p>The Emotional Backlog exists for the things teams feel but rarely file: fake demos, alignment fatigue, backlog guilt, stakeholder fog, and the tiny spiritual injuries caused by saying “quick sync” with a straight face.</p>
-          <p>Submit anonymously. Read generously. Laugh because it helps, then fix the actual system because laughter without behavior change is just a standup with better timing.</p>
+          <p>Submit without your name. Read generously. Laugh because it helps, then fix the actual system because laughter without behavior change is just a standup with better timing.</p>
           <div class="archive-warning">Do not paste confidential, proprietary, regulated, client, employee, or company-sensitive information. Change names. Remove details. Keep the wound, redact the org chart.</div>
         </div>
       </div>
@@ -910,7 +910,7 @@
         <aside class="submission-panel__brief">
           <div class="eyebrow">Submit evidence</div>
           <h2 id="submit-title">File your emotional ticket.</h2>
-          <p>Anonymous submissions are welcome. Confessional specificity is encouraged. Identifying details are not. We are building satire, not a subpoena exhibit.</p>
+          <p>No name or email required. Confessional specificity is encouraged. Identifying details are not. We are building satire, not a subpoena exhibit.</p>
           <ul class="intake-rules" aria-label="Submission rules">
             <li><strong>01</strong> Remove company, client, vendor, employee, and project names.</li>
             <li><strong>02</strong> Keep the pattern. Redact the people.</li>
@@ -967,7 +967,7 @@
             </div>
 
             <div class="form-field form-field--full">
-              <label for="message">Your anonymous story</label>
+              <label for="message">Your story</label>
               <ul class="story-prompts" aria-label="Prompts to help you write your entry">
                 <li>What happened?</li>
                 <li>What was supposed to happen?</li>
@@ -984,8 +984,13 @@
             <label for="redacted">I removed identifying and confidential details. The pain remains. The lawsuit does not.</label>
           </div>
 
-          <button class="button" type="submit">Submit anonymously</button>
-          <p class="form-footnote">Your story is anonymous and will not be published without review. <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> reserves the right to edit for clarity, safety, rhythm, and reduced PowerPoint odor.</p>
+          <div class="consent-check">
+            <input type="checkbox" name="publication_permission" id="publication_permission" value="yes">
+            <label for="publication_permission">Optional. You may publish an edited, anonymized version of this story after a person reviews it.</label>
+          </div>
+
+          <button class="button" type="submit">Submit story</button>
+          <p class="form-footnote">Submitting does not give permission to publish. Only stories with the optional box checked are considered, and only after a person reviews them. Submissions are stored in Netlify Forms, the service that hosts this site, and read by the site owner. The form does not ask for your name or email, so leave them out of the story too. <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> reserves the right to edit for clarity, safety, rhythm, and reduced PowerPoint odor.</p>
         </form>
       </div>
     </section>
