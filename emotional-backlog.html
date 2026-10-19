@@ -12,12 +12,12 @@
   <meta property="og:title" content="The Emotional Backlog™ | frAGILE Framework™">
   <meta property="og:description" content="Agile confessions, passive-aggressive tickets, and organizational grief. No name or email required.">
   <meta property="og:url" content="https://fragileframework.com/emotional-backlog.html">
-  <meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
+  <meta property="og:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Emotional Backlog™ | frAGILE Framework™">
   <meta name="twitter:description" content="Come for the satire. Stay for the organizational scar tissue.">
-  <meta name="twitter:image" content="https://fragileframework.com/images/fragile-logo.png">
+  <meta name="twitter:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +80,7 @@
       color: var(--red);
       border: 2px solid currentColor;
       transform: rotate(2deg);
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .archive-card__number {
@@ -247,6 +247,11 @@
       border: 2px solid var(--red);
     }
 
+    .ticket-card--red .ticket-card__label,
+    .ticket-card--red .ticket-card__copy {
+      color: var(--paper-light);
+    }
+
     .ticket-card__header {
       display: flex;
       gap: 1rem;
@@ -280,7 +285,7 @@
       line-height: 1;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .ticket-card__label {
@@ -293,8 +298,7 @@
       text-transform: uppercase;
     }
 
-    .ticket-card--dark .ticket-card__label,
-    .ticket-card--red .ticket-card__label {
+    .ticket-card--dark .ticket-card__label {
       color: rgba(251, 246, 236, 0.7);
     }
 
@@ -314,8 +318,7 @@
       line-height: 1.65;
     }
 
-    .ticket-card--dark .ticket-card__copy,
-    .ticket-card--red .ticket-card__copy {
+    .ticket-card--dark .ticket-card__copy {
       color: rgba(251, 246, 236, 0.82);
     }
 
@@ -490,6 +493,8 @@
     }
 
     .consent-check input {
+      min-width: 24px;
+      min-height: 24px;
       width: 1.15rem;
       height: 1.15rem;
       margin-top: 0.1rem;
@@ -581,13 +586,13 @@
     .queue-list__badge {
       padding: 0.4rem 0.65rem;
       border: 2px solid var(--red);
-      color: var(--red);
+      color: var(--red-on-dark);
       font-family: var(--font-mono);
       font-size: 0.66rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      white-space: nowrap;
+      white-space: normal;
       transform: rotate(-2deg);
     }
 
@@ -636,7 +641,7 @@
       .archive-intro,
       .submission-panel,
       .closing-strip {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .archive-intro__label {
@@ -645,7 +650,7 @@
       }
 
       .ticket-board {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .closing-strip__stamp {
@@ -658,7 +663,7 @@
       .archive-card__meta,
       .form-grid,
       .ticket-card__meta {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .archive-card__topline {
@@ -705,7 +710,7 @@
     </div>
   </div>
 
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
     <section class="hero backlog-hero" aria-labelledby="backlog-title">
       <div class="container hero__inner">
         <div>
