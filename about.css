@@ -42,17 +42,20 @@
 .page-about .about-contact a:focus-visible { outline-color: var(--red-on-dark); }
 .page-about .about-contact .button { white-space: normal; }
 @media (max-width: 760px) {
-  .page-about .about-opening__inner { grid-template-columns: 1fr; gap: 1rem; padding-block: 1.25rem; }
+  .page-about .about-opening__inner { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-block: 1.25rem; }
   .page-about .about-role { font-size: .9rem; }
-  .page-about .file-index { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; padding: .75rem; }
+  .page-about .file-index { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 1rem; padding: .75rem; }
   .page-about .file-index .file-label { grid-column: 1 / -1; margin-bottom: .4rem; }
   .page-about .file-index a { font-size: .8rem; }
-  .page-about .file-row { grid-template-columns: 1fr; gap: .5rem; }
+  .page-about .file-row { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
   .page-about .file-section { padding-block: 1.75rem; }
-  .page-about .file-paths { grid-template-columns: 1fr; }
+  .page-about .file-paths { grid-template-columns: minmax(0, 1fr); }
   .page-about h2 { max-width: none; }
   .page-about .file-caption { max-width: none; margin-bottom: .75rem; }
 }
+.page-about .about-opening__inner > *,
+.page-about .file-index a,
+.page-about .file-paths li { min-width: 0; overflow-wrap: anywhere; }
 @media (forced-colors: active) {
   .page-about .file-index, .page-about .file-paths li { box-shadow: none; }
 }

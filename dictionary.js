@@ -103,7 +103,9 @@
   // Shared links (#velocity) should always land on the term, even if
   // filters are hiding it at the moment the link is followed.
   function revealHash() {
-    const slug = decodeURIComponent(location.hash.slice(1));
+    let slug;
+    try { slug = decodeURIComponent(location.hash.slice(1)); }
+    catch (_) { return; } // A malformed shared URL must not break the dictionary.
     if (!slug) return;
     const target = document.getElementById(slug);
     if (!target || !target.classList.contains("dict-entry")) return;

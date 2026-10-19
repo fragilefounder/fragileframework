@@ -17,12 +17,12 @@
   <meta property="og:url" content="https://fragileframework.com/manifesto.html">
   <meta property="og:title" content="The frAGILE Manifesto™">
   <meta property="og:description" content="Satirical values. Strategic fixes. Agile never saw this coming, which is kind of the issue.">
-  <meta property="og:image" content="https://fragileframework.com/images/fragile-logo.png">
+  <meta property="og:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The frAGILE Manifesto™">
   <meta name="twitter:description" content="Four broken defaults, six uncomfortable principles, and one suspiciously useful satire project.">
-  <meta name="twitter:image" content="https://fragileframework.com/images/fragile-logo.png">
+  <meta name="twitter:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
     */
 
     .manifesto-hero .hero__inner {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       min-height: min(760px, calc(100vh - var(--nav-height)));
       align-items: center;
     }
@@ -217,7 +217,7 @@
     }
 
     .manifesto-principle__text em {
-      color: var(--red);
+      color: var(--red-on-dark);
       font-style: normal;
     }
 
@@ -279,7 +279,7 @@
       .manifesto-value__head,
       .manifesto-value__body,
       .signature-card {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .manifesto-value__body {
@@ -324,7 +324,7 @@
     </div>
   </div>
 
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
     <section class="hero manifesto-hero" aria-labelledby="manifesto-title">
       <div class="container hero__inner">
         <div>

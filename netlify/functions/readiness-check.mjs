@@ -148,7 +148,7 @@ function cleanResult(raw, original) {
   for (const key of GATE_KEYS) {
     const matches = raw.dimensions.filter((d) => d && d.key === key);
     if (matches.length !== 1) return { problem: "gate_keys" };
-    const score = Number(matches[0].score);
+    const score = matches[0].score;
     if (![0, 1, 2].includes(score)) return { problem: "score" };
     const gap = String(matches[0].gap || "").trim().slice(0, 500);
     if (!gap) return { problem: "empty_gap" };
@@ -230,8 +230,8 @@ async function verifyTurnstile(token, ip) {
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(8000)
       });
-      outcome = await res.json();
-      const codes = outcome["error-codes"] || [];
+      outcome = res.ok ? await res.json() : null;
+      const codes = Array.isArray(outcome?.["error-codes"]) ? outcome["error-codes"] : [];
       if (!(codes.includes("internal-error") && attempt === 0)) break;
     } catch {
       outcome = { success: false, "error-codes": ["siteverify_unreachable"] };
@@ -239,7 +239,7 @@ async function verifyTurnstile(token, ip) {
   }
 
   if (!outcome || outcome.success !== true) {
-    const codes = (outcome && outcome["error-codes"]) || ["unknown"];
+    const codes = Array.isArray(outcome?.["error-codes"]) ? outcome["error-codes"] : ["unknown"];
     return { ok: false, reason: "rejected:" + codes.join("|") };
   }
   if (outcome.action !== TURNSTILE_ACTION) return { ok: false, reason: "wrong_action" };
@@ -390,13 +390,14 @@ export default async (req, context) => {
   // text. We look for the text block by its type, not its position.
   let data = {};
   try { data = await apiResponse.json(); } catch {}
+  if (!data || typeof data !== "object" || Array.isArray(data)) data = {};
   const usage = {
     input_tokens: data.usage?.input_tokens ?? null,
     output_tokens: data.usage?.output_tokens ?? null
   };
   let checked = { problem: "stop_" + (data.stop_reason || "unknown") };
   if (data.stop_reason === "end_turn") {
-    const textBlock = (data.content || []).find((block) => block.type === "text");
+    const textBlock = (Array.isArray(data.content) ? data.content : []).find((block) => block?.type === "text");
     try {
       checked = cleanResult(JSON.parse(textBlock?.text ?? ""), requirement);
     } catch {

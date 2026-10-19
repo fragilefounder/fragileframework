@@ -93,6 +93,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Keep enlarged text in its column; long words must not set a grid's minimum width. */
+main { overflow-wrap: anywhere; }
+main .eyebrow { max-width: 100%; }
+
 /* A faint printed-paper texture. No stock-photo grit required. */
 body::before {
   position: fixed;
@@ -151,7 +155,10 @@ a {
 
 a:focus-visible,
 button:focus-visible,
-input:focus-visible {
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
   outline: 3px solid var(--red);
   outline-offset: 4px;
 }
@@ -243,6 +250,9 @@ input:focus-visible {
 .section--dark .section-heading__caption {
   color: rgba(251, 246, 236, 0.65);
 }
+
+/* Small red copy on ink uses the existing accessible accent token. */
+.section--dark .eyebrow { color: var(--red-on-dark); }
 
 .eyebrow {
   display: inline-flex;
@@ -383,7 +393,16 @@ input:focus-visible {
   gap: 1.5rem;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
+
+/* Enlarged text may need two rows before the mobile menu breakpoint. */
+.site-nav__links { flex-wrap: wrap; }
+
+main[id] { scroll-margin-top: calc(var(--nav-height) + 1rem); }
+
+/* Standalone text actions need a usable target without changing inline prose links. */
+.text-link { min-height: 44px; align-items: center; }
 
 .site-nav__brand {
   display: inline-flex;
@@ -981,7 +1000,7 @@ input:focus-visible {
 }
 
 .card--dark .text-link {
-  color: var(--red);
+  color: var(--red-on-dark);
 }
 
 /* =========================
@@ -1439,6 +1458,14 @@ input:focus-visible {
 }
 
 @media (max-width: 760px) {
+  .creator__file-stamp { white-space: normal; }
+
+  .creator__file-topline { flex-wrap: wrap; }
+
+  .hero__title .brand-word {
+    font-size: min(1em, calc((100vw - var(--gutter) * 2) / 2.7));
+  }
+
   .document-bar__inner,
   .section-heading,
   .site-footer__inner {
