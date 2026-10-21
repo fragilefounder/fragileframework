@@ -2352,3 +2352,20 @@ html:has(> body.page-dictionary) {
   color: var(--paper-light);
   font-weight: 700;
 }
+/* Tap feedback on phones (hover never fires on touch) */
+.home-route:active { background: var(--paper-deep); }
+.site-nav__links a:active {
+  background: rgba(204, 0, 0, 0.22);
+  border-color: var(--red);
+}
+
+/* "Uncertified on purpose." reads as a stamp, not a leftover */
+.home-filing-note {
+  font-size: 13px;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.35em 0.7em;
+  border: 3px double var(--red);
+  color: var(--red);
+  transform: rotate(-2deg);
+}
