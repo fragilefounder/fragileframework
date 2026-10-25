@@ -1,671 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The frAGILE Playbook | frAGILE Framework™</title>
-  <meta name="description" content="The frAGILE Playbook: twelve case files for Agile ceremonies, roles, tools, and templates that somehow survived every transformation office.">
+  <meta name="description" content="Twelve fictional case files show the signal, the condition behind it, one change to try, and how to tell whether it helped.">
   <meta name="author" content="Thach Nguyen">
-  <meta name="keywords" content="frAGILE Playbook, Agile ceremonies, product roles, backlog quality, product leadership">
-
-  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="canonical" href="https://fragileframework.com/playbook">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fragileframework.com/playbook">
   <meta property="og:title" content="The frAGILE Playbook">
-  <meta property="og:description" content="A field manual for naming the Agile theater before it becomes culture.">
-  <meta property="og:url" content="https://fragileframework.com/playbook.html">
+  <meta property="og:description" content="Twelve fictional case files show the signal, the condition behind it, one change to try, and how to tell whether it helped.">
   <meta property="og:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The frAGILE Playbook">
-  <meta name="twitter:description" content="Twelve cases. Four verdicts. One standard filed under Sprint ∞.">
+  <meta name="twitter:description" content="Twelve fictional case files show the signal, the condition behind it, one change to try, and how to tell whether it helped.">
   <meta name="twitter:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
+  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="document-pages.css">
   <script src="nav.js"></script>
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-
-  <style>
-    /*
-      frAGILE Playbook page layer
-      Uses shared Phase 1 tokens from fragile-theme.css.
-      This layer owns case-file composition only.
-    */
-
-    .playbook-ornament {
-      margin-block: 1.55rem;
-      color: var(--red);
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      letter-spacing: 0.55em;
-      user-select: none;
-    }
-
-    .playbook-index {
-      background: var(--ink);
-      color: var(--paper-light);
-      border-bottom: 3px solid var(--red);
-    }
-
-    .playbook-index__inner {
-      display: grid;
-      grid-template-columns: minmax(220px, 0.35fr) minmax(0, 1fr);
-      gap: clamp(1.5rem, 4vw, 3rem);
-      align-items: center;
-      padding-block: clamp(1.4rem, 3vw, 2rem);
-    }
-
-    .playbook-index__meta {
-      display: grid;
-      gap: 0.6rem;
-    }
-
-    .playbook-index__label {
-      color: var(--red-on-dark);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .playbook-index__legend {
-      max-width: 30ch;
-      margin: 0;
-      color: rgba(251, 246, 236, 0.68);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      line-height: 1.55;
-      letter-spacing: 0.01em;
-      text-transform: none;
-    }
-
-    .playbook-index__list {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-
-    .playbook-index__list a {
-      display: block;
-      padding: 0.85rem 0.9rem;
-      color: var(--paper-light);
-      border: 1px solid rgba(251, 246, 236, 0.22);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: 0.12em;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color var(--ease-fast), border-color var(--ease-fast), background var(--ease-fast);
-    }
-
-    .playbook-index__list a:hover {
-      color: var(--paper-light);
-      background: var(--red);
-      border-color: var(--red);
-    }
-
-    .playbook-index__list span {
-      display: block;
-      margin-bottom: 0.2rem;
-      color: var(--red-on-dark);
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 400;
-      line-height: 1;
-    }
-
-    .playbook-index__list a:hover span {
-      color: var(--paper-light);
-    }
-
-    .playbook-chapter {
-      padding-block: var(--section-space);
-      background: var(--paper);
-      border-bottom: var(--border);
-    }
-
-    .playbook-chapter:nth-of-type(even) {
-      background: var(--paper-light);
-    }
-
-    .playbook-chapter__head {
-      display: grid;
-      grid-template-columns: minmax(160px, 0.3fr) minmax(0, 1fr) minmax(220px, 0.36fr);
-      gap: clamp(1.5rem, 4vw, 3rem);
-      align-items: end;
-      padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
-      margin-bottom: clamp(2rem, 5vw, 4rem);
-      border-bottom: var(--border);
-    }
-
-    .playbook-chapter__number {
-      color: var(--red);
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .playbook-chapter__title {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: var(--step-4);
-      font-weight: 400;
-      line-height: 0.86;
-      text-transform: uppercase;
-    }
-
-    .playbook-chapter__caption {
-      max-width: 360px;
-      margin: 0 0 0 auto;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      line-height: 1.6;
-      letter-spacing: 0.1em;
-      text-align: right;
-      text-transform: uppercase;
-    }
-
-    .case-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(1.25rem, 3vw, 2rem);
-    }
-
-    .case-file {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-      padding: clamp(1.35rem, 3vw, 2rem);
-      background: var(--paper-light);
-      border: var(--border);
-      box-shadow: var(--shadow-md);
-    }
-
-    .case-file:nth-child(4n + 2),
-    .case-file:nth-child(4n + 3) {
-      background: var(--paper-deep);
-    }
-
-    .case-file::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 0.55rem;
-      content: "";
-      background: repeating-linear-gradient(90deg, var(--red) 0 1.2rem, var(--ink) 1.2rem 1.45rem, transparent 1.45rem 1.75rem);
-    }
-
-    .case-file__head {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding-top: 1.1rem;
-      padding-bottom: 1rem;
-      margin-bottom: 1.25rem;
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .case-file__number {
-      color: var(--red-dark);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .status-stamp {
-      display: inline-block;
-      padding: 0.28rem 0.52rem;
-      color: var(--red);
-      border: 2px solid currentColor;
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      transform: rotate(2deg);
-      white-space: normal;
-    }
-
-    .case-file:nth-child(even) .status-stamp {
-      transform: rotate(-2deg);
-    }
-
-    .case-file__title {
-      margin-bottom: 1.35rem;
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.35rem);
-      font-weight: 400;
-      line-height: 0.95;
-      letter-spacing: -0.005em;
-      text-transform: uppercase;
-    }
-
-    .case-file__body {
-      display: grid;
-      gap: 0;
-      margin-bottom: 1.5rem;
-      border-top: 1px solid rgba(10, 10, 10, 0.3);
-    }
-
-    .case-field {
-      display: grid;
-      grid-template-columns: minmax(88px, 0.28fr) minmax(0, 1fr);
-      gap: 1rem;
-      padding-block: 0.85rem;
-      border-bottom: 1px solid rgba(10, 10, 10, 0.3);
-    }
-
-    .case-field__label {
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    .case-field__value {
-      margin: 0;
-      color: var(--ink-brown);
-      font-size: 0.96rem;
-      line-height: 1.55;
-    }
-
-    .case-field__aside {
-      color: var(--muted);
-      font-size: 0.86em;
-      font-style: italic;
-    }
-
-    .case-field__value--evidence {
-      color: var(--ink);
-      font-family: var(--font-mono);
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .case-field__value--recommendation {
-      color: var(--red-dark);
-      font-weight: 700;
-    }
-
-    /* Diagnosis gets its own quiet register: not the joke-mono of the evidence
-       quote, not the red imperative of the recommendation. This is the beat
-       where the reader should feel the shift from "that's funny" to "that's
-       true" — so it reads as plain, level, unadorned observation. */
-    .case-field--diagnosis .case-field__label {
-      color: var(--ink-brown);
-    }
-
-    .case-field__value--diagnosis {
-      position: relative;
-      padding-left: 0.9rem;
-      color: var(--ink);
-      border-left: 2px solid var(--muted-light);
-    }
-
-
-
-    .case-art {
-      margin: 1rem 0 1.1rem;
-      padding: 0.85rem;
-      background: rgba(10, 10, 10, 0.04);
-      border: 1px dashed rgba(10, 10, 10, 0.38);
-    }
-
-    .case-art--burndown {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .case-art--burndown::after {
-      position: absolute;
-      right: 0.75rem;
-      bottom: 0.55rem;
-      color: var(--red);
-      content: "NO MOVEMENT DETECTED";
-      font-family: var(--font-mono);
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transform: rotate(-2deg);
-    }
-
-    .burndown-flatline {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .burndown-flatline__grid {
-      stroke: rgba(10, 10, 10, 0.18);
-      stroke-width: 1;
-    }
-
-    .burndown-flatline__axis {
-      stroke: var(--ink);
-      stroke-width: 2;
-    }
-
-    .burndown-flatline__ideal {
-      stroke: rgba(10, 10, 10, 0.32);
-      stroke-dasharray: 5 5;
-      stroke-width: 2;
-    }
-
-    .burndown-flatline__actual {
-      fill: none;
-      stroke: var(--red);
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      stroke-width: 4;
-    }
-
-    .burndown-flatline__label {
-      fill: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .burndown-flatline__stamp {
-      fill: var(--red);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .case-file__foot {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 0.9rem;
-      margin-top: auto;
-      color: var(--muted);
-      border-top: 2px solid var(--ink);
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .playbook-verdict {
-      padding-block: var(--section-space);
-      background: var(--ink);
-      color: var(--paper-light);
-      border-bottom: 14px solid var(--red);
-    }
-
-    .playbook-verdict__head {
-      max-width: 980px;
-      margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
-    }
-
-    .playbook-verdict__kicker {
-      margin-bottom: 1rem;
-      color: var(--red-on-dark);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .playbook-verdict__title,
-    .playbook-signoff__title {
-      margin-bottom: 1rem;
-      font-family: var(--font-display);
-      font-size: var(--step-4);
-      font-weight: 400;
-      line-height: 0.86;
-      text-transform: uppercase;
-    }
-
-    .playbook-verdict__title .accent,
-    .playbook-signoff__title .accent {
-      color: var(--red);
-    }
-
-    .playbook-verdict__caption {
-      max-width: 680px;
-      color: rgba(251, 246, 236, 0.7);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      line-height: 1.7;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .verdict-list {
-      display: grid;
-      gap: 0;
-      border-top: 1px solid rgba(251, 246, 236, 0.2);
-    }
-
-    .verdict-item {
-      display: grid;
-      grid-template-columns: 100px minmax(0, 1fr);
-      gap: clamp(1rem, 4vw, 3rem);
-      align-items: baseline;
-      padding-block: clamp(1.4rem, 3vw, 2.2rem);
-      border-bottom: 1px solid rgba(251, 246, 236, 0.2);
-    }
-
-    .verdict-item__number {
-      color: var(--red);
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1;
-    }
-
-    .verdict-item__text {
-      margin: 0;
-      color: var(--paper-light);
-      font-size: clamp(1.25rem, 2.4vw, 2rem);
-      line-height: 1.35;
-    }
-
-    .verdict-item__text strong {
-      color: var(--red-on-dark);
-      font-family: var(--font-mono);
-      font-size: 0.78em;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .playbook-signoff {
-      padding-block: clamp(5rem, 10vw, 8rem);
-      text-align: center;
-      background: var(--paper-light);
-    }
-
-    .playbook-signoff__inner {
-      max-width: 880px;
-      margin-inline: auto;
-    }
-
-    .playbook-signoff__mark {
-      display: inline-flex;
-      gap: 0.75rem;
-      align-items: center;
-      margin-bottom: 1.75rem;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .playbook-signoff__mark::before,
-    .playbook-signoff__mark::after {
-      width: 1.8rem;
-      height: 1px;
-      content: "";
-      background: currentColor;
-    }
-
-    .playbook-signoff__copy {
-      max-width: 720px;
-      margin: 0 auto 2rem;
-      color: var(--ink-brown);
-      font-size: var(--step-1);
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    .playbook-signoff__note {
-      margin-top: 1.25rem;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 980px) {
-      .playbook-index__inner,
-      .playbook-chapter__head {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .playbook-chapter__caption {
-        max-width: 620px;
-        margin: 0;
-        text-align: left;
-      }
-
-      .playbook-index__list,
-      .case-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 760px) {
-      .playbook-index__list,
-      .case-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .case-field,
-      .verdict-item {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 0.4rem;
-      }
-
-  
-
-    .case-art {
-      margin: 1rem 0 1.1rem;
-      padding: 0.85rem;
-      background: rgba(10, 10, 10, 0.04);
-      border: 1px dashed rgba(10, 10, 10, 0.38);
-    }
-
-    .case-art--burndown {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .case-art--burndown::after {
-      position: absolute;
-      right: 0.75rem;
-      bottom: 0.55rem;
-      color: var(--red);
-      content: "NO MOVEMENT DETECTED";
-      font-family: var(--font-mono);
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transform: rotate(-2deg);
-    }
-
-    .burndown-flatline {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .burndown-flatline__grid {
-      stroke: rgba(10, 10, 10, 0.18);
-      stroke-width: 1;
-    }
-
-    .burndown-flatline__axis {
-      stroke: var(--ink);
-      stroke-width: 2;
-    }
-
-    .burndown-flatline__ideal {
-      stroke: rgba(10, 10, 10, 0.32);
-      stroke-dasharray: 5 5;
-      stroke-width: 2;
-    }
-
-    .burndown-flatline__actual {
-      fill: none;
-      stroke: var(--red);
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      stroke-width: 4;
-    }
-
-    .burndown-flatline__label {
-      fill: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .burndown-flatline__stamp {
-      fill: var(--red);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .case-file__foot {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .playbook-signoff__mark::before,
-      .playbook-signoff__mark::after {
-        width: 1.1rem;
-      }
-    }
-  </style>
 </head>
-<body>
-  <a class="skip-link" href="#main-content">Skip the ritual. Open the case files.</a>
-
+<body class="landing-page page-playbook">
+  <a class="skip-link" href="#main-content">Skip to the Playbook.</a>
   <header class="site-nav">
     <div class="site-nav__inner">
       <div class="site-nav__identity">
@@ -675,365 +37,88 @@
       <nav class="site-nav__menu" aria-label="Primary navigation"><button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" hidden><span class="site-nav__toggle-icon" aria-hidden="true"></span>Menu</button><ul class="site-nav__links" id="site-nav-links"><li><a href="readiness-check.html">Tools</a></li><li><a href="resources.html" aria-current="true">Resources</a></li><li><a href="dictionary.html">Dictionary</a></li><li><a href="about.html">About</a></li></ul></nav>
     </div>
   </header>
-
-  <div class="document-bar" aria-label="Document metadata">
-    <div class="container document-bar__inner">
-      <span>Document II. The <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Playbook</span>
-      <span class="stamp">For internal circulation</span>
-      <span>Field Manual · 12 cases · 4 verdicts</span>
-    </div>
-  </div>
-
+  <div class="document-bar" aria-label="Document classification"><div class="container document-bar__inner"><span>Document II / The frAGILE Playbook</span><span>12 fictional case files · 4 findings</span></div></div>
   <main id="main-content" tabindex="-1">
-    <section class="hero playbook-hero" aria-labelledby="playbook-title">
-      <div class="container hero__inner">
-        <div>
-          <div class="eyebrow">A field manual</div>
-          <h1 class="hero__title" id="playbook-title"><span class="small">The</span> Playbook</h1>
-          <p class="hero__lede">Field notes from ceremonies that solved nothing, filed under names that should not have been printed.</p>
-          <p class="hero__lede" style="font-size:0.85em;opacity:0.8">All case files are fictional. Any resemblance to your last sprint is coincidental.</p>
-          <div class="hero__actions">
-            <a class="button" href="#ceremonies">Read the cases</a>
-            <a class="button button--outline" href="#findings">Jump to findings</a>
-          </div>
-        </div>
+    <section class="hero doc-hero" aria-labelledby="playbook-title"><div class="container hero__inner">
+      <div class="doc-hero__main">
+        <div class="eyebrow">The frAGILE Playbook</div>
+        <h1 class="hero__title" id="playbook-title">Practices that kept their names.<br><span class="doc-hero__accent">And lost their jobs.</span></h1>
+        <p class="hero__lede">The meeting has an owner. Its purpose does not. Twelve fictional case files trace the visible signal, the condition keeping it alive, one change to try, and what to look for afterward. Start with a case that sounds familiar, or read the four findings first.</p>
+        <div class="hero__actions"><a class="button" href="#start-here">Find a case</a><a class="button button--outline" href="#findings">Read the findings</a></div>
+        <p class="doc-hero__byline">An independent project by <a href="about.html">Thach Nguyen</a>.</p>
       </div>
-    </section>
+      <aside class="doc-hero__proof" aria-label="How to use a case file"><div class="field-label">How to use a case file</div><p>See the signal. Find the condition. Try one change. Check what happened.</p><span>Filed by the Cult of Clarity.</span></aside>
+    </div></section>
 
-    <section class="playbook-index" aria-label="Index of known incidents">
-      <div class="container playbook-index__inner">
-        <div class="playbook-index__meta">
-          <div class="playbook-index__label">Index of Known Incidents</div>
-          <p class="playbook-index__legend">Each case file: the line you&rsquo;ve heard in the room &rarr; what&rsquo;s actually happening &rarr; what to do instead.</p>
-        </div>
-        <nav class="playbook-index__list" aria-label="Playbook chapters">
-          <a href="#ceremonies"><span>01</span> Ceremonies</a>
-          <a href="#roles"><span>02</span> Roles &amp; Personas</a>
-          <a href="#tools"><span>03</span> Tools &amp; Templates</a>
-          <a href="#findings"><span>04</span> Findings</a>
-        </nav>
+    <nav class="doc-chooser" id="start-here" aria-label="Start with a case"><div class="container">
+      <div class="doc-chooser__head"><div class="eyebrow">Start where the work is stuck</div><p>Choose one case. Skip the rest until you need them.</p></div>
+      <div class="doc-chooser__grid">
+        <a href="#case-005"><span>Case 005 / Customer evidence</span><strong>No current customer signal reaches the decision.</strong></a>
+        <a href="#case-007"><span>Case 007 / Outcomes</span><strong>The release is counted as the result.</strong></a>
+        <a href="#case-008"><span>Case 008 / Decision rights</span><strong>A late change lands. Nobody names what waits.</strong></a>
+        <a href="#ceremonies"><span>Chapter I / Ceremonies</span><strong>Start with the meetings.</strong></a>
       </div>
-    </section>
+    </div></nav>
 
-    <section class="playbook-chapter" id="ceremonies" aria-labelledby="ceremonies-title">
-      <div class="container">
-        <div class="playbook-chapter__head">
-          <div class="playbook-chapter__number">Chapter I.</div>
-          <h2 class="playbook-chapter__title" id="ceremonies-title">Ceremonies</h2>
-          <p class="playbook-chapter__caption">Four rituals investigated. No blockers reported. Everything blocked.</p>
-        </div>
-
-        <div class="case-grid">
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 001</div>
-              <div class="status-stamp">Recurring</div>
-            </div>
-            <h3 class="case-file__title">The Sprint That Planned Itself</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Sprint Planning</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Symptom</div>
-                <p class="case-field__value case-field__value--evidence">“We’ll figure out scope during the sprint.”</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Jira/ADO is full of vague hopes and duplicate epics. Nobody names the outcome.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Start with outcomes, not tickets. If nobody can state the goal, do not start the sprint.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Sprint ∞</span>
-            </div>
-          </article>
-
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 002</div>
-              <div class="status-stamp">Unresolved</div>
-            </div>
-            <h3 class="case-file__title">The Standup That Said Nothing</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Daily Standup</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Symptom</div>
-                <p class="case-field__value case-field__value--evidence">“Yesterday I... Today I... No blockers.”</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Rote status ritual with no real signal. Team performs updates for the room, not the work.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Ask: “What would unblock the team today?” Then let people leave.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Daily @ 9:00</span>
-            </div>
-          </article>
-
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 003</div>
-              <div class="status-stamp">Standing</div>
-            </div>
-            <h3 class="case-file__title">The Retro That Solved Nothing</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Sprint Retrospective</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Symptom</div>
-                <p class="case-field__value case-field__value--evidence">Complaints aired. Post-its written. Nothing changes by next sprint.</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Venting mistaken for progress. No owner assigned to any action.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Turn one vent into one action item every sprint. Name the owner before the meeting ends.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>End of Sprint</span>
-            </div>
-          </article>
-
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 004</div>
-              <div class="status-stamp">In Regression</div>
-            </div>
-            <h3 class="case-file__title">The Demo of a Thing That Doesn&rsquo;t Exist Yet</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Sprint Demo</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Symptom</div>
-                <p class="case-field__value case-field__value--evidence">“Please imagine this is clickable.”</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">PowerPoint pixels shown in place of shipped work. Team performs delivery.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Show real value or say the truth. “We did not ship this sprint” is a valid demo.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Fortnightly</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="playbook-chapter" id="roles" aria-labelledby="roles-title">
-      <div class="container">
-        <div class="playbook-chapter__head">
-          <div class="playbook-chapter__number">Chapter II.</div>
-          <h2 class="playbook-chapter__title" id="roles-title">Roles &amp; Personas</h2>
-          <p class="playbook-chapter__caption">Four archetypes at large. Suspected of Agile theater in varying degrees.</p>
-        </div>
-
-        <div class="case-grid">
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 005</div>
-              <div class="status-stamp">Confidential</div>
-            </div>
-            <h3 class="case-file__title">The Voice That Forgot to Listen</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Product Owner</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Alias</div>
-                <p class="case-field__value case-field__value--evidence">“Voice of the customer.”</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Speaks for customers. Has not spoken to customers in six sprints.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Schedule the customer call. Bring transcripts. Stop paraphrasing.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Ongoing</span>
-            </div>
-          </article>
-
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 006</div>
-              <div class="status-stamp">Suspected</div>
-            </div>
-            <h3 class="case-file__title">The Master Who Forgot the Purpose</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Scrum Grandmaster <span class="case-field__aside">(the Scrum Master who&rsquo;s been doing this so long, the ritual outranks the role)</span></p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Alias</div>
-                <p class="case-field__value case-field__value--evidence">“Keeper of the ceremony.”</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Enforces every ritual. Cannot explain why any of them exist.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Ask what each ceremony is for. If the answer is “the framework,” cancel it.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Recurring</span>
-            </div>
-          </article>
-
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 007</div>
-              <div class="status-stamp">Open</div>
-            </div>
-            <h3 class="case-file__title">The Lead Who Only Measured Delivery</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Delivery Lead</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Reputation</div>
-                <p class="case-field__value case-field__value--evidence">“The one who gets things shipped.”</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Measures success only by shipping. Value shipped is not measured at all.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Add one outcome metric per initiative. Ship becomes shipped-and-used.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Q4</span>
-            </div>
-          </article>
-
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 008</div>
-              <div class="status-stamp">Witnessed</div>
-            </div>
-            <h3 class="case-file__title">The Stakeholder Who Joined Sprint Six</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Stakeholder X</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Alias</div>
-                <p class="case-field__value case-field__value--evidence">“I have a small change.”</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Missed every discovery session. Reappears in sprint six. The "small change" touches four epics.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Publish the decision log. Late input is welcome; late overrides are not.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Sprint 6</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="playbook-chapter" id="tools" aria-labelledby="tools-title">
-      <div class="container">
-        <div class="playbook-chapter__head">
-          <div class="playbook-chapter__number">Chapter III.</div>
-          <h2 class="playbook-chapter__title" id="tools-title">Tools &amp; Templates</h2>
-          <p class="playbook-chapter__caption">Four artifacts recovered from the scene. All still in circulation.</p>
-        </div>
-
-        <div class="case-grid">
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 009</div>
-              <div class="status-stamp">Preserved</div>
-            </div>
-            <h3 class="case-file__title">The Poster That Time Forgot</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Definition of Done</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Condition</div>
-                <p class="case-field__value case-field__value--evidence">Laminated. Last revised: pre-pandemic.</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Written when the team was different. Referenced by no one. Enforced by silence.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Rewrite it in the next retro. Anything you do not defend, you should not display.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Wall, third floor</span>
-            </div>
-          </article>
-
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 010</div>
-              <div class="status-stamp">Neglected</div>
-            </div>
-            <h3 class="case-file__title">The Chart Nobody Read</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Burndown Chart</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Condition</div>
-                <p class="case-field__value case-field__value--evidence">Exists. Only reviewed when things go wrong.</p>
-              </div>
-              <div class="case-art case-art--burndown" aria-label="Tiny flatlined burndown chart showing no meaningful movement.">
+    <section class="doc-section playbook-chapter" id="ceremonies" aria-labelledby="ceremonies-title"><div class="container">
+          <div class="doc-section__head"><div><div class="eyebrow">Chapter I</div><h2 id="ceremonies-title">Ceremonies</h2></div><p>Four rituals investigated. Attendance was excellent.</p></div>
+          <div class="case-grid"><article class="case-file" id="case-001" aria-labelledby="case-001-title">
+      <div class="case-file__top"><span>Case 001</span><span>Sprint planning</span></div>
+      <h3 id="case-001-title">The Sprint That Planned Itself</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>“We’ll figure out scope during the sprint.” The board has work, but the team cannot name a shared outcome.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>The team is asked to commit to tickets before an open decision is made.</dd></div><div class="case-field"><dt>Try</dt><dd>Agree on the sprint goal and what can wait. Put the unresolved choice with the person who can make it before treating the list as a commitment.</dd></div><div class="case-field"><dt>Look for</dt><dd>Can three teammates describe the same goal and what would make it change?</dd></div></dl>
+    </article><article class="case-file" id="case-002" aria-labelledby="case-002-title">
+      <div class="case-file__top"><span>Case 002</span><span>Daily standup</span></div>
+      <h3 id="case-002-title">The Standup That Would Not End</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>“Yesterday I... Today I... No blockers.” The room gets an update; the plan stays untouched.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>The meeting rewards a complete recital instead of useful coordination.</dd></div><div class="case-field"><dt>Try</dt><dd>Ask what changed since yesterday, what is at risk, and who needs to coordinate. Move detailed problem-solving to the people involved.</dd></div><div class="case-field"><dt>Look for</dt><dd>Did anyone get unblocked or adjust the plan?</dd></div></dl>
+    </article><article class="case-file" id="case-003" aria-labelledby="case-003-title">
+      <div class="case-file__top"><span>Case 003</span><span>Sprint retrospective</span></div>
+      <h3 id="case-003-title">The Retro That Solved Nothing</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>The same concern appears on new sticky notes. Nothing changes by the next sprint.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>Concerns are collected, but no change is chosen. Some may be difficult to raise safely in the room.</dd></div><div class="case-field"><dt>Try</dt><dd>Choose one change within the team’s reach, name who will take it forward, and check it at the next retro. Route concerns that need outside authority without asking someone to defend a sensitive issue in public.</dd></div><div class="case-field"><dt>Look for</dt><dd>Was the change tried? Did it help?</dd></div></dl>
+    </article><article class="case-file" id="case-004" aria-labelledby="case-004-title">
+      <div class="case-file__top"><span>Case 004</span><span>Sprint review</span></div>
+      <h3 id="case-004-title">The Demo That Demoed a Prototype of a Demo</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>“Please imagine this is clickable.” A deck presents a prototype as delivered work.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>The review is expected to look finished, so the difference between completed work and learning gets blurred.</dd></div><div class="case-field"><dt>Try</dt><dd>Show completed work as completed, prototypes as experiments, and unresolved work as unresolved. Use the review to decide what to adapt next.</dd></div><div class="case-field"><dt>Look for</dt><dd>Did the review reveal an assumption or change a decision?</dd></div></dl>
+    </article></div>
+        </div></section>
+<section class="doc-section playbook-chapter" id="roles" aria-labelledby="roles-title"><div class="container">
+          <div class="doc-section__head"><div><div class="eyebrow">Chapter II</div><h2 id="roles-title">Roles and incentives</h2></div><p>The role gets a title. The system decides what it can do.</p></div>
+          <div class="case-grid"><article class="case-file" id="case-005" aria-labelledby="case-005-title">
+      <div class="case-file__top"><span>Case 005</span><span>Product Owner and customer evidence</span></div>
+      <h3 id="case-005-title">The Customer Voice on Mute</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>A decision is made on behalf of customers, but no current customer evidence reaches the team.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>Research, support, frontline, and direct customer signals have no reliable path into planning. One role is left to improvise “the voice.”</dd></div><div class="case-field"><dt>Try</dt><dd>Bring one relevant, recent customer signal to the decision. Mark what remains an assumption and how the consequential unknowns could be tested.</dd></div><div class="case-field"><dt>Look for</dt><dd>Did the evidence change the choice or clarify what is still unknown?</dd></div></dl>
+    </article><article class="case-file" id="case-006" aria-labelledby="case-006-title">
+      <div class="case-file__top"><span>Case 006</span><span>Scrum Master and team ceremonies</span></div>
+      <h3 id="case-006-title">The Ceremony That Outlived Its Reason</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>Everyone attends. Nobody can say what the meeting should decide, learn, or protect.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>The calendar invite has an owner; its purpose does not.</dd></div><div class="case-field"><dt>Try</dt><dd>State the expected output and any quality or governance need it serves. Shorten or redesign the meeting. Retire it if it is optional and serves no distinct purpose.</dd></div><div class="case-field"><dt>Look for</dt><dd>Did the team preserve the needed decision, record, or safeguard with less time?</dd></div></dl>
+    </article><article class="case-file" id="case-007" aria-labelledby="case-007-title">
+      <div class="case-file__top"><span>Case 007</span><span>Delivery Lead and outcome measures</span></div>
+      <h3 id="case-007-title">The Release That Became the Result</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>The release is counted as success. Nobody checks whether people can use what shipped, or whether it helped.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>Delivery is easier to report than the outcome the work was meant to improve.</dd></div><div class="case-field"><dt>Try</dt><dd>Pair release status with one meaningful use or outcome signal. Set a date to inspect it, even if the first measure is an imperfect proxy.</dd></div><div class="case-field"><dt>Look for</dt><dd>Did the signal change the next investment or reveal a question worth investigating?</dd></div></dl>
+    </article><article class="case-file" id="case-008" aria-labelledby="case-008-title">
+      <div class="case-file__top"><span>Case 008</span><span>Stakeholder access and scope decisions</span></div>
+      <h3 id="case-008-title">The Override That Arrived in Sprint Six</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>A late request changes the plan. Nobody names what now waits.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>Stakeholders and risk partners entered after the trade-offs became expensive, and decision rights remained vague.</dd></div><div class="case-field"><dt>Try</dt><dd>Record who can change priority, what new evidence or obligation warrants it, and which work moves out. Welcome late customer, safety, or regulatory facts. Make their cost and importance visible.</dd></div><div class="case-field"><dt>Look for</dt><dd>Can the team explain why the change was made and what it displaced?</dd></div></dl>
+    </article></div>
+        </div></section>
+<section class="doc-section playbook-chapter" id="tools" aria-labelledby="tools-title"><div class="container">
+          <div class="doc-section__head"><div><div class="eyebrow">Chapter III</div><h2 id="tools-title">Tools and templates</h2></div><p>Four artifacts recovered. None can speak for itself.</p></div>
+          <div class="case-grid"><article class="case-file" id="case-009" aria-labelledby="case-009-title">
+      <div class="case-file__top"><span>Case 009</span><span>Definition of Done</span></div>
+      <h3 id="case-009-title">The Poster That Time Forgot</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>The criteria are on the wall. The team does not use them to decide whether work is complete.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>The criteria were not revisited as the team, product, and requirements changed.</dd></div><div class="case-field"><dt>Try</dt><dd>Review them with the team and anyone accountable for quality or required controls. Retain required safeguards, revise obsolete steps, and use the result on the next item.</dd></div><div class="case-field"><dt>Look for</dt><dd>Does completed work meet shared criteria without a last-minute surprise?</dd></div></dl>
+    </article><article class="case-file" id="case-010" aria-labelledby="case-010-title">
+      <div class="case-file__top"><span>Case 010</span><span>Burndown chart</span></div>
+      <h3 id="case-010-title">The Chart Nobody Read</h3>
+      <div class="case-art case-art--burndown" aria-label="Tiny flatlined burndown chart showing no meaningful movement.">
                 <svg class="burndown-flatline" viewBox="0 0 360 120" role="img" aria-labelledby="burndown-title burndown-desc" focusable="false">
                   <title id="burndown-title">Flatlined burndown chart</title>
                   <desc id="burndown-desc">An ideal burndown line falls toward zero while the actual burndown line stays almost flat.</desc>
@@ -1049,125 +134,36 @@
                   <text class="burndown-flatline__stamp" x="176" y="70">STILL FINE</text>
                 </svg>
               </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Compliance artifact. Signal after the fact.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Delete it or use it. If you would stop reading it tomorrow and nothing would change, that is your answer.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Auto-generated</span>
-            </div>
-          </article>
+      <dl><div class="case-field"><dt>Signal</dt><dd>The chart is produced every sprint and opened only after the deadline slips.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>It appears in reporting, but no decision uses it.</dd></div><div class="case-field"><dt>Try</dt><dd>For the next two sprints, ask what decision the chart changes. If it changes none, retire it or replace it with a signal the team can use.</dd></div><div class="case-field"><dt>Look for</dt><dd>Did it help the team see a risk early enough to respond?</dd></div></dl>
+    </article><article class="case-file" id="case-011" aria-labelledby="case-011-title">
+      <div class="case-file__top"><span>Case 011</span><span>Velocity</span></div>
+      <h3 id="case-011-title">The Score That Was Not a Score</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>Story points are used to rank teams or assess a person&#x27;s performance.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>A planning estimate became a target, changing what the number rewards.</dd></div><div class="case-field"><dt>Try</dt><dd>Use velocity, if useful, for planning within the team. Keep story points out of individual appraisal. Consider delivery alongside evidence of quality and value.</dd></div><div class="case-field"><dt>Look for</dt><dd>Do estimates help the team plan without rewarding point inflation?</dd></div></dl>
+    </article><article class="case-file" id="case-012" aria-labelledby="case-012-title">
+      <div class="case-file__top"><span>Case 012</span><span>Shared work board</span></div>
+      <h3 id="case-012-title">The Board That Never Moved</h3>
+      
+      <dl><div class="case-field"><dt>Signal</dt><dd>Most work sits in “In Progress” or “Blocked.” The standup proceeds from the board as if it were current.</dd></div><div class="case-field"><dt>What keeps it going</dt><dd>The board serves upward reporting more reliably than team coordination.</dd></div><div class="case-field"><dt>Try</dt><dd>Ask the people doing the work what is moving and what is stuck. Update the shared board together. Name the decision or support each blocked item needs.</dd></div><div class="case-field"><dt>Look for</dt><dd>Can someone use the board to help sooner?</dd></div></dl>
+    </article></div>
+        </div></section>
 
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 011</div>
-              <div class="status-stamp">Misapplied</div>
-            </div>
-            <h3 class="case-file__title">The Score That Was Not a Score</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Velocity Metrics</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Condition</div>
-                <p class="case-field__value case-field__value--evidence">Used to compare team happiness. Incorrectly.</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Planning signal treated as performance metric. Teams inflate points to keep the number steady.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Use velocity for planning only. Never in a performance review. Ever.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>Dashboard, TV lobby</span>
-            </div>
-          </article>
+    <section class="doc-section doc-section--dark" id="findings" aria-labelledby="findings-title"><div class="container">
+      <div class="doc-section__head"><div><div class="eyebrow">Chapter IV / Findings</div><h2 id="findings-title">Four truths <span class="doc-hero__accent">recovered.</span></h2></div><p>Twelve cases. The patterns beneath them.</p></div>
+      <ol class="doc-findings"><li class="doc-finding"><span>01</span><div><h3>Rituals need a job.</h3><p>A ceremony should make a decision clearer, expose a risk, or help the team learn. Attendance is not an outcome.</p></div></li>
+<li class="doc-finding"><span>02</span><div><h3>Roles need the conditions to succeed.</h3><p>Customer access, decision rights, and permission to raise a concern cannot be supplied by a job title. Fix the condition before blaming the person.</p></div></li>
+<li class="doc-finding"><span>03</span><div><h3>Artifacts need to match reality.</h3><p>A board, chart, or Definition of Done earns its place when people can use it to see progress, risk, or quality while there is time to act.</p></div></li>
+<li class="doc-finding"><span>04</span><div><h3>A familiar joke is a clue.</h3><p>When everyone recognizes the pattern, ask what rewards it, what makes it hard to challenge, and who can change one condition. Then check what happened.</p></div></li></ol>
+    </div></section>
 
-          <article class="case-file">
-            <div class="case-file__head">
-              <div class="case-file__number">Case No. 012</div>
-              <div class="status-stamp">In Progress</div>
-            </div>
-            <h3 class="case-file__title">The Board That Never Moved</h3>
-            <div class="case-file__body">
-              <div class="case-field">
-                <div class="case-field__label">Subject</div>
-                <p class="case-field__value">Agile Board</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Condition</div>
-                <p class="case-field__value case-field__value--evidence">78% of tickets in “In Progress” or “Blocked” purgatory.</p>
-              </div>
-              <div class="case-field case-field--diagnosis">
-                <div class="case-field__label">Diagnosis</div>
-                <p class="case-field__value case-field__value--diagnosis">Board does not reflect the actual work. Standups happen anyway.</p>
-              </div>
-              <div class="case-field">
-                <div class="case-field__label">Recommendation</div>
-                <p class="case-field__value case-field__value--recommendation">Jira/ADO boards record the work, but they cannot tell you what is actually blocked. Ask the people doing the work before you update the status.</p>
-              </div>
-            </div>
-            <div class="case-file__foot">
-              <span>Filed by The Cult of Clarity</span>
-              <span>All quarters</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="playbook-verdict" id="findings" aria-labelledby="findings-title">
-      <div class="container">
-        <div class="playbook-verdict__head">
-          <div class="playbook-verdict__kicker">Chapter IV. Findings</div>
-          <h2 class="playbook-verdict__title" id="findings-title">The <span class="accent">Verdict.</span></h2>
-          <p class="playbook-verdict__caption">Twelve cases reviewed. Four truths recovered. Filed under the only category that matters.</p>
-        </div>
-
-        <div class="verdict-list">
-          <article class="verdict-item">
-            <div class="verdict-item__number">01</div>
-            <p class="verdict-item__text">The ceremony is never the cure. <strong>It is only a container.</strong> If nobody brings truth into the room, the ritual will politely preserve the lie.</p>
-          </article>
-          <article class="verdict-item">
-            <div class="verdict-item__number">02</div>
-            <p class="verdict-item__text">A metric becomes theater the moment it is used to avoid judgment. <strong>Measure to learn.</strong> Not to decorate the dashboard.</p>
-          </article>
-          <article class="verdict-item">
-            <div class="verdict-item__number">03</div>
-            <p class="verdict-item__text">You do not need more process. <strong>You need more courage.</strong> Courage to speak clearly, say no, and show up human.</p>
-          </article>
-          <article class="verdict-item">
-            <div class="verdict-item__number">04</div>
-            <p class="verdict-item__text">When everyone recognizes the joke, you have found a pattern. <strong>Ask what keeps it alive.</strong></p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="playbook-signoff" aria-labelledby="signoff-title">
-      <div class="container playbook-signoff__inner">
-        <div class="playbook-signoff__mark">Chapter V. Close of File</div>
-        <div class="playbook-ornament" aria-hidden="true">✳ &nbsp; ✳ &nbsp; ✳</div>
-        <h2 class="playbook-signoff__title" id="signoff-title">Twelve cases.<br>One <span class="accent">standard.</span></h2>
-        <p class="playbook-signoff__copy">The Playbook does not exist to make Agile prettier. It exists to help teams name the pattern before the pattern becomes culture.</p>
-        <a class="button" href="mailto:hello@fragileframework.com?subject=I%20acknowledge%20receipt%20of%20the%20frAGILE%20Playbook">Acknowledge Receipt</a>
-        <p class="playbook-signoff__note">Legal status: ceremonial. Emotional accuracy: unfortunately high.</p>
-      </div>
-    </section>
+    <section class="doc-close" aria-labelledby="playbook-close-title"><div class="container doc-close__inner">
+      <div><div class="eyebrow">Close of file</div><h2 id="playbook-close-title">Twelve cases.<br><span class="accent">One standard.</span></h2></div>
+      <div><p>For any practice or artifact, ask what decision it improves, what learning it enables, or what quality it protects. Then ask whether it did that job.</p>
+      <p>Choose one case that looks familiar. Name the condition keeping it alive, one change within reach, who will take it forward, and when to revisit the result.</p>
+      <p class="doc-close__stamp">File remains open until the work changes.</p>
+      <div class="button-row"><a class="button" href="resources.html#team-check-in">Use the Team Check-in</a><a class="button button--outline" href="manifesto.html">Read the Manifesto</a></div></div>
+    </div></section>
   </main>
-
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <span>© 2025–2026 <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ · Independent project by Thach Nguyen</span>
