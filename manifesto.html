@@ -3,309 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>The frAGILE Manifesto™ | frAGILE Framework™</title>
-  <meta name="description" content="The frAGILE Manifesto names the Agile theater, then points teams back toward clearer ownership, useful artifacts, and actual outcomes.">
-  <meta name="keywords" content="frAGILE Manifesto, Agile values, ownership, product leadership, Thach Nguyen">
+  <title>The frAGILE Manifesto | frAGILE Framework™</title>
+  <meta name="description" content="Four familiar Agile values, tested against ownership, customer evidence, delivery, and change. Each distortion has a practical correction.">
   <meta name="author" content="Thach Nguyen">
   <meta name="theme-color" content="#0A0A0A">
-
-  <link rel="canonical" href="https://fragileframework.com/manifesto.html">
+  <link rel="canonical" href="https://fragileframework.com/manifesto">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://fragileframework.com/manifesto.html">
-  <meta property="og:title" content="The frAGILE Manifesto™">
-  <meta property="og:description" content="Four familiar values, reconsidered. What teams say, and what is actually true.">
+  <meta property="og:url" content="https://fragileframework.com/manifesto">
+  <meta property="og:title" content="The frAGILE Manifesto">
+  <meta property="og:description" content="Four familiar Agile values, tested against ownership, customer evidence, delivery, and change. Each distortion has a practical correction.">
   <meta property="og:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
-
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The frAGILE Manifesto™">
-  <meta name="twitter:description" content="Four broken defaults, six uncomfortable principles, and what is true underneath each one.">
+  <meta name="twitter:title" content="The frAGILE Manifesto">
+  <meta name="twitter:description" content="Four familiar Agile values, tested against ownership, customer evidence, delivery, and change. Each distortion has a practical correction.">
   <meta name="twitter:image" content="https://fragileframework.com/images/C5FA62E0-245A-4CBE-A423-BB40C6750442.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fragile-theme.css">
+  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="document-pages.css">
   <script src="nav.js"></script>
-
-  <style>
-    /*
-      frAGILE Manifesto page layer
-      Uses shared Phase 1 tokens from fragile-theme.css.
-      Page-specific only: manifesto values, over-stamps, and signature layout.
-    */
-
-    .manifesto-hero .hero__inner {
-      grid-template-columns: minmax(0, 1fr);
-      min-height: min(760px, calc(100vh - var(--nav-height)));
-      align-items: center;
-    }
-
-    .manifesto-hero .hero__title {
-      max-width: 8.5ch;
-    }
-
-    .manifesto-hero .hero__lede {
-      max-width: 820px;
-    }
-
-    .preamble-block {
-      max-width: 880px;
-      margin-inline: auto;
-      text-align: center;
-    }
-
-    .preamble-block__label {
-      display: inline-flex;
-      gap: 0.8rem;
-      align-items: center;
-      margin-bottom: 2rem;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-    }
-
-    .preamble-block__label::before,
-    .preamble-block__label::after {
-      width: 2rem;
-      height: 1px;
-      content: "";
-      background: currentColor;
-    }
-
-    .preamble-block__copy {
-      font-size: clamp(1.25rem, 2.4vw, 1.7rem);
-      line-height: 1.58;
-    }
-
-    .preamble-block__copy p + p {
-      margin-top: 1.35rem;
-    }
-
-    .manifesto-values {
-      display: grid;
-      gap: clamp(3rem, 7vw, 5.5rem);
-    }
-
-    .manifesto-value {
-      padding-bottom: clamp(3rem, 6vw, 5rem);
-      border-bottom: var(--border);
-    }
-
-    .manifesto-value:last-child {
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-
-    .manifesto-value__head {
-      display: grid;
-      grid-template-columns: minmax(92px, 0.22fr) minmax(0, 1fr);
-      gap: clamp(1.5rem, 4vw, 3.5rem);
-      align-items: start;
-      margin-bottom: clamp(1.75rem, 4vw, 3rem);
-    }
-
-    .manifesto-value__number {
-      color: var(--red);
-      font-family: var(--font-display);
-      font-size: clamp(4.5rem, 10vw, 9rem);
-      line-height: 0.78;
-    }
-
-    .manifesto-value__statement {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(2.75rem, 7vw, 7rem);
-      font-weight: 400;
-      line-height: 0.9;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-    }
-
-    .over-stamp {
-      display: inline-block;
-      padding: 0.05em 0.16em 0.08em;
-      color: var(--paper-light);
-      background: var(--red);
-      box-shadow: 5px 5px 0 var(--ink);
-      font-family: var(--font-mono);
-      font-size: 0.42em;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: 0.08em;
-      transform: rotate(-2deg) translateY(-0.08em);
-      vertical-align: middle;
-    }
-
-    .manifesto-value__body {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(1.25rem, 4vw, 3rem);
-      margin-left: clamp(0rem, 13vw, 10rem);
-    }
-
-    .manifesto-panel {
-      padding-top: 0.9rem;
-      border-top: 2px solid currentColor;
-    }
-
-    .manifesto-panel__label {
-      margin-bottom: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .manifesto-panel--satire {
-      color: var(--muted);
-    }
-
-    .manifesto-panel--satire p {
-      font-family: var(--font-mono);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .manifesto-panel--truth {
-      color: var(--red-dark);
-    }
-
-    .manifesto-panel--truth p {
-      color: var(--ink-brown);
-      font-size: var(--step-1);
-      font-weight: 700;
-      line-height: 1.52;
-    }
-
-    .manifesto-principles {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    .manifesto-principle {
-      display: grid;
-      grid-template-columns: minmax(70px, 110px) minmax(0, 1fr);
-      gap: clamp(1rem, 3vw, 2.5rem);
-      align-items: baseline;
-      padding-block: clamp(1.4rem, 3vw, 2.25rem);
-      border-bottom: 1px solid rgba(251, 246, 236, 0.2);
-    }
-
-    .manifesto-principle:last-child {
-      border-bottom: 0;
-    }
-
-    .manifesto-principle__number {
-      color: var(--red);
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 4.7rem);
-      line-height: 0.8;
-    }
-
-    .manifesto-principle__text {
-      margin: 0;
-      font-size: clamp(1.25rem, 2.8vw, 2.1rem);
-      line-height: 1.38;
-    }
-
-    .manifesto-principle__text em {
-      color: var(--red-on-dark);
-      font-style: normal;
-    }
-
-    .signature-card {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: center;
-      padding: clamp(1.5rem, 4vw, 3rem);
-      background: var(--paper-light);
-      border: var(--border);
-      box-shadow: var(--shadow-md);
-    }
-
-    .signature-card__mark {
-      margin-bottom: 1.25rem;
-      color: var(--red);
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .signature-card__title {
-      margin-bottom: 1.25rem;
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 7.8rem);
-      font-weight: 400;
-      line-height: 0.88;
-      text-transform: uppercase;
-    }
-
-    .signature-card__line {
-      display: block;
-      padding-top: 1.2rem;
-      margin: 1.5rem 0 2rem;
-      border-top: var(--border);
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.88rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .signature-card__aside {
-      padding: 1.25rem;
-      background: var(--ink);
-      color: var(--paper-light);
-      border-left: 10px solid var(--red);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      line-height: 1.7;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 900px) {
-      .manifesto-value__head,
-      .manifesto-value__body,
-      .signature-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .manifesto-value__body {
-        margin-left: 0;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .manifesto-value__statement {
-        font-size: clamp(2.3rem, 14vw, 4.2rem);
-      }
-
-      .manifesto-principle {
-        grid-template-columns: 56px minmax(0, 1fr);
-      }
-
-      .preamble-block__label::before,
-      .preamble-block__label::after {
-        width: 1rem;
-      }
-    }
-  </style>
 </head>
-<body>
-  <a class="skip-link" href="#main-content">Skip the ceremony. Read the manifesto.</a>
-
+<body class="landing-page page-manifesto">
+  <a class="skip-link" href="#main-content">Skip to the Manifesto.</a>
   <header class="site-nav">
     <div class="site-nav__inner">
       <div class="site-nav__identity">
@@ -315,182 +37,87 @@
       <nav class="site-nav__menu" aria-label="Primary navigation"><button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" hidden><span class="site-nav__toggle-icon" aria-hidden="true"></span>Menu</button><ul class="site-nav__links" id="site-nav-links"><li><a href="readiness-check.html">Tools</a></li><li><a href="resources.html" aria-current="true">Resources</a></li><li><a href="dictionary.html">Dictionary</a></li><li><a href="about.html">About</a></li></ul></nav>
     </div>
   </header>
-
-  <div class="document-bar" aria-label="Document classification">
-    <div class="container document-bar__inner">
-      <span>Document I. The <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Manifesto</span>
-      <span class="stamp">Revised, unofficially</span>
-      <span>Filed: Sprint ∞ · Priority: P0</span>
-    </div>
-  </div>
-
+  <div class="document-bar" aria-label="Document classification"><div class="container document-bar__inner"><span>Document I / The frAGILE Manifesto</span><span>Four values · Six principles</span></div></div>
   <main id="main-content" tabindex="-1">
-    <section class="hero manifesto-hero" aria-labelledby="manifesto-title">
+    <section class="hero doc-hero" aria-labelledby="manifesto-title">
       <div class="container hero__inner">
-        <div>
-          <div class="eyebrow">Section I. Preamble</div>
-          <h1 class="hero__title" id="manifesto-title">
-            <span class="small">The</span>
-            <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span><br>Manifesto
-          </h1>
-          <p class="hero__lede">We believed Agile was implemented. <span class="accent">We got this instead.</span></p>
-          <div class="hero__actions">
-            <a class="button" href="#values">Read the values</a>
-            <a class="button button--outline" href="playbook.html">Open the Playbook</a>
-          </div>
+        <div class="doc-hero__main">
+          <div class="eyebrow">The frAGILE Manifesto</div>
+          <h1 class="hero__title" id="manifesto-title">The ceremonies arrived.<br><span class="doc-hero__accent">The decisions did not.</span></h1>
+          <p class="hero__lede">A meeting can leave everyone feeling heard and the decision with nobody. The four values below examine that gap in ownership, delivery, customer evidence, and change. Each pairs a familiar distortion with something a team can do about it.</p>
+          <div class="hero__actions"><a class="button" href="#values">Read the four values</a><a class="button button--outline" href="#principles">See the principles</a></div>
+          <p class="doc-hero__byline">An independent project by <a href="about.html">Thach Nguyen</a>.</p>
         </div>
-      </div>
-    </section>
-
-    <section class="section section--paper-light" aria-labelledby="preamble-title">
-      <div class="container preamble-block">
-        <div class="preamble-block__label">Read before you sprint</div>
-        <h2 class="sr-only" id="preamble-title">Manifesto preamble</h2>
-        <div class="preamble-block__copy">
-          <p>This is not a rebuke of Agile. It is a rebuke of what people do <span class="accent">in Agile's name</span>: the empty ceremonies, the vague ownership, and the demos held together with Figma and hope.</p>
-          <p>Below are four values, restated honestly, and six principles for the sprint-weary. Read carefully. Then try one at your next ceremony, with whatever marker Procurement approved.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-rule" id="values" aria-labelledby="values-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">Section II. Values</div>
-            <h2 class="section-heading__title" id="values-title">The Values, <span class="accent">Reconsidered.</span></h2>
-          </div>
-          <p class="section-heading__caption">Four broken defaults, and what is actually true beneath each one.</p>
-        </div>
-
-        <div class="manifesto-values">
-          <article class="manifesto-value">
-            <div class="manifesto-value__head">
-              <div class="manifesto-value__number">I.</div>
-              <h3 class="manifesto-value__statement">Individuals &amp; interactions <span class="over-stamp">over</span> results &amp; accountability</h3>
-            </div>
-            <div class="manifesto-value__body">
-              <div class="manifesto-panel manifesto-panel--satire">
-                <div class="manifesto-panel__label">What we say</div>
-                <p>We vibe well in meetings. Everyone feels heard. Nobody owns the outcome.</p>
-              </div>
-              <div class="manifesto-panel manifesto-panel--truth">
-                <div class="manifesto-panel__label">What is true</div>
-                <p>Assign owners after meetings. Being kind and being clear are not opposites.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="manifesto-value">
-            <div class="manifesto-value__head">
-              <div class="manifesto-value__number">II.</div>
-              <h3 class="manifesto-value__statement">Working software <span class="over-stamp">over</span> comprehensive documentation</h3>
-            </div>
-            <div class="manifesto-value__body">
-              <div class="manifesto-panel manifesto-panel--satire">
-                <div class="manifesto-panel__label">What we say</div>
-                <p>If it is not in the 85-page Confluence doc no one reads, did it even happen?</p>
-              </div>
-              <div class="manifesto-panel manifesto-panel--truth">
-                <div class="manifesto-panel__label">What is true</div>
-                <p>Document what is reusable and painful to forget. Skip the fluff.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="manifesto-value">
-            <div class="manifesto-value__head">
-              <div class="manifesto-value__number">III.</div>
-              <h3 class="manifesto-value__statement">Customer collaboration <span class="over-stamp">over</span> loudest stakeholder wins</h3>
-            </div>
-            <div class="manifesto-value__body">
-              <div class="manifesto-panel manifesto-panel--satire">
-                <div class="manifesto-panel__label">What we say</div>
-                <p>Especially the one who joined the project last week and immediately found a “must-have” edge case.</p>
-              </div>
-              <div class="manifesto-panel manifesto-panel--truth">
-                <div class="manifesto-panel__label">What is true</div>
-                <p>Build structured feedback loops from real customer input, not hierarchy.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="manifesto-value">
-            <div class="manifesto-value__head">
-              <div class="manifesto-value__number">IV.</div>
-              <h3 class="manifesto-value__statement">Responding to change <span class="over-stamp">over</span> delivering anything concrete</h3>
-            </div>
-            <div class="manifesto-value__body">
-              <div class="manifesto-panel manifesto-panel--satire">
-                <div class="manifesto-panel__label">What we say</div>
-                <p>We pivot so fast we end up right where we started, just in a different Epic.</p>
-              </div>
-              <div class="manifesto-panel manifesto-panel--truth">
-                <div class="manifesto-panel__label">What is true</div>
-                <p>Reflect on changes before re-scoping. Timebox pivots. Direction matters more than motion.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--dark" aria-labelledby="principles-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">Section III. Principles</div>
-            <h2 class="section-heading__title" id="principles-title">The Principles of <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span>.</h2>
-          </div>
-          <p class="section-heading__caption">Six commandments for people who have seen how the sausage does not get made.</p>
-        </div>
-
-        <ol class="manifesto-principles">
-          <li class="manifesto-principle">
-            <span class="manifesto-principle__number">01</span>
-            <p class="manifesto-principle__text">Working software is optional. <em>A well-written status update is not.</em></p>
-          </li>
-          <li class="manifesto-principle">
-            <span class="manifesto-principle__number">02</span>
-            <p class="manifesto-principle__text">Feedback must always be actionable. <em>Even if it is emotional.</em></p>
-          </li>
-          <li class="manifesto-principle">
-            <span class="manifesto-principle__number">03</span>
-            <p class="manifesto-principle__text">Burndowns are theater. <em>Feelings are data.</em></p>
-          </li>
-          <li class="manifesto-principle">
-            <span class="manifesto-principle__number">04</span>
-            <p class="manifesto-principle__text">Keep shipping. Keep spiraling. <em>Just not at the same time.</em></p>
-          </li>
-          <li class="manifesto-principle">
-            <span class="manifesto-principle__number">05</span>
-            <p class="manifesto-principle__text">Culture is a ceremony. <em>Practice it, or it practices you.</em></p>
-          </li>
-          <li class="manifesto-principle">
-            <span class="manifesto-principle__number">06</span>
-            <p class="manifesto-principle__text">Every blocker has a story. <em>Listen before fixing.</em></p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section section--paper-deep section-rule" id="sign" aria-labelledby="sign-title">
-      <div class="container signature-card">
-        <div>
-          <div class="signature-card__mark">Section IV. Next steps</div>
-          <h2 class="signature-card__title" id="sign-title">Name the pattern. <span class="accent">Change the work.</span></h2>
-          <div class="button-row">
-            <a class="button" href="playbook.html">Open the Playbook</a>
-            <a class="button button--outline" href="dictionary.html">Browse the Dictionary</a>
-          </div>
-        </div>
-        <aside class="signature-card__aside">
-          No certificates. No maturity model. No transformational lanyard. Just a small commitment to stop pretending unclear work becomes clear because someone put it in a sprint.
+        <aside class="doc-hero__proof" aria-label="A question to take into the next meeting">
+          <div class="field-label">Take this into the next meeting</div>
+          <p>What decision did we make, who owns the next step, and what support do they need?</p>
+          <span>Being kind and being clear are not opposites.</span>
         </aside>
       </div>
     </section>
-  </main>
 
+    <section class="doc-intro section--paper-light" aria-labelledby="preamble-title">
+      <div class="container doc-intro__inner">
+        <div><div class="eyebrow">Read before you sprint</div><h2 id="preamble-title">The ritual and the work.</h2></div>
+        <div class="doc-intro__copy">
+          <p>Agile gave teams useful ways to inspect work, learn, and adapt. Those ideas need more than a board and a calendar. People need clear decisions, evidence they can question, and room to act on what they learn.</p>
+          <p>frAGILE looks at the distance between the ritual and the work. Below are four familiar Agile values after a trip through the org chart. The distortions are ours, not quotations from the original <a href="https://agilemanifesto.org/">Manifesto for Agile Software Development</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" id="values" aria-labelledby="values-title">
+      <div class="container">
+        <div class="doc-section__head"><div><div class="eyebrow">Section I / Values</div><h2 id="values-title">Four values, <span class="accent">distorted.</span></h2></div><p>Each familiar failure has a practical answer beneath it.</p></div>
+        <div class="doc-value-grid"><article class="doc-value">
+          <div class="doc-value__head"><span class="doc-value__number">I</span><h3>Individuals and interactions</h3></div>
+          <div class="doc-value__body">
+            <div class="doc-value__distortion"><span class="field-label">The distortion</span><p>Everyone leaves the meeting feeling heard. The decision leaves with nobody.</p></div>
+            <div class="doc-value__answer"><span class="field-label">What holds up</span><p>Name the decision, who makes it, who takes the next step, and what support is needed. Kindness includes clarity.</p></div>
+          </div>
+        </article>
+<article class="doc-value">
+          <div class="doc-value__head"><span class="doc-value__number">II</span><h3>Working software</h3></div>
+          <div class="doc-value__body">
+            <div class="doc-value__distortion"><span class="field-label">The distortion</span><p>The document is approved. The product is still a promise.</p></div>
+            <div class="doc-value__answer"><span class="field-label">What holds up</span><p>Record the decision, its rationale, and the constraints the next person must respect. Documentation earns its place when it helps someone act or protects quality. Show the working thing, too.</p></div>
+          </div>
+        </article>
+<article class="doc-value">
+          <div class="doc-value__head"><span class="doc-value__number">III</span><h3>Customer collaboration</h3></div>
+          <div class="doc-value__body">
+            <div class="doc-value__distortion"><span class="field-label">The distortion</span><p>The loudest request wins, then gets described as customer-led.</p></div>
+            <div class="doc-value__answer"><span class="field-label">What holds up</span><p>Bring current customer evidence into the decision. If safety, policy, or other constraints point elsewhere, record the trade-off and who made it.</p></div>
+          </div>
+        </article>
+<article class="doc-value">
+          <div class="doc-value__head"><span class="doc-value__number">IV</span><h3>Responding to change</h3></div>
+          <div class="doc-value__body">
+            <div class="doc-value__distortion"><span class="field-label">The distortion</span><p>Every change is called a pivot. Nobody can name the evidence that moved the plan.</p></div>
+            <div class="doc-value__answer"><span class="field-label">What holds up</span><p>Name the new evidence, the work that stops, who decides, and when the new direction will be reviewed.</p></div>
+          </div>
+        </article></div>
+      </div>
+    </section>
+
+    <section class="doc-section doc-section--dark" id="principles" aria-labelledby="principles-title">
+      <div class="container">
+        <div class="doc-section__head"><div><div class="eyebrow">Section II / Principles</div><h2 id="principles-title">Six principles <span class="doc-hero__accent">worth keeping.</span></h2></div><p>Short enough to remember. Specific enough to test.</p></div>
+        <ol class="doc-principles"><li class="doc-principle"><span>01</span><p><strong>A polished status update cannot make unfinished work usable.</strong>Show the work.</p></li>
+<li class="doc-principle"><span>02</span><p><strong>Before making feedback actionable, make it safe to give.</strong></p></li>
+<li class="doc-principle"><span>03</span><p><strong>When the burndown is green and the team is worried, investigate the gap.</strong></p></li>
+<li class="doc-principle"><span>04</span><p><strong>A pivot should retire some work.</strong>Otherwise it is a new label on the same backlog.</p></li>
+<li class="doc-principle"><span>05</span><p><strong>Culture appears when someone brings bad news.</strong>Watch what happens next.</p></li>
+<li class="doc-principle"><span>06</span><p><strong>Every blocker has a story.</strong>Listen before fixing.</p></li></ol>
+      </div>
+    </section>
+
+    <section class="doc-close" aria-labelledby="manifesto-close-title"><div class="container doc-close__inner">
+      <div><div class="eyebrow">Next step</div><h2 id="manifesto-close-title">Name the pattern.<br><span class="accent">Change the work.</span></h2></div>
+      <div><p>No certificates. No maturity model. No transformational lanyard. Pick one recurring practice this week and ask what decision, learning, or protection it is meant to provide. If the answer is unclear, make its purpose explicit or change the practice. Name who will take the change forward and when the team will check whether it helped.</p>
+      <div class="button-row"><a class="button" href="playbook.html">Open the Playbook</a><a class="button button--outline" href="resources.html#team-check-in">Team Check-in</a></div></div>
+    </div></section>
+  </main>
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <span>© 2025–2026 <span class="brand-word"><span class="brand-prefix">fr</span><span class="brand-accent">AGILE</span></span> Framework™ · Independent project by Thach Nguyen</span>
