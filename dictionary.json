@@ -191,7 +191,7 @@
   {
     "number": 28,
     "term": "Epic",
-    "definition": "A Jira ticket so vaguely defined and massive in scope that it slowly swallows three consecutive quarters of roadmap space.",
+    "definition": "A Jira or ADO ticket so vaguely defined and massive in scope that it slowly swallows three consecutive quarters of roadmap space.",
     "slug": "epic",
     "category": "Engineering & Delivery"
   },
@@ -555,7 +555,7 @@
   {
     "number": 80,
     "term": "Single Source of Truth",
-    "definition": "The authoritative location for information, alongside the spreadsheet, Slack thread, PowerPoint, Jira ticket, SharePoint page, and copy someone saved locally.",
+    "definition": "The authoritative location for information, alongside the spreadsheet, Slack thread, PowerPoint, Jira or ADO ticket, SharePoint page, and copy someone saved locally.",
     "slug": "single-source-of-truth",
     "category": "Meetings & Governance"
   },
